@@ -1,4 +1,4 @@
-package com.graduation.deliveryboot;
+package com.graduation.deliveryboot.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+import com.graduation.deliveryboot.R;
 
 import java.util.List;
 

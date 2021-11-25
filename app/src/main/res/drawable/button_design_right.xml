@@ -3,8 +3,6 @@
 
         <!-- pressed -->
         <item android:drawable="@drawable/clicked_arrow_right" android:state_pressed="true"/>
-        <!-- focused -->
-        <item android:drawable="@drawable/clicked_arrow_right" android:state_focused="true"/>
         <!-- default -->
         <item android:drawable="@drawable/ic_baseline_keyboard_arrow_right_24"/>
 

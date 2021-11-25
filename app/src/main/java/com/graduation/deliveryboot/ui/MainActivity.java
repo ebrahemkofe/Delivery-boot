@@ -1,4 +1,4 @@
-package com.graduation.deliveryboot;
+package com.graduation.deliveryboot.ui;
 
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
@@ -18,6 +18,9 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.graduation.deliveryboot.Helper.CustomDialogClass;
+import com.graduation.deliveryboot.R;
 
 import java.io.IOException;
 import java.io.OutputStream;
