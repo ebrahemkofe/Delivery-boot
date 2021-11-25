@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <!-- pressed -->
+        <item android:drawable="@drawable/clicked_arrow_down" android:state_pressed="true"/>
+        <!-- focused -->
+        <item android:drawable="@drawable/clicked_arrow_down" android:state_focused="true"/>
+        <!-- default -->
+        <item android:drawable="@drawable/ic_baseline_keyboard_arrow_down_24"/>
+
+</selector>
