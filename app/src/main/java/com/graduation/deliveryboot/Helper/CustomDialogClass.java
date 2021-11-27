@@ -10,7 +10,7 @@ import android.widget.ListView;
 
 import com.graduation.deliveryboot.Adapters.DialogListViewAdapter;
 import com.graduation.deliveryboot.R;
-import com.graduation.deliveryboot.ui.MainActivity;
+import com.graduation.deliveryboot.ui.ManualControlActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ public class CustomDialogClass extends Dialog implements
     ListView listView;
     DialogListViewAdapter adapter;
     List<String> Device = new ArrayList<>();
-    MainActivity mainActivity;
+    ManualControlActivity manualControlActivity;
 
 
     public CustomDialogClass(Activity a, List<String> num) {
@@ -48,10 +48,10 @@ public class CustomDialogClass extends Dialog implements
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-               MainActivity.ind=position;
+               ManualControlActivity.ind=position;
                CustomDialogClass.this.cancel();
 
-               mainActivity.Pairing();
+               manualControlActivity.Pairing();
 
             }
         });

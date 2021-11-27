@@ -1,5 +1,6 @@
 package com.graduation.deliveryboot.Adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +28,7 @@ public class DialogListViewAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = inflater.inflate(R.layout.dialog_item, parent, false);
+        @SuppressLint("ViewHolder") View v = inflater.inflate(R.layout.dialog_item, parent, false);
 
         TextView textView = v.findViewById(R.id.dialog_text);
         textView.setText(items.get(position));
