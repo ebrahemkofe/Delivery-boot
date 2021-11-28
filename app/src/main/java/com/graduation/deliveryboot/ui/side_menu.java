@@ -1,72 +1,51 @@
 package com.graduation.deliveryboot.ui;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.Toast;
-
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.graduation.deliveryboot.Fragment.MapsFragment;
 import com.graduation.deliveryboot.R;
-import com.graduation.deliveryboot.databinding.ActivitySideMenuBinding;
-
 import androidx.annotation.NonNull;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+public class side_menu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-
-public class side_menu extends AppCompatActivity {
-
-    private AppBarConfiguration mAppBarConfiguration;
-    private ActivitySideMenuBinding binding;
+    Fragment fragment;
+    FragmentTransaction transaction;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    NavigationView navigationView;
+    DrawerLayout drawer;
+    ImageView NavOpen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_side_menu);
 
-        binding = ActivitySideMenuBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        FindViewByIds();
+        StartFragment();
+        OnClicks();
 
-        setSupportActionBar(binding.appBarSideMenu.toolbar);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawer, R.string.nav_open, R.string.nav_close);
+        drawer.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
 
-        DrawerLayout drawer = binding.drawerLayout;
-        NavigationView navigationView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
-                .setOpenableLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_side_menu);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
     }
 
+
+    @SuppressLint("NonConstantResourceId")
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.side_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_side_menu);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
-    public void btn_register(View view){
-        Toast.makeText(side_menu.this, "done", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.home:
                 Toast.makeText(side_menu.this, "home", Toast.LENGTH_SHORT).show();
@@ -95,4 +74,29 @@ public class side_menu extends AppCompatActivity {
         }
         return true;
     }
+
+    public void FindViewByIds(){
+        drawer =  findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        NavOpen=findViewById(R.id.NavBarButton);
+    }
+
+    public void StartFragment(){
+        fragment = new MapsFragment();
+        transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.FragmentLayout, fragment, "MainFragment");
+        transaction.commitNow();
+
+    }
+
+    public void OnClicks(){
+        NavOpen.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("WrongConstant")
+            @Override
+            public void onClick(View view) {
+                drawer.openDrawer(Gravity.START);
+            }
+        });
+    }
+
 }
