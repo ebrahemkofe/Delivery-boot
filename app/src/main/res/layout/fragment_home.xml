@@ -75,150 +75,19 @@
 
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:orientation="horizontal">
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/orderimage1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            tools:listitem="@layout/list_item"
 
-                android:layout_gravity="start"
+            >
 
-                android:paddingRight="@dimen/_10sdp"
-                android:src="@drawable/delivery_bag" />
 
-            <TextView
-                android:id="@+id/order_item1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingTop="@dimen/_5sdp"
+        </ListView>
 
-                android:paddingRight="@dimen/_10sdp"
-                android:text="From 301 to 309"
-                android:textSize="@dimen/_15sdp" />
 
-            <TextView
-                android:id="@+id/date1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingLeft="@dimen/_15sdp"
-                android:text=" 28 / 11"
-                android:textSize="@dimen/_15sdp" />
-
-            <TextView
-                android:id="@+id/time1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:paddingLeft="@dimen/_10sdp"
-                android:paddingRight="@dimen/_5sdp"
-                android:text="06:39 PM"
-                android:textSize="@dimen/_15sdp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:orientation="horizontal">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/orderimage2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:layout_gravity="start"
-
-                android:paddingRight="@dimen/_10sdp"
-                android:src="@drawable/delivery_bag" />
-
-            <TextView
-                android:id="@+id/order_item2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingTop="@dimen/_5sdp"
-
-                android:paddingRight="@dimen/_10sdp"
-                android:text="From 301 to 309"
-                android:textSize="@dimen/_15sdp" />
-
-            <TextView
-                android:id="@+id/date2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingLeft="@dimen/_15sdp"
-                android:text=" 28 / 11"
-                android:textSize="@dimen/_15sdp" />
-
-            <TextView
-                android:id="@+id/time2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:paddingLeft="@dimen/_10sdp"
-                android:paddingRight="@dimen/_5sdp"
-                android:text="06:39 PM"
-                android:textSize="@dimen/_15sdp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:orientation="horizontal">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/orderimage3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:layout_gravity="start"
-
-                android:paddingRight="@dimen/_10sdp"
-                android:src="@drawable/delivery_bag" />
-
-            <TextView
-                android:id="@+id/order_item3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingTop="@dimen/_5sdp"
-
-                android:paddingRight="@dimen/_10sdp"
-                android:text="From 301 to 309"
-                android:textSize="@dimen/_15sdp" />
-
-            <TextView
-                android:id="@+id/date3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingLeft="@dimen/_15sdp"
-                android:text=" 28 / 11"
-                android:textSize="@dimen/_15sdp" />
-
-            <TextView
-                android:id="@+id/time3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:paddingLeft="@dimen/_10sdp"
-                android:paddingRight="@dimen/_5sdp"
-
-                android:text="06:39 PM"
-                android:textSize="@dimen/_15sdp" />
-        </LinearLayout>
     </LinearLayout>
 
     <Button
