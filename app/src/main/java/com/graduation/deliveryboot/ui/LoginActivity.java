@@ -1,7 +1,9 @@
 package com.graduation.deliveryboot.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
+
 import com.graduation.deliveryboot.R;
 
 public class LoginActivity extends AppCompatActivity {

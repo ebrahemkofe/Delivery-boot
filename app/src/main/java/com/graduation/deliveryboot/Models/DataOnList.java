@@ -1,7 +1,7 @@
-package com.graduation.deliveryboot.ui;
+package com.graduation.deliveryboot.Models;
 
 public class DataOnList {
-    public String num,date,time;
+    public String num, date, time;
 
 
     public DataOnList(String num, String date, String time) {

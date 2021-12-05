@@ -6,47 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/greyBackground"
-    android:gravity="top"
     android:orientation="vertical"
     tools:context=".Fragment.HomeFragment">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_45sdp"
-        android:background="@color/darkGreyBackground"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/_10sdp"
-            android:layout_weight="1"
-            android:gravity="left"
-            android:src="@drawable/icons8_menu_50" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/_10sdp"
-            android:layout_weight="1"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="Delivery Boot"
-            android:textSize="@dimen/_20sdp"
-            android:textColor="@color/white" />
-
-        <ImageView
-            android:id="@+id/search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_marginVertical="@dimen/_10sdp"
-            android:layout_weight="1"
-            android:src="@drawable/icons8_search_50" />
-
-
-    </LinearLayout>
 
     <ImageView
         android:id="@+id/imageView6"
@@ -62,45 +23,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_5sdp"
-        android:layout_marginVertical="@dimen/_20sdp"
+        android:layout_marginVertical="@dimen/_10sdp"
         android:textSize="@dimen/_18sdp"
         android:text="Last Orders" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_15sdp"
-        android:layout_marginBottom="@dimen/_50sdp"
-
-
-        android:orientation="vertical">
 
         <ListView
             android:id="@+id/list"
             android:layout_width="wrap_content"
-            android:layout_height="762dp"
+            android:layout_height="@dimen/_200sdp"
             android:divider="@null"
-
             tools:listitem="@layout/list_item"
-
-            >
-
-
-        </ListView>
-
-
-    </LinearLayout>
+       />
 
     <Button
         android:id="@+id/new_order"
         android:layout_width="117dp"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginRight="@dimen/_20sdp"
-        android:layout_marginBottom="@dimen/_15sdp"
+        android:layout_margin="@dimen/_15sdp"
         android:background="@drawable/rounded_button"
-
-
         android:text="New Order" />
 
 </LinearLayout>

@@ -48,10 +48,10 @@ public class CustomDialogClass extends Dialog implements
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-               ManualControlActivity.ind=position;
-               CustomDialogClass.this.cancel();
+                ManualControlActivity.ind = position;
+                CustomDialogClass.this.cancel();
 
-               manualControlActivity.Pairing();
+                manualControlActivity.Pairing();
 
             }
         });

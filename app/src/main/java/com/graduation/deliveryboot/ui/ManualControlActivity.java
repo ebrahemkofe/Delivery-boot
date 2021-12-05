@@ -32,10 +32,10 @@ import java.util.UUID;
 public class ManualControlActivity extends AppCompatActivity {
 
     Button save;
-    ImageButton up,down;
+    ImageButton up, down;
     BluetoothAdapter bAdapter;
     List<String> devices = new ArrayList<>();
-    public static int ind=0;
+    public static int ind = 0;
     BluetoothDevice[] bdevices;
 
     @Override
@@ -53,10 +53,9 @@ public class ManualControlActivity extends AppCompatActivity {
         onClicks();
 
 
-
     }
 
-    private void sendDataToPairedDevice(String message , BluetoothDevice device){
+    private void sendDataToPairedDevice(String message, BluetoothDevice device) {
         byte[] toSend = message.getBytes();
         try {
             UUID applicationUUID = UUID.fromString("00000000-1111-2222-3333-000000000011");
@@ -70,31 +69,31 @@ public class ManualControlActivity extends AppCompatActivity {
         }
     }
 
-    public void BluetoothSearch(){
+    public void BluetoothSearch() {
         if (bAdapter == null) {
             Toast.makeText(ManualControlActivity.this, "Bluetooth Not Supported", Toast.LENGTH_SHORT).show();
         } else {
             // List all the bonded devices(paired)
             Set<BluetoothDevice> pairedDevices = bAdapter.getBondedDevices();
-            int index=0;
+            int index = 0;
             if (pairedDevices.size() > 0) {
                 devices.clear();
                 for (BluetoothDevice device : pairedDevices) {
 
                     devices.add(device.getName());
-                    bdevices[index] =device;
+                    bdevices[index] = device;
                     String deviceName = device.getName();
                     String macAddress = device.getAddress();
                     index++;
                 }
-                CustomDialogClass cdd=new CustomDialogClass(ManualControlActivity.this,devices);
+                CustomDialogClass cdd = new CustomDialogClass(ManualControlActivity.this, devices);
                 cdd.show();
             }
         }
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    public void onClicks(){
+    public void onClicks() {
 
         down.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -107,9 +106,9 @@ public class ManualControlActivity extends AppCompatActivity {
         up.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                Set<BluetoothDevice> bt=bAdapter.getBondedDevices();
+                Set<BluetoothDevice> bt = bAdapter.getBondedDevices();
                 if (bt.size() > 0) {
-                    sendDataToPairedDevice("t",bdevices[ind]);
+                    sendDataToPairedDevice("t", bdevices[ind]);
                     Toast.makeText(ManualControlActivity.this, "up", Toast.LENGTH_SHORT).show();
 
                 }
@@ -126,18 +125,17 @@ public class ManualControlActivity extends AppCompatActivity {
         });
     }
 
-    public void findViewByIds(){
-        save=findViewById(R.id.save_btn);
-        up=findViewById(R.id.up_arrow);
-        down=findViewById(R.id.down_arrow);
+    public void findViewByIds() {
+        save = findViewById(R.id.save_btn);
+        up = findViewById(R.id.up_arrow);
+        down = findViewById(R.id.down_arrow);
     }
 
-    public void StartSearching(){
-        bAdapter=BluetoothAdapter.getDefaultAdapter();
-        if(!bAdapter.isEnabled())
-        {
+    public void StartSearching() {
+        bAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (!bAdapter.isEnabled()) {
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableIntent,1);
+            startActivityForResult(enableIntent, 1);
         }
 
         bAdapter.startDiscovery();
@@ -149,11 +147,11 @@ public class ManualControlActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
 
-            if(action.equals(BluetoothDevice.ACTION_BOND_STATE_CHANGED)){
+            if (action.equals(BluetoothDevice.ACTION_BOND_STATE_CHANGED)) {
                 BluetoothDevice mDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 //3 cases:
                 //case1: bonded already
-                if (mDevice.getBondState() == BluetoothDevice.BOND_BONDED){
+                if (mDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
                     Log.d("TAG", "BroadcastReceiver: BOND_BONDED.");
                 }
                 //case2: creating a bone
@@ -168,7 +166,7 @@ public class ManualControlActivity extends AppCompatActivity {
         }
     };
 
-    public void Pairing(){
+    public void Pairing() {
         //first cancel discovery because its very memory intensive.
         bAdapter.cancelDiscovery();
 
@@ -181,7 +179,7 @@ public class ManualControlActivity extends AppCompatActivity {
 
         //create the bond.
         //NOTE: Requires API 17+? I think this is JellyBean
-        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2){
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2) {
             Log.d("TAG", "Trying to pair with " + deviceName);
             bdevices[ind].createBond();
         }
