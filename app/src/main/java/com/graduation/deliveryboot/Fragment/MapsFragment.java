@@ -42,8 +42,6 @@ public class MapsFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-
         return v;
     }
 

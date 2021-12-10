@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    @SuppressLint("NonConstantResourceId")
+    @SuppressLint({"NonConstantResourceId", "WrongConstant"})
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
@@ -56,12 +56,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.FragmentLayout, fragment, "HomeFragment");
                 transaction.commitNow();
+                drawer.closeDrawer(Gravity.START);
               break ;
             case R.id.maps:
                 fragment = new MapsFragment();
                 transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.FragmentLayout, fragment, "MapsFragment");
                 transaction.commitNow();
+                drawer.closeDrawer(Gravity.START);
                 break;
             case R.id.last_orders:
                 Toast.makeText(MainActivity.this, "last_orders", Toast.LENGTH_SHORT).show();
