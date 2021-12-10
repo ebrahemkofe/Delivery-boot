@@ -59,6 +59,7 @@
             android:textSize="@dimen/_15sdp" />
 
         <Button
+            android:id="@+id/login"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_25sdp"
             android:layout_below="@+id/enter_account"

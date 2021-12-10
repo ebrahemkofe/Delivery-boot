@@ -1,10 +1,12 @@
 package com.graduation.deliveryboot.ui;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     DrawerLayout drawer;
     ImageView NavOpen;
+    Button login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +52,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.home:
-                Toast.makeText(MainActivity.this, "home", Toast.LENGTH_SHORT).show();
+                fragment = new HomeFragment();
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.FragmentLayout, fragment, "HomeFragment");
+                transaction.commitNow();
               break ;
             case R.id.maps:
-                Toast.makeText(MainActivity.this, "maps", Toast.LENGTH_SHORT).show();
+                fragment = new MapsFragment();
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.FragmentLayout, fragment, "MapsFragment");
+                transaction.commitNow();
                 break;
             case R.id.last_orders:
                 Toast.makeText(MainActivity.this, "last_orders", Toast.LENGTH_SHORT).show();
@@ -67,7 +76,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(MainActivity.this, "favorite", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.exit:
-                Toast.makeText(MainActivity.this, "exit", Toast.LENGTH_SHORT).show();
+                finish();
+                System.exit(0);
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -80,12 +90,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer =  findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         NavOpen=findViewById(R.id.NavBarButton);
+        login = findViewById(R.id.login);
     }
 
     public void StartFragment(){
-        fragment = new MapsFragment();
+        fragment = new HomeFragment();
         transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.FragmentLayout, fragment, "MainFragment");
+        transaction.replace(R.id.FragmentLayout, fragment, "HomeFragment");
         transaction.commitNow();
 
     }
@@ -98,6 +109,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawer.openDrawer(Gravity.START);
             }
         });
+
+//        login.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this , LoginActivity.class );
+//                startActivity(intent);
+//            }
+//        });
     }
 
 }

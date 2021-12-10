@@ -3,11 +3,42 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/drawable/add_design.xml" value="0.2169230769230769" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/drawable/button_design_down.xml" value="0.19074074074074074" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/drawable/exit_design.xml" value="0.2169230769230769" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/drawable/favorite_design.xml" value="0.2169230769230769" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/drawable/home_design.xml" value="0.2169230769230769" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/drawable/ic_baseline_shopping_bag_24.xml" value="0.2169230769230769" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/drawable/info_design.xml" value="0.2169230769230769" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/drawable/maps_design.xml" value="0.2169230769230769" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/drawable/menu_design.xml" value="0.2169230769230769" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/drawable/orders_design.xml" value="0.2169230769230769" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/drawable/person_design.xml" value="0.2169230769230769" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/drawable/search_design.xml" value="0.2169230769230769" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/layout/activity_side_menu.xml" value="0.1" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/layout/app_bar_side_menu.xml" value="0.25" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/layout/content_side_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/layout/custom_dialog.xml" value="0.20416666666666666" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/layout/dialog_item.xml" value="0.20416666666666666" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/layout/fragment_gallery.xml" value="0.20416666666666666" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/layout/fragment_maps.xml" value="0.20416666666666666" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/layout/fragment_slideshow.xml" value="0.20416666666666666" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/layout/list_item.xml" value="0.20416666666666666" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/layout/manual_control_activity.xml" value="0.20416666666666666" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/layout/maps.xml" value="0.20416666666666666" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/layout/maps_list.xml" value="0.20416666666666666" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/layout/nav_header_side_menu.xml" value="0.2" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/layout/sign_up.xml" value="0.20416666666666666" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/menu/activity_main_drawer.xml" value="0.33" />
+        <entry key="..\:/projects/Delivery-boot/app/src/main/res/menu/side_menu.xml" value="0.1" />
         <entry key="..\:/projects/Deliveryboot/app/src/main/res/layout/activity_main.xml" value="0.128" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
