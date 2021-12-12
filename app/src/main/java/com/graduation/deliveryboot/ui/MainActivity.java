@@ -67,15 +67,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.last_orders:
                 Toast.makeText(MainActivity.this, "last_orders", Toast.LENGTH_SHORT).show();
+                drawer.closeDrawer(Gravity.START);
+
                 break;
             case R.id.boot_info:
                 Toast.makeText(MainActivity.this, "boot_info", Toast.LENGTH_SHORT).show();
+                drawer.closeDrawer(Gravity.START);
+
                 break;
             case R.id.search:
                 Toast.makeText(MainActivity.this, "search", Toast.LENGTH_SHORT).show();
+                drawer.closeDrawer(Gravity.START);
+
                 break;
             case R.id.favorite:
                 Toast.makeText(MainActivity.this, "favorite", Toast.LENGTH_SHORT).show();
+                drawer.closeDrawer(Gravity.START);
+
                 break;
             case R.id.exit:
                 finish();
@@ -92,7 +100,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer =  findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         NavOpen=findViewById(R.id.NavBarButton);
-        login = findViewById(R.id.login);
+        login = navigationView.getHeaderView(0).findViewById(R.id.login);
+
     }
 
     public void StartFragment(){
@@ -112,13 +121,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-//        login.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this , LoginActivity.class );
-//                startActivity(intent);
-//            }
-//        });
+        login.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("WrongConstant")
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this , LoginActivity.class );
+                startActivity(intent);
+                drawer.closeDrawer(Gravity.START);
+            }
+        });
     }
 
 }

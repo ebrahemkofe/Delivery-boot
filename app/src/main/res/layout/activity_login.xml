@@ -38,9 +38,9 @@
         android:layout_height="@dimen/_30sdp"
         android:layout_below="@+id/loginText"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/white"
         android:hint="max@Example.com"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:textColor="@color/white" />
 
     <EditText
         android:id="@+id/PasswordText"
@@ -49,18 +49,43 @@
         android:layout_below="@+id/EmailText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_20sdp"
-        android:textColor="@color/white"
+        android:hint="********"
         android:inputType="textPassword"
-        android:hint="********" />
+        android:textColor="@color/white" />
 
     <Button
+        android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:layout_below="@+id/PasswordText"
-        android:layout_margin="@dimen/_25sdp"
+        android:layout_marginStart="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_marginEnd="@dimen/_25sdp"
+        android:layout_marginBottom="@dimen/_25sdp"
         android:background="@color/button_color"
         android:text="Login"
         android:textSize="@dimen/_20sdp" />
+
+    <TextView
+        android:id="@+id/signupt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginButton"
+        android:text="Don't have an account? "
+        android:padding="@dimen/_10sdp"
+        android:textSize="@dimen/_12sdp"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/signupText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginButton"
+        android:layout_toRightOf="@+id/signupt"
+        android:padding="@dimen/_10sdp"
+        android:text="Create an account"
+        android:textColor="@color/purple_700"
+        android:textSize="@dimen/_12sdp" />
 
 
 
