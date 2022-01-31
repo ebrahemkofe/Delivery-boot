@@ -10,18 +10,16 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.graduation.deliveryboot.Helper.CustomDialogClass;
 import com.graduation.deliveryboot.R;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -32,16 +30,26 @@ import java.util.UUID;
 public class ManualControlActivity extends AppCompatActivity {
 
     Button save;
-    ImageButton up, down;
+    ImageButton up, down, left, right;
     BluetoothAdapter bAdapter;
     List<String> devices = new ArrayList<>();
     public static int ind = 0;
     BluetoothDevice[] bdevices;
+    String deviceId = "";
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @SuppressLint("HardwareIds")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manual_control_activity);
+
+        if (Build.VERSION.SDK_INT >= 26) {
+            deviceId = getSystemService(TelephonyManager.class).getImei();
+        }
+        else{
+            deviceId = getSystemService(TelephonyManager.class).getDeviceId();
+        }
 
         //Broadcasts when bond state changes (ie:pairing)
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
@@ -52,13 +60,13 @@ public class ManualControlActivity extends AppCompatActivity {
         BluetoothSearch();
         onClicks();
 
-
     }
 
+    @SuppressLint("MissingPermission")
     private void sendDataToPairedDevice(String message, BluetoothDevice device) {
         byte[] toSend = message.getBytes();
         try {
-            UUID applicationUUID = UUID.fromString("00000000-1111-2222-3333-000000000011");
+            UUID applicationUUID = UUID.fromString(deviceId);
             BluetoothSocket socket = device.createInsecureRfcommSocketToServiceRecord(applicationUUID);
             OutputStream mmOutStream = socket.getOutputStream();
             mmOutStream.write(toSend);
@@ -68,11 +76,11 @@ public class ManualControlActivity extends AppCompatActivity {
             Toast.makeText(ManualControlActivity.this, "error", Toast.LENGTH_SHORT).show();
         }
     }
-
+    @SuppressLint("MissingPermission")
     public void BluetoothSearch() {
-        if (bAdapter == null) {
+        if (bAdapter == null)
             Toast.makeText(ManualControlActivity.this, "Bluetooth Not Supported", Toast.LENGTH_SHORT).show();
-        } else {
+         else {
             // List all the bonded devices(paired)
             Set<BluetoothDevice> pairedDevices = bAdapter.getBondedDevices();
             int index = 0;
@@ -92,45 +100,57 @@ public class ManualControlActivity extends AppCompatActivity {
         }
     }
 
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint({"MissingPermission", "ClickableViewAccessibility"})
     public void onClicks() {
 
-        down.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                Toast.makeText(ManualControlActivity.this, "Down", Toast.LENGTH_SHORT).show();
-                return false;
+        down.setOnTouchListener((view, motionEvent) -> {
+            Set<BluetoothDevice> bt = bAdapter.getBondedDevices();
+            if (bt.size() > 0) {
+                sendDataToPairedDevice("b", bdevices[ind]);
+                Toast.makeText(ManualControlActivity.this, "back", Toast.LENGTH_SHORT).show();
             }
+            return false;
         });
 
-        up.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                Set<BluetoothDevice> bt = bAdapter.getBondedDevices();
-                if (bt.size() > 0) {
-                    sendDataToPairedDevice("t", bdevices[ind]);
-                    Toast.makeText(ManualControlActivity.this, "up", Toast.LENGTH_SHORT).show();
-
-                }
-
-                return false;
+        left.setOnTouchListener((view, motionEvent) -> {
+            Set<BluetoothDevice> bt = bAdapter.getBondedDevices();
+            if (bt.size() > 0) {
+                sendDataToPairedDevice("l", bdevices[ind]);
+                Toast.makeText(ManualControlActivity.this, "left", Toast.LENGTH_SHORT).show();
             }
+            return false;
         });
 
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(ManualControlActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+        right.setOnTouchListener((view, motionEvent) -> {
+            Set<BluetoothDevice> bt = bAdapter.getBondedDevices();
+            if (bt.size() > 0) {
+                sendDataToPairedDevice("r", bdevices[ind]);
+                Toast.makeText(ManualControlActivity.this, "right", Toast.LENGTH_SHORT).show();
             }
+            return false;
         });
+
+        up.setOnTouchListener((view, motionEvent) -> {
+            Set<BluetoothDevice> bt = bAdapter.getBondedDevices();
+            if (bt.size() > 0) {
+                sendDataToPairedDevice("f", bdevices[ind]);
+                Toast.makeText(ManualControlActivity.this, "Forward", Toast.LENGTH_SHORT).show();
+            }
+            return false;
+        });
+
+        save.setOnClickListener(view -> Toast.makeText(ManualControlActivity.this, "Saved", Toast.LENGTH_SHORT).show());
     }
 
     public void findViewByIds() {
         save = findViewById(R.id.save_btn);
         up = findViewById(R.id.up_arrow);
         down = findViewById(R.id.down_arrow);
+        left = findViewById(R.id.left_arrow);
+        right = findViewById(R.id.right_arrow);
     }
 
+    @SuppressLint("MissingPermission")
     public void StartSearching() {
         bAdapter = BluetoothAdapter.getDefaultAdapter();
         if (!bAdapter.isEnabled()) {
@@ -142,6 +162,7 @@ public class ManualControlActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("MissingPermission")
     private final BroadcastReceiver mBroadcastReceiver4 = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -166,6 +187,7 @@ public class ManualControlActivity extends AppCompatActivity {
         }
     };
 
+    @SuppressLint("MissingPermission")
     public void Pairing() {
         //first cancel discovery because its very memory intensive.
         bAdapter.cancelDiscovery();
