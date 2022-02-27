@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.graduation.deliveryboot"
-        minSdk 18
+        minSdk 21
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -53,5 +53,8 @@ dependencies {
 
     //Circle Image View
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //Screen Record
+    implementation 'com.github.HBiSoft:HBRecorder:0.1.15'
     
 }

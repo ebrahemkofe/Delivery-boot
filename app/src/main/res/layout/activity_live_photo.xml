@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.LivePhoto">
+
+    <ImageView
+        android:id="@+id/imageToRecord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/robot_image" />
+
+
+    <Button
+        android:id="@+id/Record"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageToRecord"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/_25sdp"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/rounded_button"
+        android:text="Record"
+        android:textAllCaps="false"
+        android:textSize="@dimen/_14sdp" />
+
+
+    <Button
+        android:id="@+id/ScreenShot"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageToRecord"
+        android:layout_margin="@dimen/_25sdp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/rounded_button"
+        android:text="ScreenShot"
+        android:textAllCaps="false"
+        android:textSize="@dimen/_14sdp" />
+</RelativeLayout>
