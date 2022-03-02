@@ -1,5 +1,6 @@
 package com.graduation.deliveryboot.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,22 +8,24 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.graduation.deliveryboot.Adapters.ListAdabter;
+import com.graduation.deliveryboot.ui.NewOrders;
 import com.graduation.deliveryboot.R;
 import com.graduation.deliveryboot.Models.DataOnList;
 
 import java.util.ArrayList;
-
 
 public class HomeFragment extends Fragment {
 
     ArrayList<DataOnList> dataArrayList = new ArrayList<>();
     String[] num = {"From 301 to 309", "From 301 to 309", "From 301 to 309"};
     String[] date = {"12/3", "12/3", "12/3"};
-    String[] time = {"8:55 PM", "8:55 PM", "8:55 PM"};
+    String[] time = {"8:55 PM", "8:55 PM","8:55 PM"};
     ListView listView;
+    Button neworder ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,13 +42,16 @@ public class HomeFragment extends Fragment {
 
         ListAdabter listAdabter = new ListAdabter(requireContext(), dataArrayList);
         listView.setAdapter(listAdabter);
-
+        neworder =(Button)v.findViewById(R.id.new_order);
+        neworder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(requireContext(), NewOrders.class);
+                startActivity(i);
+            }
+        });
 
         return v;
     }
 
-
-    public void btn_new_order(View view) {
-
-    }
 }

@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.graduation.deliveryboot">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -24,9 +25,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
+            android:name=".ui.OrdersQueue"
+            android:exported="false" />
+        <activity
+            android:name=".ui.NewOrders"
+            android:exported="false"/>
+        <activity
             android:name=".ui.LivePhoto"
-            android:exported="false">
-        </activity>
+            android:exported="false"/>
         <activity
             android:name=".ui.LoginActivity"
             android:exported="false" />
@@ -42,7 +48,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.ManualControlActivity"></activity>
+        <activity android:name=".ui.ManualControlActivity" />
     </application>
 
 </manifest>

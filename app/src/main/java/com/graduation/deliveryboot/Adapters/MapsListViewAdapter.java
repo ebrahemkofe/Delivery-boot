@@ -20,7 +20,7 @@ public class MapsListViewAdapter extends ArrayAdapter {
     Context context;
 
     public MapsListViewAdapter(@NonNull Context context, int resource, @NonNull List text) {
-        super(context, resource, text);
+        super(context,resource, text);
         this.context = context;
         this.text = text;
     }

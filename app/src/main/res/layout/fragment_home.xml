@@ -27,13 +27,12 @@
         android:textSize="@dimen/_18sdp"
         android:text="Last Orders" />
 
-        <ListView
-            android:id="@+id/list"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_200sdp"
-            android:divider="@null"
-            tools:listitem="@layout/list_item"
-       />
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_200sdp"
+        android:divider="@null"
+        tools:listitem="@layout/list_item" />
 
     <Button
         android:id="@+id/new_order"

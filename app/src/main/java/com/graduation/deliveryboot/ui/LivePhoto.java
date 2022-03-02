@@ -221,5 +221,11 @@ public class LivePhoto extends AppCompatActivity implements HBRecorderListener{
             }
         }
     }
+
 //endregion
+@Override
+public void onBackPressed(){
+    super.onBackPressed();
+    this.finish();
+}
 }

@@ -36,4 +36,9 @@ public class SignUp extends AppCompatActivity {
         String Email = email.getText().toString().trim();
         String pass = password.getText().toString().trim();
     }
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        this.finish();
+    }
 }

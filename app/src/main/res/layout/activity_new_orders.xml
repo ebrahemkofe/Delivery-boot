@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/greyBackground"
+    tools:context=".ui.NewOrders">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/darkGreyBackground">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="cancel_btn"
+            android:paddingLeft="@dimen/_5sdp"
+            android:paddingTop="@dimen/_5sdp"
+            android:src="@drawable/cancel_icon"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="@dimen/_5sdp"
+            android:text="New Order"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_22sdp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/from_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="From : "
+            android:textSize="@dimen/_20sdp"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/white"/>
+
+        <Spinner
+            android:id="@+id/firstspinner"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_toRightOf="@+id/from_txt" />
+        <TextView
+            android:id="@+id/to_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="To :"
+            android:layout_below="@+id/from_txt"
+            android:textSize="@dimen/_20sdp"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/white"/>
+
+        <Spinner
+            android:id="@+id/secondspinner"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_below="@id/firstspinner"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_toRightOf="@+id/to_txt" />
+        <TextView
+            android:id="@+id/sender_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sender :"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20sdp"
+            android:padding="@dimen/_10sdp"
+            android:layout_below="@id/to_txt"/>
+        <RadioGroup
+            android:id="@+id/first_radio_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/sender_txt"
+            android:layout_below="@id/secondspinner"
+            android:layout_marginTop="@dimen/_15sdp">
+            <RadioButton
+                android:id="@+id/first_me_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Me"
+                android:textSize="@dimen/_13sdp" />
+            <RadioButton
+                android:id="@+id/first_other_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Other"
+                android:textSize="@dimen/_13sdp" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/sender_edit_txt"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_below="@id/secondspinner"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_toRightOf="@id/first_radio_group"
+            android:hint="User Name" />
+        <TextView
+            android:id="@+id/reciver_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reciver :"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20sdp"
+            android:padding="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_below="@id/sender_txt"/>
+        <RadioGroup
+            android:id="@+id/second_radio_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/reciver_txt"
+            android:layout_below="@id/first_radio_group"
+            android:layout_marginTop="@dimen/_10sdp">
+            <RadioButton
+                android:id="@+id/second_me_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Me"
+                android:textSize="@dimen/_13sdp"/>
+
+            <RadioButton
+                android:id="@+id/second_other_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Other"
+                android:textSize="@dimen/_13sdp" />
+        </RadioGroup>
+        <EditText
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_toRightOf="@id/second_radio_group"
+            android:layout_below="@id/sender_edit_txt"
+            android:hint="User Name"
+            android:layout_marginTop="@dimen/_32sdp" />
+    </RelativeLayout>
+
+
+</LinearLayout>
