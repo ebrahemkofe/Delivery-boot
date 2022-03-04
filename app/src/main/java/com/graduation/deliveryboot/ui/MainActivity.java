@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
+import com.graduation.deliveryboot.Fragment.EditProfileFragment;
 import com.graduation.deliveryboot.Fragment.HomeFragment;
 import com.graduation.deliveryboot.Fragment.MapsFragment;
 import com.graduation.deliveryboot.R;
@@ -51,6 +52,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
+            case R.id.account_image:
+                fragment=new EditProfileFragment();
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.FragmentLayout, fragment, "EditProfileFragment");
+                transaction.commitNow();
+                drawer.closeDrawer(Gravity.START);
+                break ;
+
             case R.id.home:
                 fragment = new HomeFragment();
                 transaction = getSupportFragmentManager().beginTransaction();
