@@ -47,5 +47,7 @@ public class FullOrders extends AppCompatActivity {
     }
 
     public void cancel_btn(View view) {
+        this.finish();
     }
+
 }
