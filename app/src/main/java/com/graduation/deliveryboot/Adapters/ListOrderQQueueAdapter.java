@@ -15,12 +15,14 @@ import com.graduation.deliveryboot.Models.DataOnList;
 import com.graduation.deliveryboot.Models.OrderQueueData;
 import com.graduation.deliveryboot.R;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListOrderQQueueAdapter extends ArrayAdapter {
     List<OrderQueueData> dataqueue = new ArrayList<>();
     Context context;
+
     public ListOrderQQueueAdapter(@NonNull Context context, int resource , List<OrderQueueData> dataqueue) {
         super(context,resource, dataqueue);
         this.context = context;
@@ -32,7 +34,7 @@ public class ListOrderQQueueAdapter extends ArrayAdapter {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater ly = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = ly.inflate(R.layout.list_order_queue,parent,false);
-        ImageView bag =(ImageView) convertView.findViewById(R.id.orderimage);
+        ImageView lamp =(ImageView) convertView.findViewById(R.id.lamp);
         TextView track =(TextView) convertView.findViewById(R.id.from_to_txt);
         TextView username =(TextView) convertView.findViewById(R.id.username_txt);
         TextView date =(TextView) convertView.findViewById(R.id.date_txt);
@@ -41,6 +43,19 @@ public class ListOrderQQueueAdapter extends ArrayAdapter {
         track.setText(dataqueue.get(position).tracktxt + " To " + dataqueue.get(position).Totxt);
         username.setText(dataqueue.get(position).usernametxt);
         date.setText(dataqueue.get(position).datetxt);
+
+        if(position == 0){
+            lamp.setImageResource(R.drawable.green_lamp);
+        }
+        else if(position == 1){
+            lamp.setImageResource(R.drawable.yellow_lamp);
+
+        }
+
+        else if(position == 2){
+            lamp.setImageResource(R.drawable.red_lamp);
+
+        }
        /* clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

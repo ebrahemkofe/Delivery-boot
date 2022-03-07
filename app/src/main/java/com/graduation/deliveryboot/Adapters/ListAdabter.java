@@ -13,8 +13,10 @@ import androidx.annotation.Nullable;
 
 import com.graduation.deliveryboot.R;
 import com.graduation.deliveryboot.Models.DataOnList;
+import com.graduation.deliveryboot.ui.FullOrders;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListAdabter extends ArrayAdapter<DataOnList> {
 

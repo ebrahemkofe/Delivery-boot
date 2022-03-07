@@ -24,7 +24,7 @@ public class OrdersQueue extends AppCompatActivity {
     String[] track = {"301","301","301"};
     String[] ToTrack = {"308","304","306"};
     String[] username = {"username","username","username"};
-    String[] date = {"9 : 24", " 9 ; 24","9 : 24"} ;
+    String[] date = {"15 min", "23 min","41 min"} ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
