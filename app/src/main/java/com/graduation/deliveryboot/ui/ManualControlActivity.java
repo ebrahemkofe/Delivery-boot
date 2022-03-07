@@ -14,12 +14,16 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.erz.joysticklibrary.JoyStick;
 import com.graduation.deliveryboot.Helper.CustomDialogClass;
 import com.graduation.deliveryboot.R;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -27,15 +31,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-public class ManualControlActivity extends AppCompatActivity {
+public class ManualControlActivity extends AppCompatActivity implements JoyStick.JoyStickListener {
 
     Button save;
-    ImageButton up, down, left, right;
     BluetoothAdapter bAdapter;
     List<String> devices = new ArrayList<>();
-    public static int ind = 0;
+    public static int ind =0;
     BluetoothDevice[] bdevices;
     String deviceId = "";
+    JoyStick joyStick;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint("HardwareIds")
@@ -44,24 +48,40 @@ public class ManualControlActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manual_control_activity);
 
-        if (Build.VERSION.SDK_INT >= 26) {
-            deviceId = getSystemService(TelephonyManager.class).getImei();
-        }
-        else{
-            deviceId = getSystemService(TelephonyManager.class).getDeviceId();
-        }
+//        if (Build.VERSION.SDK_INT >= 26) {
+//            deviceId = getSystemService(TelephonyManager.class).getImei();
+//        }
+//        else{
+//            deviceId = getSystemService(TelephonyManager.class).getDeviceId();
+//        }
 
-        //Broadcasts when bond state changes (ie:pairing)
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         registerReceiver(mBroadcastReceiver4, filter);
 
         findViewByIds();
         StartSearching();
         BluetoothSearch();
-        onClicks();
+
+        save.setOnClickListener(view -> Toast.makeText(ManualControlActivity.this, "Saved", Toast.LENGTH_SHORT).show());
+
+        joyStick.setType(JoyStick.TYPE_8_AXIS);
+        joyStick.setListener(this);
+
 
     }
 
+    public void findViewByIds() {
+        save = findViewById(R.id.save_btn);
+//        up = findViewById(R.id.up_arrow);
+//        down = findViewById(R.id.down_arrow);
+//        left = findViewById(R.id.left_arrow);
+//        right = findViewById(R.id.right_arrow);
+        joyStick = findViewById(R.id.JoystickControl);
+
+    }
+
+
+    // region Bluetooth Handle
     @SuppressLint("MissingPermission")
     private void sendDataToPairedDevice(String message, BluetoothDevice device) {
         byte[] toSend = message.getBytes();
@@ -76,11 +96,12 @@ public class ManualControlActivity extends AppCompatActivity {
             Toast.makeText(ManualControlActivity.this, "error", Toast.LENGTH_SHORT).show();
         }
     }
+
     @SuppressLint("MissingPermission")
     public void BluetoothSearch() {
         if (bAdapter == null)
             Toast.makeText(ManualControlActivity.this, "Bluetooth Not Supported", Toast.LENGTH_SHORT).show();
-         else {
+        else {
             // List all the bonded devices(paired)
             Set<BluetoothDevice> pairedDevices = bAdapter.getBondedDevices();
             int index = 0;
@@ -100,55 +121,6 @@ public class ManualControlActivity extends AppCompatActivity {
         }
     }
 
-    @SuppressLint({"MissingPermission", "ClickableViewAccessibility"})
-    public void onClicks() {
-
-        down.setOnTouchListener((view, motionEvent) -> {
-            Set<BluetoothDevice> bt = bAdapter.getBondedDevices();
-            if (bt.size() > 0) {
-                sendDataToPairedDevice("b", bdevices[ind]);
-                Toast.makeText(ManualControlActivity.this, "back", Toast.LENGTH_SHORT).show();
-            }
-            return false;
-        });
-
-        left.setOnTouchListener((view, motionEvent) -> {
-            Set<BluetoothDevice> bt = bAdapter.getBondedDevices();
-            if (bt.size() > 0) {
-                sendDataToPairedDevice("l", bdevices[ind]);
-                Toast.makeText(ManualControlActivity.this, "left", Toast.LENGTH_SHORT).show();
-            }
-            return false;
-        });
-
-        right.setOnTouchListener((view, motionEvent) -> {
-            Set<BluetoothDevice> bt = bAdapter.getBondedDevices();
-            if (bt.size() > 0) {
-                sendDataToPairedDevice("r", bdevices[ind]);
-                Toast.makeText(ManualControlActivity.this, "right", Toast.LENGTH_SHORT).show();
-            }
-            return false;
-        });
-
-        up.setOnTouchListener((view, motionEvent) -> {
-            Set<BluetoothDevice> bt = bAdapter.getBondedDevices();
-            if (bt.size() > 0) {
-                sendDataToPairedDevice("f", bdevices[ind]);
-                Toast.makeText(ManualControlActivity.this, "Forward", Toast.LENGTH_SHORT).show();
-            }
-            return false;
-        });
-
-        save.setOnClickListener(view -> Toast.makeText(ManualControlActivity.this, "Saved", Toast.LENGTH_SHORT).show());
-    }
-
-    public void findViewByIds() {
-        save = findViewById(R.id.save_btn);
-        up = findViewById(R.id.up_arrow);
-        down = findViewById(R.id.down_arrow);
-        left = findViewById(R.id.left_arrow);
-        right = findViewById(R.id.right_arrow);
-    }
 
     @SuppressLint("MissingPermission")
     public void StartSearching() {
@@ -206,5 +178,74 @@ public class ManualControlActivity extends AppCompatActivity {
             bdevices[ind].createBond();
         }
     }
+//endregion
 
+
+    //region JoyStick Handle
+    @Override
+    public void onMove(JoyStick joyStick, double angle, double power, int direction) {
+        switch (direction) {
+            case -1:
+                // Toast.makeText(this, "Center", Toast.LENGTH_SHORT).show();
+                //    sendDataToPairedDevice("f", bdevices[ind]);
+                save.setText("Center");
+                break;
+
+            case 0:
+                // Toast.makeText(this, "Left", Toast.LENGTH_SHORT).show();
+                //  sendDataToPairedDevice("f", bdevices[ind]);
+                save.setText("Left");
+                break;
+
+            case 1:
+                //Toast.makeText(this, "Left - Up", Toast.LENGTH_SHORT).show();
+                //sendDataToPairedDevice("f", bdevices[ind]);
+                save.setText("Left - Up");
+                break;
+
+            case 2:
+                // Toast.makeText(this, "Up", Toast.LENGTH_SHORT).show();
+                //sendDataToPairedDevice("f", bdevices[ind]);
+                save.setText("Up");
+                break;
+            case 3:
+                //Toast.makeText(this, "Up - Right", Toast.LENGTH_SHORT).show();
+                //sendDataToPairedDevice("f", bdevices[ind]);
+                save.setText("Up - Right");
+                break;
+            case 4:
+                //Toast.makeText(this, "Right", Toast.LENGTH_SHORT).show();
+                //sendDataToPairedDevice("f", bdevices[ind]);
+                save.setText("Right");
+                break;
+            case 5:
+                //Toast.makeText(this, "Right - Down", Toast.LENGTH_SHORT).show();
+                //sendDataToPairedDevice("f", bdevices[ind]);
+                save.setText("Right - Down");
+                break;
+            case 6:
+                //  Toast.makeText(this, "Down", Toast.LENGTH_SHORT).show();
+                //sendDataToPairedDevice("f", bdevices[ind]);
+                save.setText("Down");
+                break;
+            case 7:
+                // Toast.makeText(this, "Down - Left", Toast.LENGTH_SHORT).show();
+                //sendDataToPairedDevice("f", bdevices[ind]);
+                save.setText("Down - Left");
+                break;
+            default:
+                Toast.makeText(this, "Null", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onTap() {
+
+    }
+
+    @Override
+    public void onDoubleTap() {
+
+    }
+//endregion
 }

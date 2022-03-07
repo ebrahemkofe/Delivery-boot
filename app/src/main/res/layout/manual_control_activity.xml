@@ -1,82 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/greyBackground"
     tools:context=".ui.MainActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/manual_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:text="Manual Control"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_30sdp" />
 
-        <TextView
-            android:id="@+id/manual_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="@dimen/_50sdp"
-            android:text="Manual Control"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_30sdp" />
+    <com.erz.joysticklibrary.JoyStick
+        android:id="@+id/JoystickControl"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_250sdp"
+        android:layout_centerInParent="true"
+        app:backgroundDrawable="@drawable/pad"
+        app:buttonDrawable="@drawable/bull" />
 
-        <ImageButton
-            android:id="@+id/up_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/manual_txt"
-            android:layout_centerInParent="true"
-            android:background="@drawable/button_design_up" />
 
-        <ImageButton
-            android:id="@+id/right_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/up_arrow"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/button_design_right" />
-
-        <ImageButton
-            android:id="@+id/left_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/up_arrow"
-            android:layout_alignParentLeft="true"
-            android:background="@drawable/button_design_left" />
-
-        <ImageButton
-            android:id="@+id/down_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/left_arrow"
-            android:layout_centerInParent="true"
-            android:background="@drawable/button_design_down"/>
-
-        <Button
-            android:id="@+id/save_btn"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="@dimen/_45sdp"
-            android:layout_below="@+id/down_arrow"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:background="@color/button_color"
-            android:text="Save"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_20sdp" />
+    <Button
+        android:id="@+id/save_btn"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:background="@color/button_color"
+        android:text="Save"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20sdp" />
 
         <Button
             android:id="@+id/cancel_btn"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="@dimen/_45sdp"
-            android:layout_below="@id/down_arrow"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/_20sdp"
             android:background="@color/button_color"
             android:text="Cancel"
             android:textColor="@color/white"
             android:textSize="@dimen/_20sdp" />
 
-
-    </RelativeLayout>
-</ScrollView>
+</RelativeLayout>

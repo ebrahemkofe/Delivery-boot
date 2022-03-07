@@ -60,5 +60,8 @@ dependencies {
 
     //Screen Record
     implementation 'com.github.HBiSoft:HBRecorder:0.1.15'
-    
+
+    //Joy Stick
+
+    implementation 'com.github.erz05:JoyStick:1.1.0'
 }
