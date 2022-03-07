@@ -75,9 +75,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawer.closeDrawer(Gravity.START);
                 break;
             case R.id.last_orders:
-                Toast.makeText(MainActivity.this, "last_orders", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(MainActivity.this,FullOrders.class);
+                startActivity(i);
                 drawer.closeDrawer(Gravity.START);
-
                 break;
             case R.id.boot_info:
                 Toast.makeText(MainActivity.this, "boot_info", Toast.LENGTH_SHORT).show();
