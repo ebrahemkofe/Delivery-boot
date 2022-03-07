@@ -184,58 +184,58 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
     //region JoyStick Handle
     @Override
     public void onMove(JoyStick joyStick, double angle, double power, int direction) {
-        switch (direction) {
-            case -1:
-                // Toast.makeText(this, "Center", Toast.LENGTH_SHORT).show();
-                //    sendDataToPairedDevice("f", bdevices[ind]);
-                save.setText("Center");
-                break;
-
-            case 0:
-                // Toast.makeText(this, "Left", Toast.LENGTH_SHORT).show();
-                //  sendDataToPairedDevice("f", bdevices[ind]);
-                save.setText("Left");
-                break;
-
-            case 1:
-                //Toast.makeText(this, "Left - Up", Toast.LENGTH_SHORT).show();
-                //sendDataToPairedDevice("f", bdevices[ind]);
-                save.setText("Left - Up");
-                break;
-
-            case 2:
-                // Toast.makeText(this, "Up", Toast.LENGTH_SHORT).show();
-                //sendDataToPairedDevice("f", bdevices[ind]);
-                save.setText("Up");
-                break;
-            case 3:
-                //Toast.makeText(this, "Up - Right", Toast.LENGTH_SHORT).show();
-                //sendDataToPairedDevice("f", bdevices[ind]);
-                save.setText("Up - Right");
-                break;
-            case 4:
-                //Toast.makeText(this, "Right", Toast.LENGTH_SHORT).show();
-                //sendDataToPairedDevice("f", bdevices[ind]);
-                save.setText("Right");
-                break;
-            case 5:
-                //Toast.makeText(this, "Right - Down", Toast.LENGTH_SHORT).show();
-                //sendDataToPairedDevice("f", bdevices[ind]);
-                save.setText("Right - Down");
-                break;
-            case 6:
-                //  Toast.makeText(this, "Down", Toast.LENGTH_SHORT).show();
-                //sendDataToPairedDevice("f", bdevices[ind]);
-                save.setText("Down");
-                break;
-            case 7:
-                // Toast.makeText(this, "Down - Left", Toast.LENGTH_SHORT).show();
-                //sendDataToPairedDevice("f", bdevices[ind]);
-                save.setText("Down - Left");
-                break;
-            default:
-                Toast.makeText(this, "Null", Toast.LENGTH_SHORT).show();
-        }
+//        switch (direction) {
+//            case -1:
+//                // Toast.makeText(this, "Center", Toast.LENGTH_SHORT).show();
+//                //    sendDataToPairedDevice("f", bdevices[ind]);
+//                save.setText("Center");
+//                break;
+//
+//            case 0:
+//                // Toast.makeText(this, "Left", Toast.LENGTH_SHORT).show();
+//                //  sendDataToPairedDevice("f", bdevices[ind]);
+//                save.setText("Left");
+//                break;
+//
+//            case 1:
+//                //Toast.makeText(this, "Left - Up", Toast.LENGTH_SHORT).show();
+//                //sendDataToPairedDevice("f", bdevices[ind]);
+//                save.setText("Left - Up");
+//                break;
+//
+//            case 2:
+//                // Toast.makeText(this, "Up", Toast.LENGTH_SHORT).show();
+//                //sendDataToPairedDevice("f", bdevices[ind]);
+//                save.setText("Up");
+//                break;
+//            case 3:
+//                //Toast.makeText(this, "Up - Right", Toast.LENGTH_SHORT).show();
+//                //sendDataToPairedDevice("f", bdevices[ind]);
+//                save.setText("Up - Right");
+//                break;
+//            case 4:
+//                //Toast.makeText(this, "Right", Toast.LENGTH_SHORT).show();
+//                //sendDataToPairedDevice("f", bdevices[ind]);
+//                save.setText("Right");
+//                break;
+//            case 5:
+//                //Toast.makeText(this, "Right - Down", Toast.LENGTH_SHORT).show();
+//                //sendDataToPairedDevice("f", bdevices[ind]);
+//                save.setText("Right - Down");
+//                break;
+//            case 6:
+//                //  Toast.makeText(this, "Down", Toast.LENGTH_SHORT).show();
+//                //sendDataToPairedDevice("f", bdevices[ind]);
+//                save.setText("Down");
+//                break;
+//            case 7:
+//                // Toast.makeText(this, "Down - Left", Toast.LENGTH_SHORT).show();
+//                //sendDataToPairedDevice("f", bdevices[ind]);
+//                save.setText("Down - Left");
+//                break;
+//            default:
+//                Toast.makeText(this, "Null", Toast.LENGTH_SHORT).show();
+//        }
     }
 
     @Override
