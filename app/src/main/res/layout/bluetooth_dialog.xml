@@ -4,11 +4,18 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_12sdp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_5sdp"
+        android:text="Please Choose HC-05 with Password 0000 or 1234" />
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:divider="@color/white"
-        android:id="@+id/dialogList"
-        />
+        android:id="@+id/dialogList" />
 
 </LinearLayout>

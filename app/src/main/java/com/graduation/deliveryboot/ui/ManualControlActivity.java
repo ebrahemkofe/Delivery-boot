@@ -10,23 +10,18 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.Switch;
 import android.widget.Toast;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.erz.joysticklibrary.JoyStick;
-import com.graduation.deliveryboot.Helper.CustomDialogClass;
+import com.graduation.deliveryboot.Helper.CustomDialog;
 import com.graduation.deliveryboot.R;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -38,7 +33,6 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
     List<String> devices = new ArrayList<>();
     public static int ind =0;
     BluetoothDevice[] bdevices;
-    String deviceId = "";
     JoyStick joyStick;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -47,14 +41,6 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manual_control_activity);
-
-//        if (Build.VERSION.SDK_INT >= 26) {
-//            deviceId = getSystemService(TelephonyManager.class).getImei();
-//        }
-//        else{
-//            deviceId = getSystemService(TelephonyManager.class).getDeviceId();
-//        }
-
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         registerReceiver(mBroadcastReceiver4, filter);
 
@@ -72,10 +58,6 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
 
     public void findViewByIds() {
         save = findViewById(R.id.save_btn);
-//        up = findViewById(R.id.up_arrow);
-//        down = findViewById(R.id.down_arrow);
-//        left = findViewById(R.id.left_arrow);
-//        right = findViewById(R.id.right_arrow);
         joyStick = findViewById(R.id.JoystickControl);
 
     }
@@ -86,11 +68,12 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
     private void sendDataToPairedDevice(String message, BluetoothDevice device) {
         byte[] toSend = message.getBytes();
         try {
-            UUID applicationUUID = UUID.fromString(deviceId);
+            UUID applicationUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+//            UUID applicationUUID = UUID.fromString("fc5ffc49-00e3-4c8b-9cf1-6b72aad1001a");
             BluetoothSocket socket = device.createInsecureRfcommSocketToServiceRecord(applicationUUID);
             OutputStream mmOutStream = socket.getOutputStream();
             mmOutStream.write(toSend);
-            Toast.makeText(ManualControlActivity.this, "sent", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ManualControlActivity.this, Arrays.toString(toSend) +"", Toast.LENGTH_SHORT).show();
             // Your Data is sent to  BT connected paired device ENJOY.
         } catch (IOException e) {
             Toast.makeText(ManualControlActivity.this, "error", Toast.LENGTH_SHORT).show();
@@ -115,7 +98,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
                     String macAddress = device.getAddress();
                     index++;
                 }
-                CustomDialogClass cdd = new CustomDialogClass(ManualControlActivity.this, devices);
+                CustomDialog cdd = new CustomDialog(ManualControlActivity.this, devices,0);
                 cdd.show();
             }
         }
@@ -173,10 +156,8 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
 
         //create the bond.
         //NOTE: Requires API 17+? I think this is JellyBean
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            Log.d("TAG", "Trying to pair with " + deviceName);
-            bdevices[ind].createBond();
-        }
+        Log.d("TAG", "Trying to pair with " + deviceName);
+        bdevices[ind].createBond();
     }
 //endregion
 
@@ -184,58 +165,58 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
     //region JoyStick Handle
     @Override
     public void onMove(JoyStick joyStick, double angle, double power, int direction) {
-//        switch (direction) {
-//            case -1:
-//                // Toast.makeText(this, "Center", Toast.LENGTH_SHORT).show();
-//                //    sendDataToPairedDevice("f", bdevices[ind]);
-//                save.setText("Center");
-//                break;
-//
-//            case 0:
-//                // Toast.makeText(this, "Left", Toast.LENGTH_SHORT).show();
-//                //  sendDataToPairedDevice("f", bdevices[ind]);
-//                save.setText("Left");
-//                break;
-//
-//            case 1:
-//                //Toast.makeText(this, "Left - Up", Toast.LENGTH_SHORT).show();
-//                //sendDataToPairedDevice("f", bdevices[ind]);
-//                save.setText("Left - Up");
-//                break;
-//
-//            case 2:
-//                // Toast.makeText(this, "Up", Toast.LENGTH_SHORT).show();
-//                //sendDataToPairedDevice("f", bdevices[ind]);
-//                save.setText("Up");
-//                break;
-//            case 3:
-//                //Toast.makeText(this, "Up - Right", Toast.LENGTH_SHORT).show();
-//                //sendDataToPairedDevice("f", bdevices[ind]);
-//                save.setText("Up - Right");
-//                break;
-//            case 4:
-//                //Toast.makeText(this, "Right", Toast.LENGTH_SHORT).show();
-//                //sendDataToPairedDevice("f", bdevices[ind]);
-//                save.setText("Right");
-//                break;
-//            case 5:
-//                //Toast.makeText(this, "Right - Down", Toast.LENGTH_SHORT).show();
-//                //sendDataToPairedDevice("f", bdevices[ind]);
-//                save.setText("Right - Down");
-//                break;
-//            case 6:
-//                //  Toast.makeText(this, "Down", Toast.LENGTH_SHORT).show();
-//                //sendDataToPairedDevice("f", bdevices[ind]);
-//                save.setText("Down");
-//                break;
-//            case 7:
-//                // Toast.makeText(this, "Down - Left", Toast.LENGTH_SHORT).show();
-//                //sendDataToPairedDevice("f", bdevices[ind]);
-//                save.setText("Down - Left");
-//                break;
-//            default:
-//                Toast.makeText(this, "Null", Toast.LENGTH_SHORT).show();
-//        }
+        switch (direction) {
+            case -1:
+                 Toast.makeText(this, "Center", Toast.LENGTH_SHORT).show();
+                    sendDataToPairedDevice("f", bdevices[ind]);
+                save.setText("Center");
+                break;
+
+            case 0:
+                 Toast.makeText(this, "Left", Toast.LENGTH_SHORT).show();
+                  sendDataToPairedDevice("f", bdevices[ind]);
+                save.setText("Left");
+                break;
+
+            case 1:
+                Toast.makeText(this, "Left - Up", Toast.LENGTH_SHORT).show();
+                sendDataToPairedDevice("f", bdevices[ind]);
+                save.setText("Left - Up");
+                break;
+
+            case 2:
+                 Toast.makeText(this, "Up", Toast.LENGTH_SHORT).show();
+                sendDataToPairedDevice("f", bdevices[ind]);
+                save.setText("Up");
+                break;
+            case 3:
+                Toast.makeText(this, "Up - Right", Toast.LENGTH_SHORT).show();
+                sendDataToPairedDevice("f", bdevices[ind]);
+                save.setText("Up - Right");
+                break;
+            case 4:
+                Toast.makeText(this, "Right", Toast.LENGTH_SHORT).show();
+                sendDataToPairedDevice("f", bdevices[ind]);
+                save.setText("Right");
+                break;
+            case 5:
+                Toast.makeText(this, "Right - Down", Toast.LENGTH_SHORT).show();
+                sendDataToPairedDevice("f", bdevices[ind]);
+                save.setText("Right - Down");
+                break;
+            case 6:
+                  Toast.makeText(this, "Down", Toast.LENGTH_SHORT).show();
+                sendDataToPairedDevice("f", bdevices[ind]);
+                save.setText("Down");
+                break;
+            case 7:
+                 Toast.makeText(this, "Down - Left", Toast.LENGTH_SHORT).show();
+                sendDataToPairedDevice("f", bdevices[ind]);
+                save.setText("Down - Left");
+                break;
+            default:
+                Toast.makeText(this, "Null", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
