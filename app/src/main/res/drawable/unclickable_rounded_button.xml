@@ -4,7 +4,7 @@ android:shape="rectangle">
     <corners android:radius="@dimen/_10sdp"/>
     <gradient
 
-        android:startColor="@color/button_color"
-        android:endColor="@color/button_color"
-        android:centerColor="@color/button_color"/>
+        android:startColor="@color/UnClickable_button_color"
+        android:endColor="@color/UnClickable_button_color"
+        android:centerColor="@color/UnClickable_button_color"/>
 </shape>

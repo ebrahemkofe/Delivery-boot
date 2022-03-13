@@ -60,7 +60,7 @@ public class CustomDialog extends Dialog{
             setContentView(R.layout.bluetooth_dialog);
 
             listView = findViewById(R.id.dialogList);
-            adapter = new DialogListViewAdapter(getContext(), R.layout.dialog_item, Device);
+            adapter = new DialogListViewAdapter(getContext(), android.R.layout.simple_list_item_1, Device);
             listView.setAdapter(adapter);
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

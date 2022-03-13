@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(i);
                 drawer.closeDrawer(Gravity.START);
                 break;
-            case R.id.boot_info:
+            case R.id.boot_control:
                 Toast.makeText(MainActivity.this, "boot_info", Toast.LENGTH_SHORT).show();
                 drawer.closeDrawer(Gravity.START);
 

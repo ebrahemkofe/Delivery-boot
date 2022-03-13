@@ -28,9 +28,9 @@ public class DialogListViewAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        @SuppressLint("ViewHolder") View v = inflater.inflate(R.layout.dialog_item, parent, false);
+        @SuppressLint("ViewHolder") View v = inflater.inflate(android.R.layout.simple_list_item_1, parent, false);
 
-        TextView textView = v.findViewById(R.id.dialog_text);
+        TextView textView = v.findViewById(android.R.id.text1);
         textView.setText(items.get(position));
 
 

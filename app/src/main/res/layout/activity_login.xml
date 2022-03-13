@@ -68,7 +68,7 @@
         android:textSize="@dimen/_20sdp" />
 
     <TextView
-        android:id="@+id/signupt"
+        android:id="@+id/signOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/loginButton"
@@ -82,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/loginButton"
-        android:layout_toRightOf="@+id/signupt"
+        android:layout_toRightOf="@+id/signOut"
         android:padding="@dimen/_10sdp"
         android:text="Create an account"
         android:textColor="@color/purple_700"

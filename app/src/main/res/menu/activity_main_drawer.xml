@@ -18,7 +18,7 @@
             android:icon="@drawable/orders_design"
             android:title="Last Orders" />
         <item
-            android:id="@+id/boot_info"
+            android:id="@+id/boot_control"
             android:icon="@drawable/info_design"
             android:title="Boot Info" />
         <item

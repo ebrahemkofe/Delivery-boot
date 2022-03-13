@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/greyBackground"
+    tools:context=".ui.ReceiveOrder">
+
+    <ImageView
+        android:id="@+id/ProgressImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_70sdp"
+        android:src="@drawable/progress" />
+
+    <EditText
+        android:id="@+id/CodeEditText"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ProgressImage"
+        android:layout_margin="@dimen/_30sdp"
+        android:maxLength="4"
+        android:hint="Enter the code"
+        android:inputType="number"
+        android:padding="@dimen/_10sdp" />
+
+    <Button
+        android:id="@+id/CodeCheckButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:layout_toEndOf="@+id/CodeEditText"
+        android:layout_below="@+id/ProgressImage"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:text="Check"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/OpenButton"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/CodeCheckButton"
+        android:layout_marginStart="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginEnd="@dimen/_40sdp"
+        android:layout_marginBottom="@dimen/_40sdp"
+        android:background="@drawable/unclickable_rounded_button"
+        android:text="Open"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/CloseButton"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/CodeCheckButton"
+        android:layout_toEndOf="@+id/OpenButton"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:background="@drawable/unclickable_rounded_button"
+        android:text="Close"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/DoneButton"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/OpenButton"
+        android:layout_margin="@dimen/_40sdp"
+        android:background="@drawable/unclickable_rounded_button"
+        android:text="Done"
+        android:textAllCaps="false" />
+
+
+
+
+</RelativeLayout>
