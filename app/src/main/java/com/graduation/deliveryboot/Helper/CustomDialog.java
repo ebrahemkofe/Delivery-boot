@@ -40,6 +40,7 @@ public class CustomDialog extends Dialog{
     List<String> Device = new ArrayList<>();
     ManualControlActivity manualControlActivity;
     int Case;
+    public static boolean State;
 
 
     public CustomDialog(Context a, List<String> num , int Case) {
@@ -72,15 +73,12 @@ public class CustomDialog extends Dialog{
             adapter = new DialogListViewAdapter(getContext(), android.R.layout.simple_list_item_1, Device);
             listView.setAdapter(adapter);
 
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    ManualControlActivity.ind = position;
-                    CustomDialog.this.cancel();
+            listView.setOnItemClickListener((adapterView, view, position, l) -> {
+                ManualControlActivity.ind = position;
+                CustomDialog.this.cancel();
 
-                    manualControlActivity.Pairing();
+                manualControlActivity.Pairing();
 
-                }
             });
         }
 
@@ -92,18 +90,14 @@ public class CustomDialog extends Dialog{
 
             textView.setText(textView.getText()+text);
 
-            YesButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    CustomDialog.this.cancel();
-                }
+            YesButton.setOnClickListener(view -> {
+                CustomDialog.this.cancel();
+                State = true;
             });
 
-            NoButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    CustomDialog.this.cancel();
-                }
+            NoButton.setOnClickListener(view -> {
+                CustomDialog.this.cancel();
+                State = false;
             });
 
         }
@@ -115,34 +109,23 @@ public class CustomDialog extends Dialog{
             Share = findViewById(R.id.ShareIcon);
             CodeText = findViewById(R.id.CodeText);
 
-            Done.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    CustomDialog.this.cancel();
-                }
+            Done.setOnClickListener(view -> CustomDialog.this.cancel());
+
+            Copy.setOnClickListener(view -> {
+                ClipboardManager clipboard = (ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("Copied", CodeText.getText());
+
+                clipboard.setPrimaryClip(clip);
+
+                Toast.makeText(c, "Copied", Toast.LENGTH_SHORT).show();
             });
 
-            Copy.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ClipboardManager clipboard = (android.content.ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
-                    ClipData clip = android.content.ClipData.newPlainText("Copied", CodeText.getText());
-
-                    clipboard.setPrimaryClip(clip);
-
-                    Toast.makeText(c, "Copied", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            Share.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent sendIntent = new Intent();
-                    sendIntent.setAction(Intent.ACTION_SEND);
-                    sendIntent.putExtra(Intent.EXTRA_TEXT, "This is Receiving Code!  " + CodeText.getText());
-                    sendIntent.setType("text/plain");
-                    c.startActivity(sendIntent);
-                }
+            Share.setOnClickListener(view -> {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is Receiving Code!  " + CodeText.getText());
+                sendIntent.setType("text/plain");
+                c.startActivity(sendIntent);
             });
         }
     }
