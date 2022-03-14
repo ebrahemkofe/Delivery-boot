@@ -135,6 +135,7 @@ public class CustomDialog extends Dialog{
                     HomeFragment.reOrder(true, c);
                 });
 
+
                 NoButton.setOnClickListener(view -> {
                     CustomDialog.this.cancel();
                     HomeFragment.reOrder(false, c);
