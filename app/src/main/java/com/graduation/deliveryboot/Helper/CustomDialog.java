@@ -132,13 +132,12 @@ public class CustomDialog extends Dialog{
 
                 YesButton.setOnClickListener(view -> {
                     CustomDialog.this.cancel();
-                    HomeFragment.reOrder(true, c);
+//                    HomeFragment.reOrder(true, c);
                 });
-
 
                 NoButton.setOnClickListener(view -> {
                     CustomDialog.this.cancel();
-                    HomeFragment.reOrder(false, c);
+//                    HomeFragment.reOrder(false, c);
                 });
 
             }
