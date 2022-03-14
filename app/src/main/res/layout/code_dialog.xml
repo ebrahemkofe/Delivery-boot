@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/darkGreyBackground"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please sent the code to the receiver."
+        android:textSize="@dimen/_16sdp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_margin="@dimen/_10sdp"/>
+
+    <TextView
+        android:id="@+id/CodeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text"
+        android:layout_margin="@dimen/_10sdp"
+        android:gravity="center"
+        android:text="1234"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_30sdp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/CopyIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/copy_icon"
+        android:layout_below="@+id/CodeText"
+        android:layout_margin="@dimen/_10sdp"/>
+
+    <ImageView
+        android:id="@+id/ShareIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/share_icon"
+        android:layout_toEndOf="@+id/CopyIcon"
+        android:layout_below="@+id/CodeText"
+        android:layout_margin="@dimen/_10sdp"/>
+
+    <Button
+        android:id="@+id/DoneDialogButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/CodeText"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:background="@drawable/rounded_button"
+        android:text="Done" />
+</RelativeLayout>
