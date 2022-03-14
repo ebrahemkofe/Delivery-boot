@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.graduation.deliveryboot.R;
@@ -16,6 +17,8 @@ public class ReceiveOrder extends AppCompatActivity {
 
     Button Open , Close , Check , Done;
     EditText Code;
+    ImageView Cancel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,7 @@ public class ReceiveOrder extends AppCompatActivity {
         Done = findViewById(R.id.DoneButton);
         Check = findViewById(R.id.CodeCheckButton);
         Code=findViewById(R.id.CodeEditText);
+        Cancel = findViewById(R.id.cancelIconReceiveActivity);
     }
 
     public void onClicks(){
@@ -74,6 +78,13 @@ public class ReceiveOrder extends AppCompatActivity {
         });
 
         Done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ReceiveOrder.this.finish();
+            }
+        });
+
+        Cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ReceiveOrder.this.finish();

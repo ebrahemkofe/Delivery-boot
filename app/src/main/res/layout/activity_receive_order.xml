@@ -14,6 +14,7 @@
         android:background="@color/darkGreyBackground">
 
         <ImageView
+            android:id="@+id/cancelIconReceiveActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/cancel_icon" />
@@ -21,8 +22,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_centerHorizontal="true"
+            android:gravity="center"
             android:text="Orders"
             android:textColor="@color/white"
             android:textSize="@dimen/_22sdp" />
