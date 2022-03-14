@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.graduation.deliveryboot.Adapters.DialogListViewAdapter;
+import com.graduation.deliveryboot.Fragment.HomeFragment;
 import com.graduation.deliveryboot.R;
 import com.graduation.deliveryboot.ui.ManualControlActivity;
 
@@ -40,8 +41,6 @@ public class CustomDialog extends Dialog{
     List<String> Device = new ArrayList<>();
     ManualControlActivity manualControlActivity;
     int Case;
-    public static boolean State;
-
 
     public CustomDialog(Context a, List<String> num , int Case) {
         super(a);
@@ -90,19 +89,13 @@ public class CustomDialog extends Dialog{
 
             textView.setText(textView.getText()+text);
 
-            YesButton.setOnClickListener(view -> {
-                CustomDialog.this.cancel();
-                State = true;
-            });
+            YesButton.setOnClickListener(view -> CustomDialog.this.cancel());
 
-            NoButton.setOnClickListener(view -> {
-                CustomDialog.this.cancel();
-                State = false;
-            });
+            NoButton.setOnClickListener(view -> CustomDialog.this.cancel());
 
         }
 
-        else if (Case == 2){
+        else if (Case == 2) {
             setContentView(R.layout.code_dialog);
             Done = findViewById(R.id.DoneDialogButton);
             Copy = findViewById(R.id.CopyIcon);
@@ -128,6 +121,27 @@ public class CustomDialog extends Dialog{
                 c.startActivity(sendIntent);
             });
         }
+
+             else if(Case == 3){
+                setContentView(R.layout.control_dialog);
+                textView = findViewById(R.id.DialogText);
+                YesButton = findViewById(R.id.YesButton);
+                NoButton = findViewById(R.id.NoButton);
+
+                textView.setText(textView.getText()+text);
+
+                YesButton.setOnClickListener(view -> {
+                    CustomDialog.this.cancel();
+                    HomeFragment.reOrder(true, c);
+                });
+
+                NoButton.setOnClickListener(view -> {
+                    CustomDialog.this.cancel();
+                    HomeFragment.reOrder(false, c);
+                });
+
+            }
+
     }
 
 }
