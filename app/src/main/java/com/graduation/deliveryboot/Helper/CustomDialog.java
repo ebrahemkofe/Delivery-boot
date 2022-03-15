@@ -1,45 +1,34 @@
 package com.graduation.deliveryboot.Helper;
 
-import static android.content.Context.CLIPBOARD_SERVICE;
+import static java.lang.Thread.sleep;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.graduation.deliveryboot.Adapters.DialogListViewAdapter;
 import com.graduation.deliveryboot.Fragment.HomeFragment;
 import com.graduation.deliveryboot.R;
 import com.graduation.deliveryboot.ui.ManualControlActivity;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class CustomDialog extends Dialog{
 
     public Context c;
-    public Dialog d;
 
-    ListView listView;
-    TextView textView , CodeText;
-    Button YesButton , NoButton , Done;
-    ImageView Copy , Share;
+
     String text;
-    DialogListViewAdapter adapter;
     List<String> Device = new ArrayList<>();
-    ManualControlActivity manualControlActivity;
     int Case;
 
     public CustomDialog(Context a, List<String> num , int Case) {
@@ -67,22 +56,33 @@ public class CustomDialog extends Dialog{
 
         if (Case == 0) {
             setContentView(R.layout.bluetooth_dialog);
+            ListView listView;
+            DialogListViewAdapter adapter;
+
 
             listView = findViewById(R.id.dialogList);
             adapter = new DialogListViewAdapter(getContext(), android.R.layout.simple_list_item_1, Device);
             listView.setAdapter(adapter);
+            Thread timer = new Thread() ;
+                    try {
+                        sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    timer.start();
+            adapter.notifyDataSetChanged();
 
             listView.setOnItemClickListener((adapterView, view, position, l) -> {
-                ManualControlActivity.ind = position;
-                CustomDialog.this.cancel();
-
-                manualControlActivity.Pairing();
-
+                ManualControlActivity.Pairing(position);
+                Device.clear();
+                this.cancel();
             });
         }
 
         else if(Case == 1){
             setContentView(R.layout.control_dialog);
+            Button YesButton , NoButton ;
+            TextView textView;
             textView = findViewById(R.id.DialogText);
             YesButton = findViewById(R.id.YesButton);
             NoButton = findViewById(R.id.NoButton);
@@ -97,6 +97,9 @@ public class CustomDialog extends Dialog{
 
         else if (Case == 2) {
             setContentView(R.layout.code_dialog);
+            Button Done;
+            TextView CodeText;
+            ImageView Copy , Share;
             Done = findViewById(R.id.DoneDialogButton);
             Copy = findViewById(R.id.CopyIcon);
             Share = findViewById(R.id.ShareIcon);
@@ -124,6 +127,8 @@ public class CustomDialog extends Dialog{
 
              else if(Case == 3){
                 setContentView(R.layout.control_dialog);
+            Button YesButton , NoButton;
+                TextView textView;
                 textView = findViewById(R.id.DialogText);
                 YesButton = findViewById(R.id.YesButton);
                 NoButton = findViewById(R.id.NoButton);

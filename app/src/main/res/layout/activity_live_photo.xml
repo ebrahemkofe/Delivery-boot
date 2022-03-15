@@ -10,7 +10,8 @@
         android:id="@+id/imageToRecord"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/robot_image" />
+        android:src="@drawable/robot_image"
+        tools:ignore="ContentDescription" />
 
 
     <Button

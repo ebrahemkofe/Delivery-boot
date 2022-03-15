@@ -32,7 +32,7 @@ public class HomeFragment extends Fragment {
     String[] date = {"12/3", "15/3", "20/3"};
     String[] time = {"8:55 PM", "5:00 PM","8:00 AM"};
     ListView listView;
-    Button neworder ;
+    Button newOrder;
 
 
     @Override
@@ -58,13 +58,10 @@ public class HomeFragment extends Fragment {
 
         ListAdabter listAdabter = new ListAdabter(requireContext(), dataArrayList);
         listView.setAdapter(listAdabter);
-        neworder =(Button)v.findViewById(R.id.new_order);
-        neworder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        newOrder =v.findViewById(R.id.new_order);
+        newOrder.setOnClickListener(view ->  {
                 Intent i = new Intent(requireContext(), NewOrders.class);
                 startActivity(i);
-            }
         });
 
         return v;

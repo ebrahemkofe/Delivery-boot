@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import com.erz.joysticklibrary.JoyStick;
@@ -29,11 +31,10 @@ import java.util.UUID;
 public class ManualControlActivity extends AppCompatActivity implements JoyStick.JoyStickListener {
 
     Button save;
-    BluetoothAdapter bAdapter;
+    static BluetoothAdapter bAdapter;
     List<String> devices = new ArrayList<>();
-    public static int ind =0;
-    BluetoothDevice[] bdevices;
-    JoyStick joyStick;
+    static BluetoothDevice[] bDevices;
+    static JoyStick joyStick;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint("HardwareIds")
@@ -48,7 +49,6 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
         StartSearching();
         BluetoothSearch();
 
-        save.setOnClickListener(view -> Toast.makeText(ManualControlActivity.this, "Saved", Toast.LENGTH_SHORT).show());
 
         joyStick.setType(JoyStick.TYPE_8_AXIS);
         joyStick.setListener(this);
@@ -74,7 +74,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
             OutputStream mmOutStream = socket.getOutputStream();
             mmOutStream.write(toSend);
             Toast.makeText(ManualControlActivity.this, Arrays.toString(toSend) +"", Toast.LENGTH_SHORT).show();
-            // Your Data is sent to  BT connected paired device ENJOY.
+
         } catch (IOException e) {
             Toast.makeText(ManualControlActivity.this, "error", Toast.LENGTH_SHORT).show();
         }
@@ -85,15 +85,14 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
         if (bAdapter == null)
             Toast.makeText(ManualControlActivity.this, "Bluetooth Not Supported", Toast.LENGTH_SHORT).show();
         else {
-            // List all the bonded devices(paired)
             Set<BluetoothDevice> pairedDevices = bAdapter.getBondedDevices();
             int index = 0;
             if (pairedDevices.size() > 0) {
-                devices.clear();
+                bDevices = new BluetoothDevice[pairedDevices.size()];
                 for (BluetoothDevice device : pairedDevices) {
 
                     devices.add(device.getName());
-                    bdevices[index] = device;
+                    bDevices[index] = device;
                     String deviceName = device.getName();
                     String macAddress = device.getAddress();
                     index++;
@@ -113,8 +112,34 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
             startActivityForResult(enableIntent, 1);
         }
 
+        final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getAction();
+
+
+                if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                    //bluetooth device found
+                    BluetoothDevice device = (BluetoothDevice) intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                    devices.add(device.getName());
+                }
+            }
+        };
+        IntentFilter filter = new IntentFilter();
+
+        filter.addAction(BluetoothDevice.ACTION_FOUND);
+        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+
+        registerReceiver(mReceiver, filter);
         bAdapter.startDiscovery();
 
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+            BluetoothSearch();
     }
 
     @SuppressLint("MissingPermission")
@@ -143,13 +168,13 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
     };
 
     @SuppressLint("MissingPermission")
-    public void Pairing() {
+    public static void Pairing(int pos) {
         //first cancel discovery because its very memory intensive.
         bAdapter.cancelDiscovery();
 
         Log.d("TAG", "onItemClick: You Clicked on a device.");
-        String deviceName = bdevices[ind].getName();
-        String deviceAddress = bdevices[ind].getAddress();
+        String deviceName = bDevices[pos].getName();
+        String deviceAddress = bDevices[pos].getAddress();
 
         Log.d("TAG", "onItemClick: deviceName = " + deviceName);
         Log.d("TAG", "onItemClick: deviceAddress = " + deviceAddress);
@@ -157,62 +182,88 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
         //create the bond.
         //NOTE: Requires API 17+? I think this is JellyBean
         Log.d("TAG", "Trying to pair with " + deviceName);
-        bdevices[ind].createBond();
+        bDevices[pos].createBond();
+        allEnabled();
     }
 //endregion
 
 
     //region JoyStick Handle
+    @SuppressLint("SetTextI18n")
     @Override
     public void onMove(JoyStick joyStick, double angle, double power, int direction) {
         switch (direction) {
             case -1:
-                 Toast.makeText(this, "Center", Toast.LENGTH_SHORT).show();
-                    sendDataToPairedDevice("f", bdevices[ind]);
-                save.setText("Center");
+                    save.setText("Center");
                 break;
 
             case 0:
-                 Toast.makeText(this, "Left", Toast.LENGTH_SHORT).show();
-                  sendDataToPairedDevice("f", bdevices[ind]);
-                save.setText("Left");
+                if (!bAdapter.isEnabled()) {
+                    StartSearching();
+                    allUnEnabled();
+                }
+                else
+//                    sendDataToPairedDevice("f", bDevices[ind]);
+
+                    save.setText("Left");
                 break;
 
             case 1:
-                Toast.makeText(this, "Left - Up", Toast.LENGTH_SHORT).show();
-                sendDataToPairedDevice("f", bdevices[ind]);
+                if (!bAdapter.isEnabled()) {
+                    StartSearching();
+                }
+                else
+//                    sendDataToPairedDevice("f", bDevices[ind]);
                 save.setText("Left - Up");
                 break;
 
             case 2:
-                 Toast.makeText(this, "Up", Toast.LENGTH_SHORT).show();
-                sendDataToPairedDevice("f", bdevices[ind]);
+                if (!bAdapter.isEnabled()) {
+                    StartSearching();
+                }
+                else
+//                    sendDataToPairedDevice("f", bDevices[ind]);
                 save.setText("Up");
                 break;
             case 3:
-                Toast.makeText(this, "Up - Right", Toast.LENGTH_SHORT).show();
-                sendDataToPairedDevice("f", bdevices[ind]);
+                if (!bAdapter.isEnabled()) {
+                    StartSearching();
+                }
+                else
+//                    sendDataToPairedDevice("f", bDevices[ind]);
                 save.setText("Up - Right");
                 break;
             case 4:
-                Toast.makeText(this, "Right", Toast.LENGTH_SHORT).show();
-                sendDataToPairedDevice("f", bdevices[ind]);
+                if (!bAdapter.isEnabled()) {
+                    StartSearching();
+                }
+                else
+//                    sendDataToPairedDevice("f", bDevices[ind]);
                 save.setText("Right");
                 break;
             case 5:
-                Toast.makeText(this, "Right - Down", Toast.LENGTH_SHORT).show();
-                sendDataToPairedDevice("f", bdevices[ind]);
+                if (!bAdapter.isEnabled()) {
+                    StartSearching();
+                }
+                else
+//                    sendDataToPairedDevice("f", bDevices[ind]);
                 save.setText("Right - Down");
                 break;
             case 6:
-                  Toast.makeText(this, "Down", Toast.LENGTH_SHORT).show();
-                sendDataToPairedDevice("f", bdevices[ind]);
+                if (!bAdapter.isEnabled()) {
+                    StartSearching();
+                }
+                else
+//                    sendDataToPairedDevice("f", bDevices[ind]);
                 save.setText("Down");
                 break;
             case 7:
-                 Toast.makeText(this, "Down - Left", Toast.LENGTH_SHORT).show();
-                sendDataToPairedDevice("f", bdevices[ind]);
-                save.setText("Down - Left");
+                if (!bAdapter.isEnabled()) {
+                    StartSearching();
+                }
+                else
+//                    sendDataToPairedDevice("f", bDevices[ind]);
+                    save.setText("Down - Left");
                 break;
             default:
                 Toast.makeText(this, "Null", Toast.LENGTH_SHORT).show();
@@ -229,4 +280,13 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
 
     }
 //endregion
+
+    public static void allEnabled(){
+        joyStick.setEnabled(true);
+    }
+
+    public static void allUnEnabled(){
+//        joyStick.setEnabled(false);
+        joyStick.enableStayPut(false);
+    }
 }

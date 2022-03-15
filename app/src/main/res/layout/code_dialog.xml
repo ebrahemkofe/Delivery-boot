@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/darkGreyBackground"
     android:layout_height="match_parent">
@@ -13,7 +14,8 @@
         android:textSize="@dimen/_16sdp"
         android:textColor="@color/white"
         android:gravity="center"
-        android:layout_margin="@dimen/_10sdp"/>
+        android:layout_margin="@dimen/_10sdp"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/CodeText"
@@ -25,7 +27,8 @@
         android:text="1234"
         android:textColor="@color/white"
         android:textSize="@dimen/_30sdp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
 
     <ImageView
         android:id="@+id/CopyIcon"
@@ -33,7 +36,8 @@
         android:layout_height="wrap_content"
         android:src="@drawable/copy_icon"
         android:layout_below="@+id/CodeText"
-        android:layout_margin="@dimen/_10sdp"/>
+        android:layout_margin="@dimen/_10sdp"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/ShareIcon"
@@ -42,7 +46,8 @@
         android:src="@drawable/share_icon"
         android:layout_toEndOf="@+id/CopyIcon"
         android:layout_below="@+id/CodeText"
-        android:layout_margin="@dimen/_10sdp"/>
+        android:layout_margin="@dimen/_10sdp"
+        tools:ignore="ContentDescription" />
 
     <Button
         android:id="@+id/DoneDialogButton"
@@ -53,5 +58,6 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_20sdp"
         android:background="@drawable/rounded_button"
-        android:text="Done" />
+        android:text="Done"
+        tools:ignore="HardcodedText" />
 </RelativeLayout>

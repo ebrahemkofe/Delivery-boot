@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,7 +17,9 @@
             android:id="@+id/ExitIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/cancel_icon" />
+            android:layout_marginStart="@dimen/_5sdp"
+            android:src="@drawable/cancel_icon"
+            tools:ignore="ContentDescription" />
 
     </LinearLayout>
 
@@ -36,23 +37,25 @@
     <EditText
         android:id="@+id/EmailText"
         android:layout_width="@dimen/_250sdp"
-        android:layout_height="@dimen/_30sdp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_below="@+id/loginText"
         android:layout_centerHorizontal="true"
         android:hint="max@Example.com"
         android:inputType="textEmailAddress"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:autofillHints="emailAddress" />
 
     <EditText
         android:id="@+id/PasswordText"
         android:layout_width="@dimen/_250sdp"
-        android:layout_height="@dimen/_30sdp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_below="@+id/EmailText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_20sdp"
         android:hint="********"
         android:inputType="textPassword"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/loginButton"
@@ -82,10 +85,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/loginButton"
-        android:layout_toRightOf="@+id/signOut"
+        android:layout_toEndOf="@+id/signOut"
         android:padding="@dimen/_10sdp"
         android:text="Create an account"
-        android:textColor="@color/purple_700"
+        android:textColor="@color/Blue"
         android:textSize="@dimen/_12sdp" />
 
 

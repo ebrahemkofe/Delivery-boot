@@ -16,7 +16,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/cancelIcon"
+            android:id="@+id/EditcancelIcon"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="@dimen/_45sdp"
             android:layout_weight="1"
@@ -143,7 +143,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/savebutton"
+            android:id="@+id/Editsavebutton"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginBottom="@dimen/_15sdp"
@@ -151,7 +151,6 @@
             android:gravity="center"
             android:onClick="btn_save"
             android:text="Save"
-
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/white"
             android:textSize="@dimen/_25sdp" />

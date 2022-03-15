@@ -5,15 +5,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import com.google.android.material.navigation.NavigationView;
-import com.graduation.deliveryboot.Fragment.EditProfileFragment;
+import com.graduation.deliveryboot.Fragment.ControlFragment;
 import com.graduation.deliveryboot.Fragment.HomeFragment;
 import com.graduation.deliveryboot.Fragment.MapsFragment;
 import com.graduation.deliveryboot.R;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawer;
     ImageView NavOpen;
     Button login;
-    CircleImageView profile ;
+    CircleImageView profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @SuppressLint({"NonConstantResourceId", "WrongConstant"})
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
 
 
             case R.id.home:
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 transaction.replace(R.id.FragmentLayout, fragment, "HomeFragment");
                 transaction.commitNow();
                 drawer.closeDrawer(Gravity.START);
-              break ;
+                break;
             case R.id.maps:
                 fragment = new MapsFragment();
                 transaction = getSupportFragmentManager().beginTransaction();
@@ -72,12 +73,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawer.closeDrawer(Gravity.START);
                 break;
             case R.id.last_orders:
-                Intent i = new Intent(MainActivity.this,FullOrders.class);
+                Intent i = new Intent(MainActivity.this, FullOrders.class);
                 startActivity(i);
                 drawer.closeDrawer(Gravity.START);
                 break;
             case R.id.boot_control:
-                fragment = new HomeFragment();
+                fragment = new ControlFragment();
                 transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.FragmentLayout, fragment, "ControlFragment");
                 transaction.commitNow();
@@ -105,16 +106,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    public void FindViewByIds(){
-        drawer =  findViewById(R.id.drawer_layout);
+    public void FindViewByIds() {
+        drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
-        NavOpen=findViewById(R.id.NavBarButton);
-        profile=(CircleImageView)findViewById(R.id.account_image);
+        NavOpen = findViewById(R.id.NavBarButton);
+        profile = navigationView.getHeaderView(0).findViewById(R.id.account_image);
         login = navigationView.getHeaderView(0).findViewById(R.id.login);
 
     }
 
-    public void StartFragment(){
+    public void StartFragment() {
         fragment = new HomeFragment();
         transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.FragmentLayout, fragment, "HomeFragment");
@@ -122,32 +123,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    public void OnClicks(){
-        NavOpen.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("WrongConstant")
-            @Override
-            public void onClick(View view) {
-                drawer.openDrawer(Gravity.START);
-            }
+    @SuppressLint("WrongConstant")
+    public void OnClicks() {
+        NavOpen.setOnClickListener(view -> drawer.openDrawer(Gravity.START));
+
+        login.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            drawer.closeDrawer(Gravity.START);
         });
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("WrongConstant")
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this , LoginActivity.class );
-                startActivity(intent);
-                drawer.closeDrawer(Gravity.START);
-            }
-        });
-        profile.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent i =new Intent(MainActivity.this, EditProfileFragment.class);
-                startActivity(i);
-                finish();
-            }
-
+        profile.setOnClickListener(view -> {
+            Intent i = new Intent(MainActivity.this, EditProfileFragment.class);
+            startActivity(i);
+            drawer.closeDrawer(Gravity.START);
         });
     }
 
