@@ -1,7 +1,9 @@
 package com.graduation.deliveryboot.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -14,9 +16,12 @@ import android.widget.Toast;
 
 import com.graduation.deliveryboot.R;
 import com.graduation.deliveryboot.ui.LoginActivity;
+import com.graduation.deliveryboot.ui.SignUp;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class EditProfileFragment extends Fragment {
+public class EditProfileFragment extends AppCompatActivity {
 
     EditText fullName, email, password,phoneNumper;
     ImageView Exit;
@@ -39,35 +44,33 @@ public class EditProfileFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    protected void onCreate(
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_edit_profile, container, false);
-        email = (EditText)view.findViewById(R.id.emailtext) ;
-        password = (EditText)view.findViewById(R.id.passwordtext);
-        fullName = (EditText)view.findViewById(R.id.name);
-        phoneNumper = (EditText)view.findViewById(R.id.phonenumpertext);
-        Button save= (Button) view.findViewById(R.id.save_btn);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_edit_profile);
+        email = (EditText)findViewById(R.id.emailtext);
+        password = (EditText)findViewById(R.id.passwordtext);
+        fullName = (EditText)findViewById(R.id.name);
+        phoneNumper = (EditText)findViewById(R.id.phonenumpertext);
+        Button save= (Button) findViewById(R.id.savebutton);
+
 
         save.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext() , "Saved", Toast.LENGTH_SHORT).show();
-
-
+                Toast.makeText(EditProfileFragment.this , "Saved", Toast.LENGTH_SHORT).show();
             }
 
-
         });
+
         Exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().finish();
+                finish();
             }
         });
         
 
-        return view;
 
     }
     

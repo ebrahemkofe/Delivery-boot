@@ -5,16 +5,21 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/list_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/_7sdp"
+        android:layout_marginEnd="@dimen/_7sdp"
         android:layout_marginBottom="@dimen/_20sdp"
-        android:orientation="horizontal">
+        android:background="#99505151"
+        android:clickable="true"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/_20sdp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/orderimage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
             android:paddingRight="@dimen/_10sdp"
             android:src="@drawable/delivery_bag" />
 
@@ -22,10 +27,12 @@
             android:id="@+id/order_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/_5sdp"
+            android:gravity="center_vertical"
             android:maxLines="1"
+            android:paddingTop="@dimen/_5sdp"
             android:paddingRight="@dimen/_10sdp"
-            android:text="From 301 to 309"
+            android:paddingBottom="@dimen/_10sdp"
+            android:text="From 301 to 309                   "
             android:textSize="@dimen/_15sdp" />
 
         <TextView
@@ -33,17 +40,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:paddingLeft="@dimen/_15sdp"
+            android:paddingRight="@dimen/_10sdp"
             android:text=" 28 / 11"
             android:textSize="@dimen/_15sdp" />
 
         <TextView
             android:id="@+id/time"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:maxLines="1"
-            android:paddingLeft="@dimen/_10sdp"
             android:paddingRight="@dimen/_5sdp"
             android:text="06:39 PM"
             android:textSize="@dimen/_15sdp" />

@@ -47,7 +47,7 @@ public class SignUp extends AppCompatActivity {
         String Fname = fullName.getText().toString().trim();
         String Email = email.getText().toString().trim();
         String pass = password.getText().toString().trim();
-        int phone = Integer.parseInt(phoneNumper.getText().toString().trim());
+        String phone = phoneNumper.getText().toString().trim();
     }
     @Override
     public void onBackPressed(){

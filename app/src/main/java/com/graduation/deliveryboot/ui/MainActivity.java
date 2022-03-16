@@ -21,6 +21,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     Fragment fragment;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawer;
     ImageView NavOpen;
     Button login;
+    CircleImageView profile ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
-            case R.id.account_image:
-                fragment=new EditProfileFragment();
-                transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.FragmentLayout, fragment, "EditProfileFragment");
-                transaction.commitNow();
-                drawer.closeDrawer(Gravity.START);
-                break ;
+
 
             case R.id.home:
                 fragment = new HomeFragment();
@@ -80,7 +77,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawer.closeDrawer(Gravity.START);
                 break;
             case R.id.boot_control:
-                Toast.makeText(MainActivity.this, "boot_info", Toast.LENGTH_SHORT).show();
+                fragment = new HomeFragment();
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.FragmentLayout, fragment, "ControlFragment");
+                transaction.commitNow();
                 drawer.closeDrawer(Gravity.START);
 
                 break;
@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer =  findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         NavOpen=findViewById(R.id.NavBarButton);
+        profile=(CircleImageView)findViewById(R.id.account_image);
         login = navigationView.getHeaderView(0).findViewById(R.id.login);
 
     }
@@ -138,6 +139,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 drawer.closeDrawer(Gravity.START);
             }
+        });
+        profile.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent i =new Intent(MainActivity.this, EditProfileFragment.class);
+                startActivity(i);
+                finish();
+            }
+
         });
     }
 

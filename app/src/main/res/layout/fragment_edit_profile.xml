@@ -95,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="29dp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textEmailAddress" />
 
         </LinearLayout>
 
@@ -117,7 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="29dp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
         </LinearLayout>
 
         <LinearLayout
@@ -139,7 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="29dp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPassword" />
         </LinearLayout>
 
         <Button
