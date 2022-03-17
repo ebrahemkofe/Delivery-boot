@@ -365,7 +365,6 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
 
                 } else
 //                    sendDataToPairedDevice("f", bDevices[ind]);
-
                     save.setText("Left");
                 break;
 
