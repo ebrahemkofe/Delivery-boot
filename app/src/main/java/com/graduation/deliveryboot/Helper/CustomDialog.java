@@ -1,9 +1,9 @@
 package com.graduation.deliveryboot.Helper;
 
-import static java.lang.Thread.sleep;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.bluetooth.BluetoothDevice;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.graduation.deliveryboot.Adapters.DialogListViewAdapter;
 import com.graduation.deliveryboot.Fragment.HomeFragment;
 import com.graduation.deliveryboot.R;
@@ -28,10 +29,10 @@ public class CustomDialog extends Dialog{
 
 
     String text;
-    List<String> Device = new ArrayList<>();
+    ArrayList<BluetoothDevice> Device = new ArrayList<>();
     int Case;
 
-    public CustomDialog(Context a, List<String> num , int Case) {
+    public CustomDialog(Context a, ArrayList<BluetoothDevice> num , int Case) {
         super(a);
         // TODO Auto-generated constructor stub
         this.c = a;
@@ -54,32 +55,23 @@ public class CustomDialog extends Dialog{
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        if (Case == 0) {
-            setContentView(R.layout.bluetooth_dialog);
-            ListView listView;
-            DialogListViewAdapter adapter;
+//        if (Case == 0) {
+//            setContentView(R.layout.bluetooth_dialog);
+//
+//            ListView lvNewDevices;
+//            lvNewDevices = findViewById(R.id.dialogList);
+//
+//            DialogListViewAdapter mDeviceListAdapter;
+//            mDeviceListAdapter = new DialogListViewAdapter(getContext(), android.R.layout.simple_list_item_1, Device);
+//            lvNewDevices.setAdapter(mDeviceListAdapter);
+//
+//            lvNewDevices.setOnItemClickListener((adapterView, view, position, l) -> {
+//                mDeviceListAdapter.clear();
+//                this.cancel();
+//            });
+//        }
 
-
-            listView = findViewById(R.id.dialogList);
-            adapter = new DialogListViewAdapter(getContext(), android.R.layout.simple_list_item_1, Device);
-            listView.setAdapter(adapter);
-            Thread timer = new Thread() ;
-                    try {
-                        sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    timer.start();
-            adapter.notifyDataSetChanged();
-
-            listView.setOnItemClickListener((adapterView, view, position, l) -> {
-                ManualControlActivity.Pairing(position);
-                Device.clear();
-                this.cancel();
-            });
-        }
-
-        else if(Case == 1){
+        if(Case == 1){
             setContentView(R.layout.control_dialog);
             Button YesButton , NoButton ;
             TextView textView;
@@ -89,9 +81,16 @@ public class CustomDialog extends Dialog{
 
             textView.setText(textView.getText()+text);
 
-            YesButton.setOnClickListener(view -> CustomDialog.this.cancel());
+            YesButton.setOnClickListener(view ->{
+                CustomDialog.this.cancel();
+                ManualControlActivity.state=true;
+            });
 
-            NoButton.setOnClickListener(view -> CustomDialog.this.cancel());
+            NoButton.setOnClickListener(view -> {
+                CustomDialog.this.cancel();
+                ManualControlActivity.state=false;
+            });
+
 
         }
 

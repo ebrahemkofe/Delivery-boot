@@ -1,36 +1,52 @@
 package com.graduation.deliveryboot.Adapters;
 
 import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
-import java.util.List;
 
-public class DialogListViewAdapter extends ArrayAdapter<String> {
-    List<String> items;
-    Context mContext;
+import com.graduation.deliveryboot.R;
 
-    public DialogListViewAdapter(@NonNull Context context, int resource, List<String> text) {
-        super(context, resource, text);
-        this.items = text;
-        mContext = context;
+import java.util.ArrayList;
+
+
+public class DialogListViewAdapter extends ArrayAdapter<BluetoothDevice> {
+
+    private LayoutInflater mLayoutInflater;
+    private ArrayList<BluetoothDevice> mDevices;
+    private int  mViewResourceId;
+
+    public DialogListViewAdapter(Context context, int tvResourceId, ArrayList<BluetoothDevice> devices){
+        super(context, tvResourceId,devices);
+        this.mDevices = devices;
+        mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mViewResourceId = tvResourceId;
     }
 
-    @NonNull
-    @Override
+    @SuppressLint({"MissingPermission", "ViewHolder"})
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        @SuppressLint("ViewHolder") View v = inflater.inflate(android.R.layout.simple_list_item_1, parent, false);
+        convertView = mLayoutInflater.inflate(mViewResourceId, null);
 
-        TextView textView = v.findViewById(android.R.id.text1);
-        textView.setText(items.get(position));
+        BluetoothDevice device = mDevices.get(position);
+
+        if (device != null) {
+            TextView deviceName = (TextView) convertView.findViewById(R.id.tvDeviceName);
+            TextView deviceAdress = (TextView) convertView.findViewById(R.id.tvDeviceAddress);
 
 
-        return v;
+            if (deviceName != null) {
+                deviceName.setText(device.getName());
+            }
+            if (deviceAdress != null) {
+                deviceAdress.setText(device.getAddress());
+            }
+        }
+
+        return convertView;
     }
 
 }
