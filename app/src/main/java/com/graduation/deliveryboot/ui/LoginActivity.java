@@ -19,7 +19,6 @@ import com.graduation.deliveryboot.R;
 public class LoginActivity extends AppCompatActivity {
 
     Button Login;
-    ImageView Exit;
     TextView Signup;
     EditText Email, Password;
     CheckBox Signed;
@@ -51,7 +50,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public void FindViewsByID() {
         Login = findViewById(R.id.loginButton);
-        Exit = findViewById(R.id.ExitIcon);
         Signup = findViewById(R.id.signupText);
         Email = findViewById(R.id.EmailText);
         Password = findViewById(R.id.PasswordText);
@@ -93,8 +91,6 @@ public class LoginActivity extends AppCompatActivity {
             } else
                 Toast.makeText(this, "Please Check Email and Password", Toast.LENGTH_SHORT).show();
         });
-
-        Exit.setOnClickListener(view -> finish());
 
         Signup.setOnClickListener(view -> {
             Intent i = new Intent(LoginActivity.this, SignUp.class);
