@@ -23,7 +23,7 @@ import com.graduation.deliveryboot.Models.DataOnList;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener {
 
    static int pos;
 
@@ -33,6 +33,7 @@ public class HomeFragment extends Fragment {
     String[] time = {"8:55 PM", "5:00 PM","8:00 AM"};
     ListView listView;
     Button newOrder;
+    ListAdabter listAdabter;
 
 
     @Override
@@ -41,13 +42,7 @@ public class HomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
         listView = v.findViewById(R.id.list);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            public void onItemClick(AdapterView <? > arg0, View view, int position, long id) {
-                CustomDialog customDialog=new CustomDialog(requireContext(),"sure",3);
-                customDialog.show();
-            pos=position;
-
-            }});
+        newOrder =v.findViewById(R.id.new_order);
 
 
         for (int i = 0; i < num.length; ++i) {
@@ -56,9 +51,10 @@ public class HomeFragment extends Fragment {
 
         }
 
-        ListAdabter listAdabter = new ListAdabter(requireContext(), dataArrayList);
+        listAdabter = new ListAdabter(requireContext(), dataArrayList);
         listView.setAdapter(listAdabter);
-        newOrder =v.findViewById(R.id.new_order);
+        listView.setOnItemClickListener(HomeFragment.this);
+        
         newOrder.setOnClickListener(view ->  {
                 Intent i = new Intent(requireContext(), NewOrders.class);
                 startActivity(i);
@@ -74,4 +70,11 @@ public class HomeFragment extends Fragment {
             Toast.makeText(context, "No", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Toast.makeText(requireContext(), "clicked" , Toast.LENGTH_SHORT).show();
+        CustomDialog customDialog=new CustomDialog(requireContext(),"ReOrder this?",3);
+        customDialog.show();
+        pos=i;
+    }
 }

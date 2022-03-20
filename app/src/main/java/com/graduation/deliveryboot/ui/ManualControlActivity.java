@@ -309,6 +309,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
         }
     }
 
+
     @SuppressLint("MissingPermission")
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

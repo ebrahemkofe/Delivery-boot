@@ -1,58 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_item"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="@dimen/_40sdp"
+    android:background="#99505151"
+    android:orientation="horizontal">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/orderimage"
+        android:layout_width="0dp"
+        android:layout_weight="0.3"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:padding="@dimen/_2sdp"
+        android:src="@drawable/delivery_bag" />
 
-    <LinearLayout
-        android:id="@+id/list_item"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/_7sdp"
-        android:layout_marginEnd="@dimen/_7sdp"
-        android:layout_marginBottom="@dimen/_20sdp"
-        android:background="#99505151"
-        android:clickable="true"
-        android:orientation="horizontal"
-        android:paddingStart="@dimen/_20sdp">
+    <TextView
+        android:id="@+id/order_item"
+        android:layout_width="0dp"
+        android:layout_weight="0.7"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:maxLines="1"
+        android:text="From 301 to 309"
+        android:textSize="@dimen/_15sdp" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/orderimage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="@dimen/_10sdp"
-            android:src="@drawable/delivery_bag" />
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="0dp"
+        android:layout_weight="0.3"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:layout_gravity="center_vertical"
+        android:text=" 28/11"
+        android:textSize="@dimen/_12sdp" />
 
-        <TextView
-            android:id="@+id/order_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:maxLines="1"
-            android:paddingTop="@dimen/_5sdp"
-            android:paddingRight="@dimen/_10sdp"
-            android:paddingBottom="@dimen/_10sdp"
-            android:text="From 301 to 309                   "
-            android:textSize="@dimen/_15sdp" />
-
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:paddingRight="@dimen/_10sdp"
-            android:text=" 28 / 11"
-            android:textSize="@dimen/_15sdp" />
-
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:maxLines="1"
-            android:paddingRight="@dimen/_5sdp"
-            android:text="06:39 PM"
-            android:textSize="@dimen/_15sdp" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="0dp"
+        android:layout_weight="0.3"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:layout_gravity="center_vertical"
+        android:text="06:39 PM"
+        android:textSize="@dimen/_12sdp" />
 
 </LinearLayout>

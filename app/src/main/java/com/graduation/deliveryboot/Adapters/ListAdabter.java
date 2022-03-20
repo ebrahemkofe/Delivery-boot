@@ -33,7 +33,7 @@ public class ListAdabter extends ArrayAdapter<DataOnList> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
-        ImageView imageView = convertView.findViewById(R.id.orderimage);
+
         TextView num = convertView.findViewById(R.id.order_item);
         TextView date = convertView.findViewById(R.id.date);
         TextView time = convertView.findViewById(R.id.time);

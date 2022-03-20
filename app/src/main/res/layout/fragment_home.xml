@@ -1,58 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/robot_image"
     android:orientation="vertical"
     tools:context=".Fragment.HomeFragment">
 
-
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_30sdp">
+        android:paddingTop="@dimen/_20sdp"
+        android:orientation="vertical">
 
-
-        <ScrollView
+        <TextView
+            android:id="@+id/textView3"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:text="Last Orders"
+            android:textColor="#7A7878"
+            android:textSize="@dimen/_18sdp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_300sdp"
+            android:dividerHeight="@dimen/_10sdp"
+            tools:listitem="@layout/list_item" />
 
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/_10sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:text="Last Orders"
-                    android:textColor="#7A7878"
-                    android:textSize="@dimen/_18sdp" />
-
-                <ListView
-                    android:id="@+id/list"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_300sdp"
-                    android:divider="@null"
-                    tools:listitem="@layout/list_item" />
-
-                <Button
-                    android:id="@+id/new_order"
-                    android:layout_width="117dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_margin="@dimen/_15sdp"
-                    android:background="@drawable/rounded_button"
-                    android:text="New Order" />
-            </LinearLayout>
-        </ScrollView>
-    </RelativeLayout>
-</LinearLayout>
+        <Button
+            android:id="@+id/new_order"
+            android:layout_width="117dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="@dimen/_15sdp"
+            android:background="@drawable/rounded_button"
+            android:text="New Order" />
+    </LinearLayout>
+</ScrollView>
