@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/controlLayout">
 
     <TextView
@@ -30,25 +30,82 @@
         android:layout_width="@dimen/_250sdp"
         android:layout_height="@dimen/_250sdp"
         android:layout_centerInParent="true"
+        android:visibility="gone"
         app:backgroundDrawable="@drawable/pad"
         app:buttonDrawable="@drawable/bull" />
 
+        <RelativeLayout
+            android:id="@+id/activity_main"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_300sdp"
+            android:layout_centerInParent="true"
+            android:padding="@dimen/_5sdp">
 
-    <Button
-        android:id="@+id/save_btn"
-        android:layout_width="@dimen/_120sdp"
-        android:layout_height="@dimen/_45sdp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/_20sdp"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
-        android:layout_marginBottom="@dimen/_20sdp"
-        android:background="@color/button_color"
-        android:text="Save"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_20sdp" />
+            <Button
+                android:id="@+id/Cancel_connectBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:onClick="Cancel_connect"
+                android:text="Cancel"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btnFindUnpairedDevices"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:onClick="btnDiscover"
+                android:text="Refresh"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btnEnableBT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="Open BT"
+                android:textAllCaps="false" />
+
+
+            <TextView
+                android:id="@+id/infoText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Cancel_connectBtn"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="Please Choose HC-05 with Password 0000 or 1234"
+                android:textSize="@dimen/_15sdp"
+                tools:ignore="HardcodedText" />
+
+            <ListView
+                android:id="@+id/lvNewDevices"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_250sdp"
+                android:layout_below="@+id/infoText"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:divider="@color/darkGreyBackground"
+                android:dividerHeight="@dimen/_2sdp"
+                tools:listitem="@layout/device_adapter_view" />
+
+
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/save_btn"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/_20sdp"
+            android:background="@color/button_color"
+            android:text="Save"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20sdp" />
+
 
         <Button
             android:id="@+id/cancel_btn"
@@ -63,63 +120,7 @@
             android:textSize="@dimen/_20sdp" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/activity_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/_5sdp">
 
-        <Button
-            android:id="@+id/btnDiscoverable_on_off"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:onClick="btnEnableDisable_Discoverable"
-            android:text="Cancel"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btnFindUnpairedDevices"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:onClick="btnDiscover"
-            android:text="Refresh"
-            android:textAllCaps="false" />
-
-        <Button
-            android:id="@+id/btnEnableBT"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:text="Open BT"
-            android:textAllCaps="false" />
-
-
-        <TextView
-            android:id="@+id/infoText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/_15sdp"
-            android:layout_below="@+id/btnDiscoverable_on_off"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/_5sdp"
-            android:text="Please Choose HC-05 with Password 0000 or 1234"
-            tools:ignore="HardcodedText" />
-
-        <ListView
-            android:id="@+id/lvNewDevices"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_250sdp"
-            android:layout_below="@+id/infoText"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:divider="@color/darkGreyBackground"
-            android:dividerHeight="@dimen/_2sdp"
-            tools:listitem="@layout/device_adapter_view" />
-
-
-    </RelativeLayout>
 
 
 </RelativeLayout>

@@ -9,7 +9,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,7 +18,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -29,27 +27,28 @@ import com.graduation.deliveryboot.Helper.CustomDialog;
 import com.graduation.deliveryboot.R;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 public class ManualControlActivity extends AppCompatActivity implements JoyStick.JoyStickListener, AdapterView.OnItemClickListener {
 
     private static final String TAG = "MainActivity";
-    Button save,BTon;
+    Button save, cancel, BTon;
     static JoyStick joyStick;
     RelativeLayout control, connect;
     BluetoothAdapter mBluetoothAdapter;
     Button btnEnableDisable_Discoverable;
-
     public ArrayList<BluetoothDevice> mBTDevices = new ArrayList<>();
     public DialogListViewAdapter mDeviceListAdapter;
     ListView lvNewDevices;
-
+    BluetoothDevice deviceToSent;
     public static boolean state;
+    OutputStream outputStream;
+    InputStream inputStream;
+    BluetoothSocket mmSocket;
 
     // Create a BroadcastReceiver for ACTION_FOUND
     private final BroadcastReceiver mBroadcastReceiver1 = new BroadcastReceiver() {
@@ -62,7 +61,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
                 switch (state) {
                     case BluetoothAdapter.STATE_OFF:
                         Log.d(TAG, "onReceive: STATE OFF");
-                        control.setVisibility(View.GONE);
+                        joyStick.setVisibility(View.GONE);
                         connect.setVisibility(View.VISIBLE);
                         enableDisableBT();
                         break;
@@ -81,10 +80,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
         }
     };
 
-    /**
-     * Broadcast Receiver for changes made to bluetooth states such as:
-     * 1) Discoverability mode on/off or expire.
-     */
+
     private final BroadcastReceiver mBroadcastReceiver2 = new BroadcastReceiver() {
 
         @Override
@@ -156,16 +152,24 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
                 //case1: bonded already
                 if (mDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
                     Log.d(TAG, "BroadcastReceiver: BOND_BONDED.");
-                    control.setVisibility(View.VISIBLE);
+                    joyStick.setVisibility(View.VISIBLE);
                     connect.setVisibility(View.GONE);
+                    lvNewDevices.setEnabled(true);
+                    try {
+                        ConnectSocket(deviceToSent);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 //case2: creating a bone
                 if (mDevice.getBondState() == BluetoothDevice.BOND_BONDING) {
                     Log.d(TAG, "BroadcastReceiver: BOND_BONDING.");
+                    lvNewDevices.setEnabled(false);
                 }
                 //case3: breaking a bond
                 if (mDevice.getBondState() == BluetoothDevice.BOND_NONE) {
                     Log.d(TAG, "BroadcastReceiver: BOND_NONE.");
+                    lvNewDevices.setEnabled(true);
                 }
             }
         }
@@ -187,24 +191,27 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manual_control_activity);
+
         findViewByIds();
-
         joyStick.setType(JoyStick.TYPE_8_AXIS);
-        joyStick.setListener(this);
-
-        btnEnableDisable_Discoverable = (Button) findViewById(R.id.btnDiscoverable_on_off);
-        lvNewDevices = (ListView) findViewById(R.id.lvNewDevices);
-        mBTDevices = new ArrayList<>();
 
         //Broadcasts when bond state changes (ie:pairing)
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         registerReceiver(mBroadcastReceiver4, filter);
 
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
         lvNewDevices.setOnItemClickListener(ManualControlActivity.this);
-
+        joyStick.setListener(this);
         BTon.setOnClickListener(view -> enableDisableBT());
-
+        cancel.setOnClickListener(view -> {
+            CustomDialog customDialog = new CustomDialog(this, "You want to Cancel?", 1);
+            customDialog.show();
+            customDialog.setOnDismissListener(dialogInterface -> {
+                if (state)
+                    this.finish();
+            });
+        });
 
     }
 
@@ -234,7 +241,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
 
 
     @SuppressLint("MissingPermission")
-    public void btnEnableDisable_Discoverable(View view) {
+    public void Cancel_connect(View view) {
 //        Log.d(TAG, "btnEnableDisable_Discoverable: Making device discoverable for 300 seconds.");
 //
 //        Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
@@ -244,19 +251,18 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
 //        IntentFilter intentFilter = new IntentFilter(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
 //        registerReceiver(mBroadcastReceiver2, intentFilter);
 
-        CustomDialog customDialog=new CustomDialog(this,"You want to Cancel?",1);
+        CustomDialog customDialog = new CustomDialog(this, "You want to Cancel?", 1);
         customDialog.show();
         customDialog.setOnDismissListener(dialogInterface -> {
-            if(state)
+            if (state)
                 this.finish();
         });
-
 
     }
 
 
     @SuppressLint("MissingPermission")
-    public void startDiscover(){
+    public void startDiscover() {
         Log.d(TAG, "btnDiscover: Looking for unpaired devices.");
         if (mDeviceListAdapter != null)
             mDeviceListAdapter.clear();
@@ -282,8 +288,6 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
         if (mBluetoothAdapter.isDiscovering())
             mBluetoothAdapter.cancelDiscovery();
 
-
-
         Log.d(TAG, "btnDiscover: Canceling discovery.");
         checkBTPermissions();
 
@@ -293,13 +297,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
 
     }
 
-    /**
-     * This method is required for all devices running API23+
-     * Android must programmatically check the permissions for bluetooth. Putting the proper permissions
-     * in the manifest is not enough.
-     * <p>
-     * NOTE: This will only execute on versions > LOLLIPOP because it is not needed otherwise.
-     */
+
     private void checkBTPermissions() {
         int permissionCheck = this.checkSelfPermission("Manifest.permission.ACCESS_FINE_LOCATION");
         permissionCheck += this.checkSelfPermission("Manifest.permission.ACCESS_COARSE_LOCATION");
@@ -317,14 +315,18 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
         mBluetoothAdapter.cancelDiscovery();
 
         Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
-        int index = 0;
         if (pairedDevices.size() > 0) {
             for (BluetoothDevice device : pairedDevices) {
                 if (device.getName().equals(mBTDevices.get(i).getName())) {
-                    control.setVisibility(View.VISIBLE);
+                    joyStick.setVisibility(View.VISIBLE);
                     connect.setVisibility(View.GONE);
+                    deviceToSent = mBTDevices.get(i);
+                    try {
+                        ConnectSocket(mBTDevices.get(i));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-                index++;
             }
         } else {
             Log.d(TAG, "onItemClick: You Clicked on a device.");
@@ -336,6 +338,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
 
             //create the bond.
             Log.d(TAG, "Trying to pair with " + deviceName);
+            deviceToSent = mBTDevices.get(i);
             mBTDevices.get(i).createBond();
         }
     }
@@ -346,9 +349,9 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
         control = findViewById(R.id.controlLayout);
         connect = findViewById(R.id.activity_main);
         BTon = findViewById(R.id.btnEnableBT);
-
-
-
+        cancel = findViewById(R.id.cancel_btn);
+        btnEnableDisable_Discoverable = findViewById(R.id.Cancel_connectBtn);
+        lvNewDevices = findViewById(R.id.lvNewDevices);
     }
 
     //region JoyStick Handle
@@ -363,17 +366,17 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
             case 0:
                 if (!mBluetoothAdapter.isEnabled()) {
                     enableDisableBT();
-
-                } else
-//                    sendDataToPairedDevice("f", bDevices[ind]);
+                }
+                else {
+//                    SendData("l");
                     save.setText("Left");
+                }
                 break;
 
             case 1:
                 if (!mBluetoothAdapter.isEnabled()) {
                     enableDisableBT();
                 } else
-//                    sendDataToPairedDevice("f", bDevices[ind]);
                     save.setText("Left - Up");
                 break;
 
@@ -381,42 +384,36 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
                 if (!mBluetoothAdapter.isEnabled()) {
                     enableDisableBT();
                 } else
-//                    sendDataToPairedDevice("f", bDevices[ind]);
                     save.setText("Up");
                 break;
             case 3:
                 if (!mBluetoothAdapter.isEnabled()) {
                     enableDisableBT();
                 } else
-//                    sendDataToPairedDevice("f", bDevices[ind]);
                     save.setText("Up - Right");
                 break;
             case 4:
                 if (!mBluetoothAdapter.isEnabled()) {
                     enableDisableBT();
                 } else
-//                    sendDataToPairedDevice("f", bDevices[ind]);
                     save.setText("Right");
                 break;
             case 5:
                 if (!mBluetoothAdapter.isEnabled()) {
                     enableDisableBT();
                 } else
-//                    sendDataToPairedDevice("f", bDevices[ind]);
                     save.setText("Right - Down");
                 break;
             case 6:
                 if (!mBluetoothAdapter.isEnabled()) {
                     enableDisableBT();
                 } else
-//                    sendDataToPairedDevice("f", bDevices[ind]);
                     save.setText("Down");
                 break;
             case 7:
                 if (!mBluetoothAdapter.isEnabled()) {
                     enableDisableBT();
                 } else
-//                    sendDataToPairedDevice("f", bDevices[ind]);
                     save.setText("Down - Left");
                 break;
             default:
@@ -435,22 +432,65 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
     }
 
     //endregion
-    @SuppressLint("MissingPermission")
-    private void sendDataToPairedDevice(String message, BluetoothDevice device) {
-        byte[] toSend = message.getBytes();
-        try {
-            UUID applicationUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-//            UUID applicationUUID = UUID.fromString("fc5ffc49-00e3-4c8b-9cf1-6b72aad1001a");
-            BluetoothSocket socket = device.createInsecureRfcommSocketToServiceRecord(applicationUUID);
-            OutputStream mmOutStream = socket.getOutputStream();
-            mmOutStream.write(toSend);
-            Toast.makeText(ManualControlActivity.this, Arrays.toString(toSend) + "", Toast.LENGTH_SHORT).show();
 
+    @SuppressLint("MissingPermission")
+    private void ConnectSocket(final BluetoothDevice device) throws IOException {
+////        byte[] toSend = message.getBytes();
+//        try {
+//            if(device != null) {
+        UUID applicationUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+////            UUID applicationUUID = UUID.fromString("fc5ffc49-00e3-4c8b-9cf1-6b72aad1001a");
+//                BluetoothSocket socket = device.createInsecureRfcommSocketToServiceRecord(applicationUUID);
+//                socket.connect();
+////                OutputStream mmOutStream = socket.getOutputStream();
+////                InputStream mmInputStream = socket.getInputStream();
+////                mmOutStream.write(toSend);
+////                Log.d(TAG, "onItemClick: sent");
+//            }
+//        } catch (IOException e) {
+//            Log.e(TAG,e.getMessage());
+//        }
+
+        try {
+            mmSocket = device.createRfcommSocketToServiceRecord(applicationUUID);
         } catch (IOException e) {
-            Toast.makeText(ManualControlActivity.this, "error", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+        Log.d("Connection", "Created");
+        try {
+
+            mmSocket.connect();
+            Log.d("Connection", "Connected");
+            outputStream = mmSocket.getOutputStream();
+            inputStream = mmSocket.getInputStream();
+
+        } catch (Exception e) {
+            if (mmSocket != null) {
+                try {
+                    mmSocket.close();
+                } catch (IOException e1) {
+
+                    Log.e("Connection", "Socket close Error" + e1.getMessage());
+                }
+                mmSocket = null;
+            }
+            e.printStackTrace();
+            Log.e("Connection", "General Error " + e.getMessage());
         }
     }
 
+    private void SendData(String s){
+        byte[] toSend = s.getBytes();
+        if (mmSocket.isConnected()) {
+            try {
+                outputStream.write(toSend);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else
+            Log.e(TAG,"Socket is not Connected");
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
