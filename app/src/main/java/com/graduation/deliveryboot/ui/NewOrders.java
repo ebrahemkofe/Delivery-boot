@@ -16,7 +16,7 @@ import com.graduation.deliveryboot.R;
 import java.util.ArrayList;
 
 public class NewOrders extends AppCompatActivity {
-    Spinner firstspinner, secondspinner ;
+    Spinner firstspinner, secondspinner;
     Button done;
     ArrayList<String> track_from = new ArrayList<>();
     ArrayList<String> track_to = new ArrayList<>();
@@ -28,14 +28,14 @@ public class NewOrders extends AppCompatActivity {
 
         firstspinner = (Spinner) findViewById(R.id.firstspinner);
         secondspinner = (Spinner) findViewById(R.id.secondspinner);
-        done =(Button) findViewById(R.id.done);
+        done = (Button) findViewById(R.id.done);
         track_from.add("Room 101");
         track_from.add("Room 102");
         track_from.add("Room 103");
         track_from.add("Room 104");
         track_from.add("Room 105");
-        track_to=track_from;
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, track_from);
+        track_to = track_from;
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, track_from);
         firstspinner.setAdapter(adapter);
 
         firstspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -43,7 +43,7 @@ public class NewOrders extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(NewOrders.this, track_from.get(i)+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewOrders.this, track_from.get(i) + "", Toast.LENGTH_SHORT).show();
                 track_to.remove(i);
             }
 
@@ -52,7 +52,7 @@ public class NewOrders extends AppCompatActivity {
 
             }
         });
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, track_to);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, track_to);
         secondspinner.setAdapter(adapter2);
 
         secondspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -60,7 +60,7 @@ public class NewOrders extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(NewOrders.this, track_from.get(i)+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewOrders.this, track_from.get(i) + "", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -68,18 +68,14 @@ public class NewOrders extends AppCompatActivity {
 
             }
         });
-        done.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CustomDialog customDialog = new CustomDialog(NewOrders.this , "make order", 2) ;
-                customDialog.show();
-
-            }
+        done.setOnClickListener(view -> {
+            CustomDialog customDialog = new CustomDialog(NewOrders.this, "make order", 2);
+            customDialog.show();
         });
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         super.onBackPressed();
         this.finish();
     }

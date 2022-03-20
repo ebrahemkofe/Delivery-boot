@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.graduation.deliveryboot.Adapters.DialogListViewAdapter;
+import com.graduation.deliveryboot.Fragment.ControlFragment;
 import com.graduation.deliveryboot.Fragment.HomeFragment;
 import com.graduation.deliveryboot.R;
 import com.graduation.deliveryboot.ui.ManualControlActivity;
@@ -27,7 +28,7 @@ import com.graduation.deliveryboot.ui.ReceiveOrder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomDialog extends Dialog{
+public class CustomDialog extends Dialog {
 
     public Context c;
 
@@ -36,7 +37,7 @@ public class CustomDialog extends Dialog{
     ArrayList<BluetoothDevice> Device = new ArrayList<>();
     int Case;
 
-    public CustomDialog (Context a, ArrayList<BluetoothDevice> num , int Case) {
+    public CustomDialog(Context a, ArrayList<BluetoothDevice> num, int Case) {
         super(a);
         // TODO Auto-generated constructor stub
         this.c = a;
@@ -44,7 +45,7 @@ public class CustomDialog extends Dialog{
         this.Case = Case;
     }
 
-    public CustomDialog(Context a, String s , int Case) {
+    public CustomDialog(Context a, String s, int Case) {
         super(a);
         // TODO Auto-generated constructor stub
         this.c = a;
@@ -75,40 +76,38 @@ public class CustomDialog extends Dialog{
 //            });
 //        }
 
-        if(Case == 1){
+        if (Case == 1) {
             setContentView(R.layout.control_dialog);
-            Button YesButton , NoButton ;
+            Button YesButton, NoButton;
             TextView textView;
             textView = findViewById(R.id.DialogText);
             YesButton = findViewById(R.id.YesButton);
             NoButton = findViewById(R.id.NoButton);
 
-            textView.setText(textView.getText()+text);
+            textView.setText(textView.getText() + text);
 
-            YesButton.setOnClickListener(view ->{
+            YesButton.setOnClickListener(view -> {
                 CustomDialog.this.cancel();
-                ManualControlActivity.state=true;
+                ManualControlActivity.state = true;
             });
 
             NoButton.setOnClickListener(view -> {
                 CustomDialog.this.cancel();
-                ManualControlActivity.state=false;
+                ManualControlActivity.state = false;
             });
 
 
-        }
-
-        else if (Case == 2) {
+        } else if (Case == 2) {
             setContentView(R.layout.code_dialog);
             Button Done;
             TextView CodeText;
-            ImageView Copy , Share;
+            ImageView Copy, Share;
             Done = findViewById(R.id.DoneDialogButton);
             Copy = findViewById(R.id.CopyIcon);
             Share = findViewById(R.id.ShareIcon);
             CodeText = findViewById(R.id.CodeText);
 
-            Done.setOnClickListener(view ->{
+            Done.setOnClickListener(view -> {
                 CustomDialog.this.cancel();
                 Intent i = new Intent(c, ReceiveOrder.class);
                 c.startActivity(i);
@@ -130,30 +129,47 @@ public class CustomDialog extends Dialog{
                 sendIntent.setType("text/plain");
                 c.startActivity(sendIntent);
             });
+        } else if (Case == 3) {
+            setContentView(R.layout.control_dialog);
+            Button YesButton, NoButton;
+            TextView textView;
+            textView = findViewById(R.id.DialogText);
+            YesButton = findViewById(R.id.YesButton);
+            NoButton = findViewById(R.id.NoButton);
+
+            textView.setText(textView.getText() + text);
+
+            YesButton.setOnClickListener(view -> {
+                CustomDialog.this.cancel();
+                HomeFragment.reOrder(c, true);
+            });
+
+            NoButton.setOnClickListener(view -> {
+                CustomDialog.this.cancel();
+                HomeFragment.reOrder(c, false);
+            });
+
+        } else if (Case == 4) {
+            setContentView(R.layout.control_dialog);
+            Button YesButton, NoButton;
+            TextView textView;
+            textView = findViewById(R.id.DialogText);
+            YesButton = findViewById(R.id.YesButton);
+            NoButton = findViewById(R.id.NoButton);
+
+            textView.setText(textView.getText() + text);
+
+            YesButton.setOnClickListener(view -> {
+                CustomDialog.this.cancel();
+                ControlFragment.state = true;
+            });
+
+            NoButton.setOnClickListener(view -> {
+                CustomDialog.this.cancel();
+                ControlFragment.state = false;
+            });
+
+
         }
-
-             else if(Case == 3){
-                setContentView(R.layout.control_dialog);
-            Button YesButton , NoButton;
-                TextView textView;
-                textView = findViewById(R.id.DialogText);
-                YesButton = findViewById(R.id.YesButton);
-                NoButton = findViewById(R.id.NoButton);
-
-                textView.setText(textView.getText()+text);
-
-                YesButton.setOnClickListener(view -> {
-                    CustomDialog.this.cancel();
-                 HomeFragment.reOrder(c,true);
-                });
-
-                NoButton.setOnClickListener(view -> {
-                    CustomDialog.this.cancel();
-                  HomeFragment.reOrder(c, false);
-                });
-
-            }
-
     }
-
 }

@@ -366,8 +366,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
             case 0:
                 if (!mBluetoothAdapter.isEnabled()) {
                     enableDisableBT();
-                }
-                else {
+                } else {
 //                    SendData("l");
                     save.setText("Left");
                 }
@@ -479,7 +478,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
         }
     }
 
-    private void SendData(String s){
+    private void SendData(String s) {
         byte[] toSend = s.getBytes();
         if (mmSocket.isConnected()) {
             try {
@@ -487,9 +486,8 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        else
-            Log.e(TAG,"Socket is not Connected");
+        } else
+            Log.e(TAG, "Socket is not Connected");
     }
 
     @Override

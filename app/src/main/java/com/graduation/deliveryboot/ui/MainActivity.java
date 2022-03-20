@@ -10,16 +10,19 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.material.navigation.NavigationView;
 import com.graduation.deliveryboot.Fragment.ControlFragment;
 import com.graduation.deliveryboot.Fragment.HomeFragment;
 import com.graduation.deliveryboot.R;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -113,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavOpen.setOnClickListener(view -> drawer.openDrawer(Gravity.START));
 
         profile.setOnClickListener(view -> {
-            Intent i = new Intent(MainActivity.this, EditProfileFragment.class);
+            Intent i = new Intent(MainActivity.this, EditProfileActivity.class);
             startActivity(i);
             drawer.closeDrawer(Gravity.START);
         });

@@ -68,7 +68,7 @@
             android:screenOrientation="locked" />
 
         <activity
-            android:name=".ui.EditProfileFragment"
+            android:name=".ui.EditProfileActivity"
             android:exported="false"
             android:screenOrientation="locked" />
 

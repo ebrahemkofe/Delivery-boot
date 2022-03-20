@@ -10,7 +10,6 @@ import android.os.Looper;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,7 +65,6 @@ public class LoginActivity extends AppCompatActivity {
                 Email.setError("Invalid Email Address");
             else
                 validEmail = true;
-
 
 
             if (password.length() < 8)

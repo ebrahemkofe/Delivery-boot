@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -23,6 +24,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import com.graduation.deliveryboot.R;
 import com.hbisoft.hbrecorder.HBRecorder;
 import com.hbisoft.hbrecorder.HBRecorderListener;
@@ -79,7 +81,7 @@ public class LivePhoto extends AppCompatActivity implements HBRecorderListener {
         btnStop.setOnClickListener(view -> {
             if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, PERMISSION_REQ_ID_WRITE_EXTERNAL_STORAGE)) {
                 MediaScannerConnection.scanFile(getApplicationContext(),
-                        new String[] { hbRecorder.getFilePath() }, null, (path, uri) -> {
+                        new String[]{hbRecorder.getFilePath()}, null, (path, uri) -> {
                             Log.i("ExternalStorage", "Scanned " + path + ":");
                             Log.i("ExternalStorage", "-> uri=" + uri);
                         });
