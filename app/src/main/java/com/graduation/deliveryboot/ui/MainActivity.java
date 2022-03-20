@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ImageView NavOpen;
     Button login;
     CircleImageView profile;
+    TextView ScreenName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.FragmentLayout, fragment, "HomeFragment");
                 transaction.commitNow();
+                ScreenName.setText("Delivery boot");
                 drawer.closeDrawer(Gravity.START);
                 break;
             case R.id.maps:
@@ -70,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.FragmentLayout, fragment, "MapsFragment");
                 transaction.commitNow();
+                ScreenName.setText("Maps");
                 drawer.closeDrawer(Gravity.START);
                 break;
             case R.id.last_orders:
@@ -82,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.FragmentLayout, fragment, "ControlFragment");
                 transaction.commitNow();
+                ScreenName.setText("Boot Control");
                 drawer.closeDrawer(Gravity.START);
 
                 break;
@@ -110,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         NavOpen = findViewById(R.id.NavBarButton);
+        ScreenName = findViewById(R.id.ScreenName);
         profile = navigationView.getHeaderView(0).findViewById(R.id.account_image);
         login = navigationView.getHeaderView(0).findViewById(R.id.login);
 

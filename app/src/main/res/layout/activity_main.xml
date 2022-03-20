@@ -20,12 +20,13 @@
             tools:ignore="ContentDescription" />
 
         <TextView
+            android:id="@+id/ScreenName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="delivery boot"
-            android:textSize="@dimen/_16sdp"
-            android:textColor="@color/white" />
+            android:text="Delivery boot"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp" />
 
         <ImageView
             android:id="@+id/search"
