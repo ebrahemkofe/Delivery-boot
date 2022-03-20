@@ -65,12 +65,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:paddingLeft="@dimen/_20sdp"
-                    android:paddingTop="@dimen/_10sdp"
+                    android:autoSizeTextType="uniform"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/_17sdp"
+                    android:paddingTop="@dimen/_15sdp"
                     android:text="Live Camera"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display2"
                     android:textColor="@color/black"
-                    android:textSize="40sp"
+                    android:textSize="37sp"
                     android:textStyle="bold" />
 
                 <ImageView
