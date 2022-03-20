@@ -4,44 +4,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
     android:background="@color/greyBackground"
+    android:orientation="vertical"
 
     tools:context=".Fragment.ControlFragment">
 
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/darkGreyBackground">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/_5sdp"
-                    android:paddingTop="@dimen/_5sdp"
-                    android:src="@drawable/cancel_icon" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingTop="@dimen/_5sdp"
-                    android:text="Control"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_22sdp" />
-            </RelativeLayout>
 
 
             <LinearLayout
@@ -54,33 +31,34 @@
 
                 <ImageView
                     android:id="@+id/camera_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
                     android:layout_weight="1"
-                    android:paddingLeft="@dimen/_10sdp"
                     android:src="@drawable/camera" />
 
                 <TextView
                     android:id="@+id/camera_txt"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:layout_weight="1"
                     android:autoSizeTextType="uniform"
+                    android:gravity="center"
                     android:maxLines="1"
-                    android:paddingLeft="@dimen/_17sdp"
                     android:paddingTop="@dimen/_15sdp"
                     android:text="Live Camera"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display2"
                     android:textColor="@color/black"
-                    android:textSize="37sp"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/camera_arrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:layout_weight="1"
-                    android:paddingTop="@dimen/_3sdp"
                     android:src="@drawable/icons8_arrow_96" />
 
             </LinearLayout>
@@ -101,24 +79,23 @@
 
                 <ImageView
                     android:id="@+id/manual_img"
-                    android:layout_width="117dp"
-                    android:layout_height="107dp"
-                    android:layout_gravity="left"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_marginLeft="@dimen/_30sdp"
                     android:layout_weight="1"
                     android:paddingRight="@dimen/_23sdp"
                     android:src="@drawable/manual_control" />
 
                 <TextView
                     android:id="@+id/manual"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="@dimen/_10sdp"
-                    android:paddingRight="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_weight="2"
                     android:text="Manual Control"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display2"
                     android:textColor="@color/black"
-                    android:textSize="37sp"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -147,7 +124,7 @@
                         android:id="@+id/tracklayout_id"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:clickable="true"
                         android:orientation="vertical">
@@ -155,7 +132,7 @@
                         <ImageView
                             android:id="@+id/track_img"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/_50sdp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
 
@@ -172,7 +149,7 @@
                             android:text="Track"
                             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
                             android:textColor="@color/black"
-                            android:textSize="37sp"
+                            android:textSize="25sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -185,6 +162,7 @@
                         android:id="@+id/callbacklayout_id"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginBottom="@dimen/_10sdp"
                         android:layout_weight="1"
@@ -194,7 +172,7 @@
                         <ImageView
                             android:id="@+id/callback_img"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/_50sdp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:src="@drawable/call_back" />
@@ -210,7 +188,7 @@
                             android:text="Call Back"
                             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
                             android:textColor="@color/black"
-                            android:textSize="37sp"
+                            android:textSize="25sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -234,7 +212,7 @@
                         android:id="@+id/orderslayout_id"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:clickable="true"
                         android:orientation="vertical">
@@ -242,7 +220,7 @@
                         <ImageView
                             android:id="@+id/orders_img"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/_50sdp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
 
@@ -259,7 +237,7 @@
                             android:text="Orders"
                             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
                             android:textColor="@color/black"
-                            android:textSize="37sp"
+                            android:textSize="25sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -272,6 +250,7 @@
                         android:id="@+id/batterylayout_id"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginBottom="@dimen/_10sdp"
                         android:layout_weight="1"
@@ -281,7 +260,7 @@
                         <ImageView
                             android:id="@+id/battery_img"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/_50sdp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:src="@drawable/battery_icon" />
@@ -294,10 +273,10 @@
                             android:layout_weight="1"
 
                             android:paddingTop="@dimen/_10sdp"
-                            android:text="90%"
+                            android:text=" 90%"
                             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
                             android:textColor="@color/black"
-                            android:textSize="37sp"
+                            android:textSize="25sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -319,7 +298,7 @@
                         android:id="@+id/shutdownlayout_id"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:clickable="true"
                         android:orientation="vertical">
@@ -327,7 +306,7 @@
                         <ImageView
                             android:id="@+id/shutdown"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/_50sdp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
 
@@ -344,7 +323,7 @@
                             android:text="Shutdown"
                             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
                             android:textColor="@color/black"
-                            android:textSize="37sp"
+                            android:textSize="25sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -366,7 +345,7 @@
                         <ImageView
                             android:id="@+id/alarm_img"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/_50sdp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:src="@drawable/alarm_icon" />
@@ -382,7 +361,7 @@
                             android:text="Alarm"
                             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
                             android:textColor="@color/black"
-                            android:textSize="37sp"
+                            android:textSize="25sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
