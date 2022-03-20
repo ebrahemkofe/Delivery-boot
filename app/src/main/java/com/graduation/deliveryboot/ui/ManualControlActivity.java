@@ -41,7 +41,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
     RelativeLayout control, connect;
     BluetoothAdapter mBluetoothAdapter;
     Button btnEnableDisable_Discoverable;
-    public ArrayList<BluetoothDevice> mBTDevices = new ArrayList<>();
+    public final ArrayList<BluetoothDevice> mBTDevices = new ArrayList<>();
     public DialogListViewAdapter mDeviceListAdapter;
     ListView lvNewDevices;
     BluetoothDevice deviceToSent;
@@ -491,6 +491,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
         else
             Log.e(TAG,"Socket is not Connected");
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

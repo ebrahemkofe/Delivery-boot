@@ -3,26 +3,23 @@ package com.graduation.deliveryboot.ui;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Gravity;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.material.navigation.NavigationView;
 import com.graduation.deliveryboot.Fragment.ControlFragment;
 import com.graduation.deliveryboot.Fragment.HomeFragment;
-import com.graduation.deliveryboot.Fragment.MapsFragment;
 import com.graduation.deliveryboot.R;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -33,9 +30,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     DrawerLayout drawer;
     ImageView NavOpen;
-    Button login;
     CircleImageView profile;
     TextView ScreenName;
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    @SuppressLint({"NonConstantResourceId", "WrongConstant"})
+    @SuppressLint({"NonConstantResourceId", "WrongConstant", "SetTextI18n"})
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -68,19 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ScreenName.setText("Delivery boot");
                 drawer.closeDrawer(Gravity.START);
                 break;
-            case R.id.maps:
-                fragment = new MapsFragment();
-                transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.FragmentLayout, fragment, "MapsFragment");
-                transaction.commitNow();
-                ScreenName.setText("Maps");
-                drawer.closeDrawer(Gravity.START);
-                break;
-            case R.id.last_orders:
-                Intent i = new Intent(MainActivity.this, FullOrders.class);
-                startActivity(i);
-                drawer.closeDrawer(Gravity.START);
-                break;
+
             case R.id.boot_control:
                 fragment = new ControlFragment();
                 transaction = getSupportFragmentManager().beginTransaction();
@@ -88,22 +73,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 transaction.commitNow();
                 ScreenName.setText("Boot Control");
                 drawer.closeDrawer(Gravity.START);
-
                 break;
-            case R.id.search:
-                Toast.makeText(MainActivity.this, "search", Toast.LENGTH_SHORT).show();
+
+            case R.id.About_us:
+                Toast.makeText(MainActivity.this, "About us", Toast.LENGTH_SHORT).show();
                 drawer.closeDrawer(Gravity.START);
-
                 break;
-            case R.id.favorite:
-                Toast.makeText(MainActivity.this, "favorite", Toast.LENGTH_SHORT).show();
-                drawer.closeDrawer(Gravity.START);
 
-                break;
             case R.id.exit:
                 finish();
                 System.exit(0);
                 break;
+
             default:
                 return super.onOptionsItemSelected(item);
 
@@ -117,8 +98,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavOpen = findViewById(R.id.NavBarButton);
         ScreenName = findViewById(R.id.ScreenName);
         profile = navigationView.getHeaderView(0).findViewById(R.id.account_image);
-        login = navigationView.getHeaderView(0).findViewById(R.id.login);
-
     }
 
     public void StartFragment() {
@@ -133,12 +112,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void OnClicks() {
         NavOpen.setOnClickListener(view -> drawer.openDrawer(Gravity.START));
 
-        login.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
-            drawer.closeDrawer(Gravity.START);
-        });
-
         profile.setOnClickListener(view -> {
             Intent i = new Intent(MainActivity.this, EditProfileFragment.class);
             startActivity(i);
@@ -146,4 +119,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            finish();
+            System.exit(0);
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler(Looper.getMainLooper()).postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
+    }
 }

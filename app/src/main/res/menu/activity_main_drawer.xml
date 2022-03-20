@@ -10,25 +10,13 @@
             android:checked="true"
             android:title="Home" />
         <item
-            android:id="@+id/maps"
-            android:icon="@drawable/maps_design"
-            android:title="Maps" />
-        <item
-            android:id="@+id/last_orders"
-            android:icon="@drawable/orders_design"
-            android:title="Last Orders" />
-        <item
             android:id="@+id/boot_control"
             android:icon="@drawable/info_design"
             android:title="Boot Info" />
         <item
-            android:id="@+id/search"
-            android:icon="@drawable/search_design"
-            android:title="Search"/>
-        <item
-            android:id="@+id/favorite"
+            android:id="@+id/About_us"
             android:icon="@drawable/favorite_design"
-            android:title="Favorite" />
+            android:title="About Us" />
         <item
             android:id="@+id/exit"
             android:icon="@drawable/exit_design"

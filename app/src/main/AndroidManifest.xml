@@ -37,11 +37,6 @@
             android:screenOrientation="locked"/>
 
         <activity
-            android:name=".ui.FullOrders"
-            android:exported="false"
-            android:screenOrientation="locked" />
-
-        <activity
             android:name=".ui.OrdersQueue"
             android:exported="false"
             android:screenOrientation="locked" />
@@ -58,8 +53,14 @@
 
         <activity
             android:name=".ui.LoginActivity"
-            android:exported="false"
-            android:screenOrientation="locked" />
+            android:exported="true"
+            android:screenOrientation="locked">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".ui.SignUp"
@@ -82,11 +83,6 @@
             android:name=".ui.MainActivity"
             android:exported="true"
             android:screenOrientation="locked">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
     </application>

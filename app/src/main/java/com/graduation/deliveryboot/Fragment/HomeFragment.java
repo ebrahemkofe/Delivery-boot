@@ -14,9 +14,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.graduation.deliveryboot.Adapters.ListAdabter;
+import com.graduation.deliveryboot.Adapters.ListAdapter;
 import com.graduation.deliveryboot.Helper.CustomDialog;
-import com.graduation.deliveryboot.ui.FullOrders;
 import com.graduation.deliveryboot.ui.NewOrders;
 import com.graduation.deliveryboot.R;
 import com.graduation.deliveryboot.Models.DataOnList;
@@ -33,7 +32,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     String[] time = {"8:55 PM", "5:00 PM","8:00 AM"};
     ListView listView;
     Button newOrder;
-    ListAdabter listAdabter;
+    ListAdapter listAdapter;
 
 
     @Override
@@ -51,8 +50,8 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
         }
 
-        listAdabter = new ListAdabter(requireContext(), dataArrayList);
-        listView.setAdapter(listAdabter);
+        listAdapter = new ListAdapter(requireContext(), dataArrayList);
+        listView.setAdapter(listAdapter);
         listView.setOnItemClickListener(HomeFragment.this);
         
         newOrder.setOnClickListener(view ->  {

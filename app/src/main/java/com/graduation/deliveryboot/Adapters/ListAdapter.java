@@ -5,23 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import com.graduation.deliveryboot.R;
 import com.graduation.deliveryboot.Models.DataOnList;
-import com.graduation.deliveryboot.ui.FullOrders;
-
 import java.util.ArrayList;
-import java.util.List;
 
-public class ListAdabter extends ArrayAdapter<DataOnList> {
+public class ListAdapter extends ArrayAdapter<DataOnList> {
 
 
-    public ListAdabter(@NonNull Context context, ArrayList<DataOnList> arrayList) {
+    public ListAdapter(@NonNull Context context, ArrayList<DataOnList> arrayList) {
         super(context, R.layout.list_item, arrayList);
     }
 
