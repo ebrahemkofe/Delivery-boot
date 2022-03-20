@@ -6,15 +6,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.graduation.deliveryboot.Helper.CustomDialog;
 import com.graduation.deliveryboot.R;
 
 import java.util.ArrayList;
 
 public class NewOrders extends AppCompatActivity {
-    Spinner firstspinner,secondspinner;
+    Spinner firstspinner, secondspinner ;
+    Button done;
     ArrayList<String> track_from = new ArrayList<>();
     ArrayList<String> track_to = new ArrayList<>();
 
@@ -25,6 +28,7 @@ public class NewOrders extends AppCompatActivity {
 
         firstspinner = (Spinner) findViewById(R.id.firstspinner);
         secondspinner = (Spinner) findViewById(R.id.secondspinner);
+        done =(Button) findViewById(R.id.done);
         track_from.add("Room 101");
         track_from.add("Room 102");
         track_from.add("Room 103");
@@ -61,6 +65,14 @@ public class NewOrders extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CustomDialog customDialog = new CustomDialog(NewOrders.this , "make order", 2) ;
+                customDialog.show();
 
             }
         });

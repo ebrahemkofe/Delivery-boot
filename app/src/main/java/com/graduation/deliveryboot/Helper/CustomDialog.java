@@ -9,6 +9,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,6 +21,9 @@ import com.graduation.deliveryboot.Adapters.DialogListViewAdapter;
 import com.graduation.deliveryboot.Fragment.HomeFragment;
 import com.graduation.deliveryboot.R;
 import com.graduation.deliveryboot.ui.ManualControlActivity;
+import com.graduation.deliveryboot.ui.NewOrders;
+import com.graduation.deliveryboot.ui.ReceiveOrder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +36,7 @@ public class CustomDialog extends Dialog{
     ArrayList<BluetoothDevice> Device = new ArrayList<>();
     int Case;
 
-    public CustomDialog(Context a, ArrayList<BluetoothDevice> num , int Case) {
+    public CustomDialog (Context a, ArrayList<BluetoothDevice> num , int Case) {
         super(a);
         // TODO Auto-generated constructor stub
         this.c = a;
@@ -104,7 +108,11 @@ public class CustomDialog extends Dialog{
             Share = findViewById(R.id.ShareIcon);
             CodeText = findViewById(R.id.CodeText);
 
-            Done.setOnClickListener(view -> CustomDialog.this.cancel());
+            Done.setOnClickListener(view ->{
+                CustomDialog.this.cancel();
+                Intent i = new Intent(c, ReceiveOrder.class);
+                c.startActivity(i);
+            });
 
             Copy.setOnClickListener(view -> {
                 ClipboardManager clipboard = (ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);

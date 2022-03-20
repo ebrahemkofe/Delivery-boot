@@ -102,16 +102,17 @@
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_toRightOf="@id/first_radio_group"
             android:hint="User Name" />
+
         <TextView
             android:id="@+id/reciver_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/sender_txt"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:padding="@dimen/_10sdp"
             android:text="Reciver :"
             android:textColor="@color/white"
-            android:textSize="@dimen/_20sdp"
-            android:padding="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_below="@id/sender_txt"/>
+            android:textSize="@dimen/_20sdp" />
         <RadioGroup
             android:id="@+id/second_radio_group"
             android:layout_width="wrap_content"
@@ -134,12 +135,25 @@
                 android:textSize="@dimen/_13sdp" />
         </RadioGroup>
         <EditText
+            android:id="@+id/edit_text"
             android:layout_width="@dimen/_150sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_toRightOf="@id/second_radio_group"
             android:layout_below="@id/sender_edit_txt"
             android:hint="User Name"
             android:layout_marginTop="@dimen/_32sdp" />
+
+        <Button
+            android:id="@+id/done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_text"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/rounded_button"
+            android:text="Done"
+            android:textSize="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp" />
     </RelativeLayout>
 
 
