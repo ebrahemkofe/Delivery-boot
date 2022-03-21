@@ -1,42 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.LivePhoto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_weight="0.6"
+        android:background="@color/darkGreyBackground"
+        android:padding="@dimen/_5sdp">
+
+        <ImageView
+            android:id="@+id/LiveExit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/cancel_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:paddingTop="@dimen/_5sdp"
+            android:text="Live Photo"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_22sdp" />
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/imageToRecord"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="6"
         android:src="@drawable/robot_image"
         tools:ignore="ContentDescription" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/Record"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_margin="@dimen/_25sdp"
-        android:layout_alignParentStart="true"
-        android:background="@drawable/rounded_button"
-        android:text="Record"
-        android:textAllCaps="false"
-        android:textSize="@dimen/_14sdp" />
+        <Button
+            android:id="@+id/Record"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/rounded_button"
+            android:text="Record"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_14sdp" />
 
 
-    <Button
-        android:id="@+id/ScreenShot"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/_25sdp"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/rounded_button"
-        android:text="ScreenShot"
-        android:textAllCaps="false"
-        android:textSize="@dimen/_14sdp" />
-</RelativeLayout>
+        <Button
+            android:id="@+id/ScreenShot"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/rounded_button"
+            android:text="ScreenShot"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_14sdp" />
+
+    </RelativeLayout>
+</LinearLayout>

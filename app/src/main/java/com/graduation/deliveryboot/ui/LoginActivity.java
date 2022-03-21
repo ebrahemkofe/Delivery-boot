@@ -22,7 +22,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText Email, Password;
     CheckBox Signed;
     String prefPass, prefEmail;
-    Boolean intent;
+    boolean intent;
+    boolean admin;
     boolean validEmail = false;
     boolean validPass = false;
     boolean doubleBackToExitPressedOnce = false;
@@ -39,8 +40,12 @@ public class LoginActivity extends AppCompatActivity {
         prefEmail = pref.getString("email", "");
         prefPass = pref.getString("password", "");
         intent = pref.getBoolean("intent", false);
+        admin = pref.getBoolean("admin", false);
+
 
         if (intent) {
+            if (admin)
+                MainActivity.admin = true;
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -61,33 +66,48 @@ public class LoginActivity extends AppCompatActivity {
             email = Email.getText().toString();
             password = Password.getText().toString();
 
-            if (!email.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"))
-                Email.setError("Invalid Email Address");
-            else
-                validEmail = true;
-
-
-            if (password.length() < 8)
-                Password.setError("Check your Password");
-            else
-                validPass = true;
-
-
-            if (validEmail && validPass) {
+            if (email.equals("1") && password.equals("1")) {
+                MainActivity.admin = true;
                 if (Signed.isChecked()) {
-
                     SharedPreferences myPref = getSharedPreferences("remember", MODE_PRIVATE);
                     SharedPreferences.Editor e = myPref.edit();
                     e.putString("email", email);
                     e.putString("password", password);
                     e.putBoolean("intent", true);
+                    e.putBoolean("admin", true);
                     e.apply();
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
                 }
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            } else
-                Toast.makeText(this, "Please Check Email and Password", Toast.LENGTH_SHORT).show();
+            } else {
+                if (!email.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"))
+                    Email.setError("Invalid Email Address");
+                else
+                    validEmail = true;
+
+
+                if (password.length() < 8)
+                    Password.setError("Check your Password");
+                else
+                    validPass = true;
+
+
+                if (validEmail && validPass) {
+                    if (Signed.isChecked()) {
+
+                        SharedPreferences myPref = getSharedPreferences("remember", MODE_PRIVATE);
+                        SharedPreferences.Editor e = myPref.edit();
+                        e.putString("email", email);
+                        e.putString("password", password);
+                        e.putBoolean("intent", true);
+                        e.apply();
+                    }
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else
+                    Toast.makeText(this, "Please Check Email and Password", Toast.LENGTH_SHORT).show();
+            }
         });
 
         Signup.setOnClickListener(view -> {

@@ -12,7 +12,12 @@
         <item
             android:id="@+id/boot_control"
             android:icon="@drawable/info_design"
+            android:visible="false"
             android:title="Boot Info" />
+        <item
+            android:id="@+id/ReceiveAnOrder"
+            android:icon="@drawable/receive"
+            android:title="Receive an order" />
         <item
             android:id="@+id/About_us"
             android:icon="@drawable/favorite_design"

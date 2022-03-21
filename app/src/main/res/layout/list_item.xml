@@ -5,21 +5,22 @@
     android:layout_height="@dimen/_40sdp"
     android:background="#99505151"
     android:orientation="horizontal">
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/orderimage"
         android:layout_width="0dp"
-        android:layout_weight="0.3"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:layout_weight="0.3"
         android:padding="@dimen/_2sdp"
         android:src="@drawable/delivery_bag" />
 
     <TextView
         android:id="@+id/order_item"
         android:layout_width="0dp"
-        android:layout_weight="0.7"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:layout_weight="0.7"
         android:maxLines="1"
         android:text="From 301 to 309"
         android:textSize="@dimen/_15sdp" />
@@ -27,20 +28,20 @@
     <TextView
         android:id="@+id/date"
         android:layout_width="0dp"
-        android:layout_weight="0.3"
         android:layout_height="wrap_content"
-        android:maxLines="1"
         android:layout_gravity="center_vertical"
+        android:layout_weight="0.3"
+        android:maxLines="1"
         android:text=" 28/11"
         android:textSize="@dimen/_12sdp" />
 
     <TextView
         android:id="@+id/time"
         android:layout_width="0dp"
-        android:layout_weight="0.3"
         android:layout_height="wrap_content"
-        android:maxLines="1"
         android:layout_gravity="center_vertical"
+        android:layout_weight="0.3"
+        android:maxLines="1"
         android:text="06:39 PM"
         android:textSize="@dimen/_12sdp" />
 

@@ -36,7 +36,7 @@ public class LivePhoto extends AppCompatActivity implements HBRecorderListener {
     private static final int PERMISSION_REQ_ID_RECORD_AUDIO = 101;
     private static final int PERMISSION_REQ_ID_WRITE_EXTERNAL_STORAGE = 102;
     Button btnStart, btnStop;
-    ImageView image;
+    ImageView image, Exit;
     HBRecorder hbRecorder;
     ContentValues contentValues;
     Uri mUri;
@@ -58,6 +58,7 @@ public class LivePhoto extends AppCompatActivity implements HBRecorderListener {
         btnStart = findViewById(R.id.Record);
         btnStop = findViewById(R.id.ScreenShot);
         image = findViewById(R.id.imageToRecord);
+        Exit = findViewById(R.id.LiveExit);
     }
 
     @SuppressLint("SetTextI18n")
@@ -89,6 +90,8 @@ public class LivePhoto extends AppCompatActivity implements HBRecorderListener {
             } else
                 Toast.makeText(LivePhoto.this, "Please Allow Permissions.", Toast.LENGTH_SHORT).show();
         });
+
+        Exit.setOnClickListener(view -> finish());
     }
 
     //region Screen Record Methods

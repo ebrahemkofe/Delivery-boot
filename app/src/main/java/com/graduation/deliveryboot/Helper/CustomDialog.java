@@ -107,6 +107,7 @@ public class CustomDialog extends Dialog {
             Share = findViewById(R.id.ShareIcon);
             CodeText = findViewById(R.id.CodeText);
 
+            CodeText.setText(text);
             Done.setOnClickListener(view -> {
                 CustomDialog.this.cancel();
                 Intent i = new Intent(c, ReceiveOrder.class);

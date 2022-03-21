@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/orderimage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
         android:layout_centerVertical="true"
-        android:paddingLeft="@dimen/_5sdp"
-        android:paddingRight="@dimen/_10sdp"
+        android:layout_gravity="start"
+        android:padding="@dimen/_10sdp"
         android:src="@drawable/delivery_bag" />
 
     <TextView
         android:id="@+id/from_to_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_toRightOf="@id/orderimage"
-        android:paddingTop="@dimen/_5sdp"
-        android:paddingRight="@dimen/_10sdp"
+        android:layout_centerVertical="true"
         android:text="301 to 309"
         android:textColor="@color/white"
         android:textSize="@dimen/_15sdp" />
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/from_to_txt">
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_toEndOf="@id/from_to_txt">
 
         <TextView
             android:id="@+id/username_txt"
@@ -55,17 +55,19 @@
         android:id="@+id/lamp"
         android:layout_width="@dimen/_35sdp"
         android:layout_height="@dimen/_35sdp"
-        android:src="@drawable/red_lamp"
-        android:layout_toLeftOf="@id/clear_btn"
         android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_10sdp"/>
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_toLeftOf="@id/clear_btn"
+        android:layout_centerVertical="true"
+        android:src="@drawable/red_lamp" />
 
     <ImageView
         android:id="@+id/clear_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:paddingLeft="@dimen/_5sdp"
-        android:paddingTop="@dimen/_5sdp"
-        android:src="@drawable/clear_icon" />
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:paddingEnd="@dimen/_10sdp"
+        android:src="@drawable/clear_icon"
+        tools:ignore="RtlSymmetry" />
 </RelativeLayout>

@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     CircleImageView profile;
     TextView ScreenName;
     boolean doubleBackToExitPressedOnce = false;
+    public static boolean admin = false;
+    MenuItem menuItem;
+    Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FindViewByIds();
         StartFragment();
         OnClicks();
+        menu = navigationView.getMenu();
+        menuItem =menu.findItem(R.id.boot_control);
+
+        if(admin)
+            menuItem.setVisible(true);
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawer, R.string.nav_open, R.string.nav_close);
         drawer.addDrawerListener(actionBarDrawerToggle);
@@ -75,6 +85,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 transaction.replace(R.id.FragmentLayout, fragment, "ControlFragment");
                 transaction.commitNow();
                 ScreenName.setText("Boot Control");
+                drawer.closeDrawer(Gravity.START);
+                break;
+
+            case R.id.ReceiveAnOrder:
+                Intent intent=new Intent(MainActivity.this, ReceiveOrder.class);
+                startActivity(intent);
                 drawer.closeDrawer(Gravity.START);
                 break;
 
