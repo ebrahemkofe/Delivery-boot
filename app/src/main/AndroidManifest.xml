@@ -37,6 +37,17 @@
             android:screenOrientation="locked"/>
 
         <activity
+            android:name=".ui.SplashActivity"
+            android:exported="true"
+            android:screenOrientation="locked">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".ui.OrdersQueue"
             android:exported="false"
             android:screenOrientation="locked" />
@@ -53,14 +64,8 @@
 
         <activity
             android:name=".ui.LoginActivity"
-            android:exported="true"
-            android:screenOrientation="locked">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"
+            android:screenOrientation="locked"/>
 
         <activity
             android:name=".ui.SignUp"
@@ -81,9 +86,8 @@
 
         <activity
             android:name=".ui.MainActivity"
-            android:exported="true"
-            android:screenOrientation="locked">
-        </activity>
+            android:exported="false"
+            android:screenOrientation="locked"/>
 
     </application>
 
