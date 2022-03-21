@@ -11,9 +11,9 @@
             android:title="Home" />
         <item
             android:id="@+id/boot_control"
-            android:icon="@drawable/info_design"
+            android:icon="@drawable/control"
             android:visible="false"
-            android:title="Boot Info" />
+            android:title="Boot Control" />
         <item
             android:id="@+id/ReceiveAnOrder"
             android:icon="@drawable/receive"
