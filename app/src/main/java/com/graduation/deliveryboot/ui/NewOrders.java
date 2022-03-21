@@ -84,6 +84,7 @@ public class NewOrders extends AppCompatActivity {
             RandomCode = String.format("%04d", random.nextInt(10000));
             CustomDialog customDialog = new CustomDialog(NewOrders.this, RandomCode, 2);
             customDialog.show();
+            customDialog.setOnDismissListener(dialogInterface -> finish());
         });
     }
 
