@@ -65,13 +65,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     public static void reOrder(Context context, boolean b) {
         if (b)
             Toast.makeText(context, "" + pos, Toast.LENGTH_SHORT).show();
-        else
-            Toast.makeText(context, "No", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Toast.makeText(requireContext(), "clicked", Toast.LENGTH_SHORT).show();
         CustomDialog customDialog = new CustomDialog(requireContext(), "ReOrder this?", 3);
         customDialog.show();
         pos = i;

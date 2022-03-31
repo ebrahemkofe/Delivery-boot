@@ -3,6 +3,7 @@
     android:id="@+id/list_item"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_40sdp"
+    android:paddingEnd="@dimen/_10sdp"
     android:background="#99505151"
     android:orientation="horizontal">
 
@@ -31,8 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="0.3"
+        android:paddingStart="@dimen/_13sdp"
         android:maxLines="1"
-        android:text=" 28/11"
+        android:text="28/11"
         android:textSize="@dimen/_12sdp" />
 
     <TextView
