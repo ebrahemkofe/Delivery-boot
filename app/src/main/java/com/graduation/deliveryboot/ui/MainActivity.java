@@ -25,6 +25,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.util.Objects;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -51,9 +53,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         StartFragment();
         OnClicks();
         menu = navigationView.getMenu();
-        menuItem =menu.findItem(R.id.boot_control);
+        menuItem = menu.findItem(R.id.boot_control);
 
-        if(admin)
+        if (admin)
             menuItem.setVisible(true);
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawer, R.string.nav_open, R.string.nav_close);
@@ -89,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.ReceiveAnOrder:
-                Intent intent=new Intent(MainActivity.this, ReceiveOrder.class);
+                Intent intent = new Intent(MainActivity.this, ReceiveOrder.class);
                 startActivity(intent);
                 drawer.closeDrawer(Gravity.START);
                 break;
@@ -119,11 +121,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         profile = navigationView.getHeaderView(0).findViewById(R.id.account_image);
     }
 
+    @SuppressLint("SetTextI18n")
     public void StartFragment() {
         fragment = new HomeFragment();
         transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.FragmentLayout, fragment, "HomeFragment");
         transaction.commitNow();
+        ScreenName.setText("Delivery boot");
 
     }
 
@@ -140,16 +144,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
-            finish();
-            System.exit(0);
-            return;
+        if (!ScreenName.getText().equals("Delivery boot"))
+            StartFragment();
+        else {
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+                finish();
+                System.exit(0);
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler(Looper.getMainLooper()).postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
         }
-
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
-
-        new Handler(Looper.getMainLooper()).postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
     }
 }

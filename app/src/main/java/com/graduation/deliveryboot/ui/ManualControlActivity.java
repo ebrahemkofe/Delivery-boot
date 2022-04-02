@@ -17,12 +17,15 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import com.erz.joysticklibrary.JoyStick;
 import com.graduation.deliveryboot.Adapters.DialogListViewAdapter;
 import com.graduation.deliveryboot.Helper.CustomDialog;
 import com.graduation.deliveryboot.R;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -47,6 +50,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
     InputStream inputStream;
     BluetoothSocket mmSocket;
     boolean Open_Close = true;
+    boolean notPaired = true;
 
     // Create a BroadcastReceiver for ACTION_FOUND
     private final BroadcastReceiver mBroadcastReceiver1 = new BroadcastReceiver() {
@@ -178,15 +182,14 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
     protected void onDestroy() {
         Log.d(TAG, "onDestroy: called.");
         super.onDestroy();
-//        LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver1);
-//        LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver2);
-//        LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver3);
-//        LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver4);
-
-        unregisterReceiver(mBroadcastReceiver1);
-        unregisterReceiver(mBroadcastReceiver2);
-        unregisterReceiver(mBroadcastReceiver3);
-        unregisterReceiver(mBroadcastReceiver4);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver1);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver2);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver3);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver4);
+//        unregisterReceiver(mBroadcastReceiver1);
+//        unregisterReceiver(mBroadcastReceiver2);
+//        unregisterReceiver(mBroadcastReceiver3);
+//        unregisterReceiver(mBroadcastReceiver4);
     }
 
     @SuppressLint({"MissingPermission", "SetTextI18n"})
@@ -203,49 +206,32 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
         registerReceiver(mBroadcastReceiver4, filter);
 
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
         mBluetoothAdapter.startDiscovery();
         IntentFilter discoverDevicesIntent = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         registerReceiver(mBroadcastReceiver3, discoverDevicesIntent);
 
-
-
+        enableDisableBT();
     }
 
 
     @SuppressLint("SetTextI18n")
-    public void onClicks(){
+    public void onClicks() {
         lvNewDevices.setOnItemClickListener(ManualControlActivity.this);
         joyStick.setListener(this);
         BTon.setOnClickListener(view -> enableDisableBT());
-        cancel.setOnClickListener(view -> {
-            CustomDialog customDialog = new CustomDialog(this, "You want to Cancel?", 1);
-            customDialog.show();
-            customDialog.setOnDismissListener(dialogInterface -> {
-                if (state){
-                    try {
-                        mmSocket.close();
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    this.finish();
-                }
-            });
-        });
         OpenClose.setOnClickListener(view -> {
             if (Open_Close) {
                 SendData("O");
                 OpenClose.setText("Close Box");
-                Open_Close=false;
-            }
-            else {
+                Open_Close = false;
+            } else {
                 SendData("C");
                 OpenClose.setText("Open Box");
                 Open_Close = true;
             }
         });
     }
+
     @SuppressLint("MissingPermission")
     public void enableDisableBT() {
         if (mBluetoothAdapter == null) {
@@ -284,9 +270,19 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
         CustomDialog customDialog = new CustomDialog(this, "You want to Cancel?", 1);
         customDialog.show();
         customDialog.setOnDismissListener(dialogInterface -> {
-            if (state)
+            if (state) {
+                try {
+                    if (mmSocket != null) {
+                        if (mmSocket.isConnected())
+                            mmSocket.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 this.finish();
+            }
         });
+
 
     }
 
@@ -348,9 +344,10 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
         if (pairedDevices.size() > 0) {
             for (BluetoothDevice device : pairedDevices) {
                 if (device.getName().equals(mBTDevices.get(i).getName())) {
+                    Log.d(TAG, "Found in pairedDevices");
                     joyStick.setVisibility(View.VISIBLE);
                     connect.setVisibility(View.GONE);
-                    if(mBTDevices.get(i).getName().equals("HC-05"))
+                    if (mBTDevices.get(i).getName().equals("HC-05"))
                         mBTDevices.get(i).setPin(PIN.getBytes());
                     deviceToSent = mBTDevices.get(i);
                     try {
@@ -358,9 +355,11 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    notPaired = false;
                 }
             }
-        } else {
+        }
+        if (notPaired) {
             Log.d(TAG, "onItemClick: You Clicked on a device.");
             String deviceName = mBTDevices.get(i).getName();
             String deviceAddress = mBTDevices.get(i).getAddress();
@@ -371,7 +370,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
             //create the bond.
             Log.d(TAG, "Trying to pair with " + deviceName);
             deviceToSent = mBTDevices.get(i);
-            if(mBTDevices.get(i).getName().equals("HC-05"))
+            if (mBTDevices.get(i).getName().equals("HC-05"))
                 mBTDevices.get(i).setPin(PIN.getBytes());
             mBTDevices.get(i).createBond();
         }
@@ -493,7 +492,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
 //        } catch (IOException e) {
 //            Log.e(TAG,e.getMessage());
 //        }
-        if(mBluetoothAdapter.isDiscovering())
+        if (mBluetoothAdapter.isDiscovering())
             mBluetoothAdapter.cancelDiscovery();
 
         if (mmSocket != null) {
@@ -536,12 +535,17 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        this.finish();
         try {
-            mmSocket.close();
+            if(mmSocket != null) {
+                if (mmSocket.isConnected())
+                    mmSocket.close();
+            }
         } catch (IOException e) {
+            Log.e(TAG, "Can't Close");
             e.printStackTrace();
         }
+        this.finish();
+
     }
 }
 
