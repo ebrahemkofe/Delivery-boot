@@ -156,6 +156,12 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
                     Log.d(TAG, "BroadcastReceiver: BOND_BONDED.");
                     joyStick.setVisibility(View.VISIBLE);
                     connect.setVisibility(View.GONE);
+                    save.setClickable(true);
+                    save.setBackgroundResource(R.drawable.rounded_button);
+
+                    OpenClose.setClickable(true);
+                    OpenClose.setBackgroundResource(R.drawable.rounded_button);
+
                     lvNewDevices.setEnabled(true);
                     try {
                         ConnectSocket(deviceToSent);
@@ -200,6 +206,8 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
 
         findViewByIds();
         onClicks();
+        save.setClickable(false);
+        OpenClose.setClickable(false);
         joyStick.setType(JoyStick.TYPE_8_AXIS);
 
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);

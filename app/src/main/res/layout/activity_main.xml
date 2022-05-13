@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp"
-        android:background="@color/darkGreyBackground">
+        android:background="@color/Blue">
 
         <ImageView
             android:id="@+id/NavBarButton"

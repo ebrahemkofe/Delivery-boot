@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/greyBackground"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ui.OrdersQueue">
 
@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_10sdp"
-        android:background="@color/darkGreyBackground"
+        android:background="@color/Blue"
         android:padding="@dimen/_5sdp">
 
         <ImageView
@@ -35,7 +35,7 @@
         android:id="@+id/list_queue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@color/darkGreyBackground"
+        android:divider="@color/Blue"
         android:dividerHeight="@dimen/_2sdp"
         tools:listitem="@layout/list_order_queue" />
 </LinearLayout>

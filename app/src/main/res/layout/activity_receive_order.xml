@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/greyBackground"
+    android:background="@color/white"
     tools:context=".ui.ReceiveOrder">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_45sdp"
-        android:background="@color/darkGreyBackground"
+        android:background="@color/Blue"
         android:padding="@dimen/_5sdp">
 
         <ImageView

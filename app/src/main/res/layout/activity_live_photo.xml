@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".ui.LivePhoto">
 
     <RelativeLayout
@@ -11,7 +12,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="@dimen/_10sdp"
         android:layout_weight="0.6"
-        android:background="@color/darkGreyBackground"
+        android:background="@color/Blue"
         android:padding="@dimen/_5sdp">
 
         <ImageView
