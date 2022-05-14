@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="Blue">#0259CB</color>
+    <color name="blue">#0259CB</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="button_color">#0259CB</color>
-    <color name="UnClickable_button_color">#357EDD</color>
+    <color name="light_blue">#357EDD</color>
 </resources>

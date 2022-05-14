@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/Blue">
+        android:background="@color/blue">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
             android:layout_width="@dimen/_150sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:background="@color/Blue"
+            android:background="@color/blue"
             android:layout_toEndOf="@+id/from_txt" />
 
         <TextView
@@ -69,7 +69,7 @@
             android:layout_below="@id/firstspinner"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_toEndOf="@+id/to_txt"
-            android:background="@color/Blue" />
+            android:background="@color/blue" />
 
         <TextView
             android:id="@+id/sender_txt"

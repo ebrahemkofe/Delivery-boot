@@ -14,7 +14,7 @@
         android:layout_marginBottom="@dimen/_60sdp"
         android:gravity="center"
         android:text="Sign In"
-        android:textColor="@color/Blue"
+        android:textColor="@color/blue"
         android:textSize="@dimen/_30sdp" />
 
     <EditText
@@ -24,10 +24,11 @@
         android:layout_below="@+id/loginText"
         android:layout_centerHorizontal="true"
         android:autofillHints="emailAddress"
+        android:backgroundTint="@color/blue"
         android:hint="max@Example.com"
         android:inputType="textEmailAddress"
-        android:textColorHint="@color/Blue"
-        android:textColor="@color/Blue" />
+        android:textColor="@color/blue"
+        android:textColorHint="@color/blue" />
 
     <EditText
         android:id="@+id/PasswordText"
@@ -38,9 +39,10 @@
         android:layout_marginTop="@dimen/_20sdp"
         android:hint="********"
         android:importantForAutofill="no"
+        android:backgroundTint="@color/blue"
         android:inputType="textPassword"
-        android:textColorHint="@color/Blue"
-        android:textColor="@color/Blue" />
+        android:textColor="@color/blue"
+        android:textColorHint="@color/blue" />
 
     <CheckBox
         android:id="@+id/SignedInCheckBox"
@@ -49,7 +51,8 @@
         android:layout_below="@+id/PasswordText"
         android:layout_margin="@dimen/_20sdp"
         android:text="ٌRemember Me"
-        android:textColor="@color/Blue"
+        android:buttonTint="@color/blue"
+        android:textColor="@color/blue"
         android:textSize="@dimen/_12sdp" />
 
     <Button
@@ -58,7 +61,7 @@
         android:layout_height="@dimen/_40sdp"
         android:layout_below="@+id/SignedInCheckBox"
         android:layout_margin="@dimen/_15sdp"
-        android:background="@color/button_color"
+        android:background="@color/blue"
         android:text="Login"
         android:textSize="@dimen/_20sdp" />
 
@@ -67,9 +70,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/loginButton"
-        android:padding="@dimen/_10sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingStart="@dimen/_10sdp"
         android:text="Don't have an account? "
-        android:textColor="@color/Blue"
+        android:textColor="@color/blue"
         android:textSize="@dimen/_12sdp" />
 
     <TextView
@@ -78,9 +82,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/loginButton"
         android:layout_toEndOf="@+id/signOut"
-        android:padding="@dimen/_10sdp"
+        android:paddingTop="@dimen/_10sdp"
         android:text="Create an account"
-        android:textColor="@color/UnClickable_button_color"
+        android:textColor="@color/light_blue"
         android:textSize="@dimen/_12sdp" />
 
 

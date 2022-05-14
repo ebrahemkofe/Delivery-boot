@@ -11,7 +11,7 @@
         android:id="@+id/tvDeviceName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/Blue"
+        android:textColor="@color/blue"
         android:textSize="@dimen/_14sdp"
         android:textStyle="bold" />
 
@@ -19,7 +19,7 @@
         android:id="@+id/tvDeviceAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/UnClickable_button_color"
+        android:textColor="@color/light_blue"
         android:textSize="@dimen/_12sdp" />
 
 

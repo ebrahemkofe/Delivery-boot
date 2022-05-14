@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp"
-        android:background="@color/Blue">
+        android:background="@color/blue">
 
         <ImageView
             android:id="@+id/NavBarButton"
@@ -33,7 +33,8 @@
     <FrameLayout
         android:id="@+id/FragmentLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@color/white"/>
 
 
 </LinearLayout>

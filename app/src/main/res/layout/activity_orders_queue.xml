@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_10sdp"
-        android:background="@color/Blue"
+        android:background="@color/blue"
         android:padding="@dimen/_5sdp">
 
         <ImageView
@@ -35,7 +35,7 @@
         android:id="@+id/list_queue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@color/Blue"
+        android:divider="@color/blue"
         android:dividerHeight="@dimen/_2sdp"
         tools:listitem="@layout/list_order_queue" />
 </LinearLayout>
