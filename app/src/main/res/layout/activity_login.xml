@@ -64,7 +64,8 @@
         android:layout_height="@dimen/_40sdp"
         android:layout_below="@+id/SignedInCheckBox"
         android:layout_margin="@dimen/_15sdp"
-        android:background="@color/blue"
+        android:background="@drawable/unclickable_rounded_button"
+        android:enabled="false"
         android:text="Login"
         android:textSize="@dimen/_20sdp" />
 

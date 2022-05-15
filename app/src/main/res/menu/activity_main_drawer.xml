@@ -11,7 +11,7 @@
             android:title="Home" />
         <item
             android:id="@+id/boot_control"
-            android:icon="@drawable/control"
+            android:icon="@drawable/manual_selector"
             android:visible="false"
             android:title="Boot Control" />
         <item

@@ -30,7 +30,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Set;
 import java.util.UUID;
 
 public class ManualControlActivity extends AppCompatActivity implements JoyStick.JoyStickListener, AdapterView.OnItemClickListener {
@@ -50,7 +49,6 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
     InputStream inputStream;
     BluetoothSocket mmSocket;
     boolean Open_Close = true;
-    boolean notPaired = true;
 
     // Create a BroadcastReceiver for ACTION_FOUND
     private final BroadcastReceiver mBroadcastReceiver1 = new BroadcastReceiver() {
@@ -157,10 +155,12 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
                     joyStick.setVisibility(View.VISIBLE);
                     connect.setVisibility(View.GONE);
                     save.setClickable(true);
-                    save.setBackgroundResource(R.drawable.rounded_button_white);
+                    save.setEnabled(true);
+                    save.setBackgroundResource(R.drawable.rounded_button);
 
                     OpenClose.setClickable(true);
-                    OpenClose.setBackgroundResource(R.drawable.rounded_button_white);
+                    OpenClose.setEnabled(true);
+                    OpenClose.setBackgroundResource(R.drawable.rounded_button);
 
                     lvNewDevices.setEnabled(true);
                     try {
@@ -347,42 +347,19 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         //first cancel discovery because its very memory intensive.
         mBluetoothAdapter.cancelDiscovery();
-        String PIN = "1234";
-        Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
-        if (pairedDevices.size() > 0) {
-            for (BluetoothDevice device : pairedDevices) {
-                if (device.getName().equals(mBTDevices.get(i).getName())) {
-                    Log.d(TAG, "Found in pairedDevices");
-                    joyStick.setVisibility(View.VISIBLE);
-                    connect.setVisibility(View.GONE);
-                    if (mBTDevices.get(i).getName().equals("HC-05"))
-                        mBTDevices.get(i).setPin(PIN.getBytes());
-                    deviceToSent = mBTDevices.get(i);
-                    try {
-                        ConnectSocket(mBTDevices.get(i));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    notPaired = false;
-                }
-            }
-        }
-        if (notPaired) {
-            Log.d(TAG, "onItemClick: You Clicked on a device.");
-            String deviceName = mBTDevices.get(i).getName();
-            String deviceAddress = mBTDevices.get(i).getAddress();
+        Log.d(TAG, "onItemClick: You Clicked on a device.");
+        String deviceName = mBTDevices.get(i).getName();
+        String deviceAddress = mBTDevices.get(i).getAddress();
 
-            Log.d(TAG, "onItemClick: deviceName = " + deviceName);
-            Log.d(TAG, "onItemClick: deviceAddress = " + deviceAddress);
+        Log.d(TAG, "onItemClick: deviceName = " + deviceName);
+        Log.d(TAG, "onItemClick: deviceAddress = " + deviceAddress);
 
-            //create the bond.
-            Log.d(TAG, "Trying to pair with " + deviceName);
-            deviceToSent = mBTDevices.get(i);
-            if (mBTDevices.get(i).getName().equals("HC-05"))
-                mBTDevices.get(i).setPin(PIN.getBytes());
-            mBTDevices.get(i).createBond();
-        }
+        //create the bond.
+        Log.d(TAG, "Trying to pair with " + deviceName);
+        deviceToSent = mBTDevices.get(i);
+        mBTDevices.get(i).createBond();
     }
+
 
     public void findViewByIds() {
         save = findViewById(R.id.save_btn);
@@ -544,7 +521,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
     public void onBackPressed() {
         super.onBackPressed();
         try {
-            if(mmSocket != null) {
+            if (mmSocket != null) {
                 if (mmSocket.isConnected())
                     mmSocket.close();
             }

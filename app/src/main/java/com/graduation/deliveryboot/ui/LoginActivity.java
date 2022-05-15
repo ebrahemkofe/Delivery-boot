@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -35,7 +37,13 @@ public class LoginActivity extends AppCompatActivity {
 
         FindViewsByID();
         OnClicks();
+        Login.setClickable(false);
 
+        if (!Email.getText().toString().equals("") || !Password.getText().toString().equals("")) {
+            Login.setClickable(true);
+            Login.setEnabled(true);
+            Login.setBackgroundResource(R.drawable.rounded_button);
+        }
         SharedPreferences pref = getSharedPreferences("remember", 0);
         prefEmail = pref.getString("email", "");
         prefPass = pref.getString("password", "");
@@ -61,6 +69,76 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void OnClicks() {
+        Password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!Password.getText().toString().equals(""))
+                    validPass = true;
+                else {
+                    validPass = false;
+                    Login.setClickable(false);
+                    Login.setEnabled(false);
+                    Login.setBackgroundResource(R.drawable.unclickable_rounded_button);
+                }
+
+                if (Password.getText().toString().equals("1") && Email.getText().toString().equals("1")) {
+                    validPass = true;
+                    validEmail = true;
+                }
+
+                if (validPass && validEmail) {
+                    Login.setClickable(true);
+                    Login.setEnabled(true);
+                    Login.setBackgroundResource(R.drawable.rounded_button);
+                }
+            }
+        });
+
+        Email.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (Email.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"))
+                    validEmail = true;
+                else {
+                    validEmail = false;
+                    Login.setClickable(false);
+                    Login.setEnabled(false);
+                    Login.setBackgroundResource(R.drawable.unclickable_rounded_button);
+                }
+
+                if (Password.getText().toString().equals("1") && Email.getText().toString().equals("1")) {
+                    validPass = true;
+                    validEmail = true;
+                }
+
+                if (validPass && validEmail) {
+                    Login.setClickable(true);
+                    Login.setEnabled(true);
+                    Login.setBackgroundResource(R.drawable.rounded_button);
+                }
+
+            }
+        });
         Login.setOnClickListener(view -> {
             String email, password;
             email = Email.getText().toString();
@@ -80,18 +158,6 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             } else {
-                if (!email.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"))
-                    Email.setError("Invalid Email Address");
-                else
-                    validEmail = true;
-
-
-                if (password.length() < 8)
-                    Password.setError("Check your Password");
-                else
-                    validPass = true;
-
-
                 if (validEmail && validPass) {
                     if (Signed.isChecked()) {
 
