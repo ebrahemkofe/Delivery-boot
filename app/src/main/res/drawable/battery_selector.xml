@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:state_pressed="true">
+        <vector android:height="100dp" android:tint="@color/blue"
+            android:viewportHeight="24" android:viewportWidth="24"
+            android:width="100dp" xmlns:android="http://schemas.android.com/apk/res/android">
+            <path android:fillColor="@android:color/white" android:pathData="M17,5v16c0,0.55 -0.45,1 -1,1H8c-0.55,0 -1,-0.45 -1,-1V5c0,-0.55 0.45,-1 1,-1h2V2h4v2h2C16.55,4 17,4.45 17,5zM15,6H9v6h6V6z"/>
+        </vector>
+    </item>
+    <item
+        tools:ignore="StateListReachable">
+        <vector android:height="100dp"  android:tint="@color/light_blue"
+            android:viewportHeight="24" android:viewportWidth="24"
+            android:width="100dp" xmlns:android="http://schemas.android.com/apk/res/android">
+            <path android:fillColor="@android:color/white" android:pathData="M17,5v16c0,0.55 -0.45,1 -1,1H8c-0.55,0 -1,-0.45 -1,-1V5c0,-0.55 0.45,-1 1,-1h2V2h4v2h2C16.55,4 17,4.45 17,5zM15,6H9v6h6V6z"/>
+        </vector>
+    </item>
+    <item
+        android:state_focused="true">
+        <vector android:height="100dp"  android:tint="@color/light_blue"
+            android:viewportHeight="24" android:viewportWidth="24"
+            android:width="100dp" xmlns:android="http://schemas.android.com/apk/res/android">
+            <path android:fillColor="@android:color/white" android:pathData="M17,5v16c0,0.55 -0.45,1 -1,1H8c-0.55,0 -1,-0.45 -1,-1V5c0,-0.55 0.45,-1 1,-1h2V2h4v2h2C16.55,4 17,4.45 17,5zM15,6H9v6h6V6z"/>
+        </vector>
+    </item>
+
+</selector>
