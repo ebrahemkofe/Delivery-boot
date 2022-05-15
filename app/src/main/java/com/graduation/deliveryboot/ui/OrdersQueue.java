@@ -3,6 +3,7 @@ package com.graduation.deliveryboot.ui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import com.graduation.deliveryboot.Adapters.ListOrderQQueueAdapter;
@@ -37,6 +38,9 @@ public class OrdersQueue extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        this.finish();
+    }
+    public void cancel_btn(View view) {
         this.finish();
     }
 }

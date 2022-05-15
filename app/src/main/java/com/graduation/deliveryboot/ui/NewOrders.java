@@ -94,7 +94,7 @@ public class NewOrders extends AppCompatActivity {
         this.finish();
     }
 
-    public void cancel_btn(View view) {
+    public void cancel_image(View view) {
         this.finish();
     }
 }

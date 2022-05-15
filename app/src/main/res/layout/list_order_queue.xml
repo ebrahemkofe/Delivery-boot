@@ -7,8 +7,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/orderimage"
-        android:layout_width="@dimen/_60sdp"
-        android:layout_height="@dimen/_60sdp"
+        android:layout_width="84dp"
+        android:layout_height="61dp"
         android:layout_centerVertical="true"
         android:layout_gravity="start"
         android:padding="@dimen/_10sdp"
@@ -21,7 +21,7 @@
         android:layout_toRightOf="@id/orderimage"
         android:layout_centerVertical="true"
         android:text="301 to 309"
-        android:textColor="@color/white"
+        android:textColor="@color/light_blue"
         android:textSize="@dimen/_15sdp" />
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
             android:paddingTop="@dimen/_5sdp"
             android:paddingRight="@dimen/_10sdp"
             android:text="Username"
-            android:textColor="@color/white"
+            android:textColor="@color/light_blue"
             android:textSize="@dimen/_15sdp" />
 
         <TextView
@@ -47,24 +47,25 @@
             android:layout_below="@id/username_txt"
             android:layout_centerInParent="true"
             android:text="09 : 24"
-            android:textColor="@color/white"
+            android:textColor="@color/light_blue"
             android:textSize="@dimen/_15sdp" />
     </RelativeLayout>
 
     <ImageView
         android:id="@+id/lamp"
-        android:layout_width="@dimen/_35sdp"
-        android:layout_height="@dimen/_35sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_centerVertical="true"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginRight="27dp"
         android:layout_toLeftOf="@id/clear_btn"
-        android:layout_centerVertical="true"
         android:src="@drawable/red_lamp" />
 
     <ImageView
         android:id="@+id/clear_btn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="42dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:paddingEnd="@dimen/_10sdp"

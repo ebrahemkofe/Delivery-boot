@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="cancel_btn"
+            android:onClick="cancel_image"
             android:paddingLeft="@dimen/_5sdp"
             android:paddingTop="@dimen/_5sdp"
             android:src="@drawable/cancel_icon" />
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/_10sdp"
             android:text="From : "
-            android:textColor="@color/white"
+            android:textColor="@color/blue"
             android:textSize="@dimen/_20sdp" />
 
         <Spinner
@@ -49,8 +49,8 @@
             android:layout_width="@dimen/_150sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:background="@color/blue"
-            android:layout_toEndOf="@+id/from_txt" />
+            android:layout_toEndOf="@+id/from_txt"
+            android:backgroundTint="@color/blue" />
 
         <TextView
             android:id="@+id/to_txt"
@@ -59,7 +59,7 @@
             android:layout_below="@+id/from_txt"
             android:padding="@dimen/_10sdp"
             android:text="To :"
-            android:textColor="@color/white"
+            android:textColor="@color/blue"
             android:textSize="@dimen/_20sdp" />
 
         <Spinner
@@ -69,16 +69,16 @@
             android:layout_below="@id/firstspinner"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_toEndOf="@+id/to_txt"
-            android:background="@color/blue" />
+            android:backgroundTint="@color/blue" />
 
         <TextView
-            android:id="@+id/sender_txt"
+            android:id="@+id/Im_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/to_txt"
             android:padding="@dimen/_10sdp"
-            android:text="Sender :"
-            android:textColor="@color/white"
+            android:text="I'm a :"
+            android:textColor="@color/blue"
             android:textSize="@dimen/_20sdp" />
 
         <RadioGroup
@@ -87,74 +87,51 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/secondspinner"
             android:layout_marginTop="@dimen/_15sdp"
-            android:layout_toEndOf="@id/sender_txt">
+            android:orientation="horizontal"
+            android:layout_toEndOf="@id/Im_txt">
 
             <RadioButton
-                android:id="@+id/first_me_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Me"
+                android:id="@+id/sender_btn"
+                android:layout_width="102dp"
+                android:layout_height="match_parent"
+                android:buttonTint="@color/blue"
+                android:text="Sender"
+                android:textColor="@color/blue"
                 android:textSize="@dimen/_13sdp" />
 
             <RadioButton
-                android:id="@+id/first_other_btn"
-                android:layout_width="wrap_content"
+                android:id="@+id/reciver_btn"
+                android:layout_width="111dp"
                 android:layout_height="wrap_content"
-                android:text="Other"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:buttonTint="@color/blue"
+                android:text="Reciver"
+                android:textColor="@color/blue"
                 android:textSize="@dimen/_13sdp" />
         </RadioGroup>
-
-        <EditText
-            android:id="@+id/sender_edit_txt"
-            android:layout_width="@dimen/_150sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_below="@id/secondspinner"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_toEndOf="@id/first_radio_group"
-            android:hint="User Name" />
 
         <TextView
-            android:id="@+id/reciver_txt"
+            android:id="@+id/theother_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/sender_txt"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:padding="@dimen/_10sdp"
-            android:text="Reciver :"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_20sdp" />
-
-        <RadioGroup
-            android:id="@+id/second_radio_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/first_radio_group"
+            android:layout_below="@id/Im_txt"
             android:layout_marginTop="@dimen/_10sdp"
-            android:layout_toEndOf="@id/reciver_txt">
-
-            <RadioButton
-                android:id="@+id/second_me_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Me"
-                android:textSize="@dimen/_13sdp" />
-
-            <RadioButton
-                android:id="@+id/second_other_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Other"
-                android:textSize="@dimen/_13sdp" />
-        </RadioGroup>
+            android:padding="@dimen/_10sdp"
+            android:text="The Other :"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/_20sdp" />
 
         <EditText
             android:id="@+id/edit_text"
             android:layout_width="@dimen/_150sdp"
             android:layout_height="@dimen/_30sdp"
-            android:layout_below="@id/sender_edit_txt"
+            android:layout_below="@id/first_radio_group"
             android:layout_marginTop="@dimen/_32sdp"
-            android:layout_toEndOf="@id/second_radio_group"
-            android:hint="User Name" />
+            android:layout_toRightOf="@id/theother_txt"
+            android:backgroundTint="@color/blue"
+            android:hint="User Name"
+            android:textColor="@color/blue"
+            android:textColorHint="@color/light_blue" />
 
         <Button
             android:id="@+id/done"

@@ -157,10 +157,10 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
                     joyStick.setVisibility(View.VISIBLE);
                     connect.setVisibility(View.GONE);
                     save.setClickable(true);
-                    save.setBackgroundResource(R.drawable.rounded_button);
+                    save.setBackgroundResource(R.drawable.rounded_button_white);
 
                     OpenClose.setClickable(true);
-                    OpenClose.setBackgroundResource(R.drawable.rounded_button);
+                    OpenClose.setBackgroundResource(R.drawable.rounded_button_white);
 
                     lvNewDevices.setEnabled(true);
                     try {

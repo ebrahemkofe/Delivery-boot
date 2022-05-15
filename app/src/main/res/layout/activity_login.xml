@@ -28,7 +28,7 @@
         android:hint="max@Example.com"
         android:inputType="textEmailAddress"
         android:textColor="@color/blue"
-        android:textColorHint="@color/blue" />
+        android:textColorHint="@color/light_blue" />
 
     <EditText
         android:id="@+id/PasswordText"
@@ -37,21 +37,24 @@
         android:layout_below="@+id/EmailText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_20sdp"
+        android:backgroundTint="@color/blue"
         android:hint="********"
         android:importantForAutofill="no"
-        android:backgroundTint="@color/blue"
         android:inputType="textPassword"
         android:textColor="@color/blue"
-        android:textColorHint="@color/blue" />
+        android:textColorHint="@color/light_blue" />
 
     <CheckBox
         android:id="@+id/SignedInCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/PasswordText"
-        android:layout_margin="@dimen/_20sdp"
-        android:text="ٌRemember Me"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
         android:buttonTint="@color/blue"
+        android:text="ٌRemember Me"
         android:textColor="@color/blue"
         android:textSize="@dimen/_12sdp" />
 

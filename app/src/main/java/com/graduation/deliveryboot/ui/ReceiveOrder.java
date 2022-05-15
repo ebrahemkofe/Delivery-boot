@@ -41,13 +41,13 @@ public class ReceiveOrder extends AppCompatActivity {
         Check.setOnClickListener(view -> {
             if (Code.getText().toString().equals("1234")) {
                 Open.setClickable(true);
-                Open.setBackgroundResource(R.drawable.rounded_button);
+                Open.setBackgroundResource(R.drawable.rounded_button_white);
 
                 Close.setClickable(true);
-                Close.setBackgroundResource(R.drawable.rounded_button);
+                Close.setBackgroundResource(R.drawable.rounded_button_white);
 
                 Done.setClickable(true);
-                Done.setBackgroundResource(R.drawable.rounded_button);
+                Done.setBackgroundResource(R.drawable.rounded_button_white);
             } else {
                 Code.setError("Please Enter the Right Code");
                 Code.setText(null);
