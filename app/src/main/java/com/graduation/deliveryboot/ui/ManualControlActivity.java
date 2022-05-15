@@ -16,20 +16,17 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import com.erz.joysticklibrary.JoyStick;
 import com.graduation.deliveryboot.Adapters.DialogListViewAdapter;
 import com.graduation.deliveryboot.Helper.CustomDialog;
 import com.graduation.deliveryboot.R;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.UUID;
 
 public class ManualControlActivity extends AppCompatActivity implements JoyStick.JoyStickListener, AdapterView.OnItemClickListener {
@@ -379,7 +376,11 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
     public void onMove(JoyStick joyStick, double angle, double power, int direction) {
         switch (direction) {
             case -1:
-                save.setText("S");
+                if (!mBluetoothAdapter.isEnabled()) {
+                    enableDisableBT();
+                } else {
+                    SendData("S");
+                }
                 break;
 
             case 0:
@@ -387,7 +388,6 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
                     enableDisableBT();
                 } else {
                     SendData("H");
-                    save.setText("Left");
                 }
                 break;
 
@@ -405,45 +405,44 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
                     enableDisableBT();
                 } else
                     SendData("A");
-                save.setText("Up");
                 break;
             case 3:
                 if (!mBluetoothAdapter.isEnabled()) {
                     enableDisableBT();
                 } else
                     SendData("B");
-                save.setText("Up - Right");
                 break;
             case 4:
                 if (!mBluetoothAdapter.isEnabled()) {
                     enableDisableBT();
                 } else
                     SendData("D");
-                save.setText("Right");
                 break;
             case 5:
                 if (!mBluetoothAdapter.isEnabled()) {
                     enableDisableBT();
                 } else
                     SendData("E");
-                save.setText("Right - Down");
                 break;
             case 6:
                 if (!mBluetoothAdapter.isEnabled()) {
                     enableDisableBT();
                 } else
                     SendData("F");
-                save.setText("Down");
                 break;
             case 7:
                 if (!mBluetoothAdapter.isEnabled()) {
                     enableDisableBT();
                 } else
                     SendData("G");
-                save.setText("Down - Left");
                 break;
             default:
-                Toast.makeText(this, "Null", Toast.LENGTH_SHORT).show();
+//                if (!mBluetoothAdapter.isEnabled()) {
+//                enableDisableBT();
+//            } else {
+//                SendData("S");
+//            }
+
         }
     }
 
@@ -510,6 +509,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
             Log.d(TAG, "Socket is Connected");
             try {
                 outputStream.write(toSend);
+                Log.d("Send: ", s + "as: " + Arrays.toString(toSend));
             } catch (IOException e) {
                 e.printStackTrace();
             }
