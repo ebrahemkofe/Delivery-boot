@@ -33,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_70sdp"
                     android:layout_marginEnd="@dimen/_30sdp"
-                    android:src="@drawable/camera" />
+                     android:src="@drawable/camera_selector" />
 
                 <TextView
                     android:id="@+id/camera_txt"
@@ -69,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_70sdp"
                     android:layout_marginEnd="@dimen/_20sdp"
-                    android:src="@drawable/manual_control" />
+                    android:src="@drawable/manual_selector" />
 
                 <TextView
                     android:id="@+id/manual"
@@ -118,7 +118,7 @@
                             android:layout_gravity="center"
                             android:layout_weight="1"
 
-                            android:src="@drawable/track" />
+                            android:src="@drawable/track_selector" />
 
                         <TextView
                             android:id="@+id/track_txt"
@@ -157,7 +157,7 @@
                             android:layout_height="@dimen/_50sdp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:src="@drawable/call_back" />
+                            android:src="@drawable/call_back_selector" />
 
                         <TextView
                             android:id="@+id/callback_txt"
