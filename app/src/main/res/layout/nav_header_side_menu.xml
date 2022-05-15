@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_180sdp"
+    android:layout_height="@dimen/_150sdp"
     android:background="@color/blue"
-    android:orientation="vertical"
     android:gravity="bottom"
     android:padding="@dimen/_16sdp">
 
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/account_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/accountImage"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
             android:src="@drawable/person_design" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/_8sdp"
-            android:text="Account Name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="@dimen/_20sdp" />
+    <TextView
+        android:id="@+id/accountName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/accountImage"
+        android:text="Account Name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Student"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_15sdp" />
-</LinearLayout>
+    <TextView
+        android:id="@+id/walletValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/accountName"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_toEndOf="@+id/accountImage"
+        android:text="23.00 EGP"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_15sdp" />
+</RelativeLayout>
 

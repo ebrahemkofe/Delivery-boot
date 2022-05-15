@@ -8,8 +8,9 @@ import android.os.Looper;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.view.MotionEvent;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,8 +26,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import java.util.Objects;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawer;
     ImageView NavOpen;
     CircleImageView profile;
-    TextView ScreenName;
+    TextView ScreenName, WalletValue;
     boolean doubleBackToExitPressedOnce = false;
     public static boolean admin = false;
     MenuItem menuItem;
@@ -118,7 +117,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.nav_view);
         NavOpen = findViewById(R.id.NavBarButton);
         ScreenName = findViewById(R.id.ScreenName);
-        profile = navigationView.getHeaderView(0).findViewById(R.id.account_image);
+        profile = navigationView.getHeaderView(0).findViewById(R.id.accountImage);
+        WalletValue = navigationView.getHeaderView(0).findViewById(R.id.walletValue);
     }
 
     @SuppressLint("SetTextI18n")
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    @SuppressLint("WrongConstant")
+    @SuppressLint({"WrongConstant", "ClickableViewAccessibility"})
     public void OnClicks() {
         NavOpen.setOnClickListener(view -> drawer.openDrawer(Gravity.START));
 
@@ -140,6 +140,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(i);
             drawer.closeDrawer(Gravity.START);
         });
+
+        WalletValue.setOnClickListener(v -> Toast.makeText(this, "Wallet", Toast.LENGTH_SHORT).show());
+
     }
 
     @Override
