@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.ReceiveOrder">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -64,13 +65,14 @@
                 android:layout_height="wrap_content"
                 android:text="Full Name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/white" />
+                android:textColor="@color/blue" />
 
             <EditText
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="29dp"
                 android:ems="10"
+                android:backgroundTint="@color/blue"
                 android:inputType="textPersonName" />
         </LinearLayout>
 
@@ -86,13 +88,14 @@
                 android:layout_height="wrap_content"
                 android:text="Email"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/white" />
+                android:textColor="@color/blue" />
 
             <EditText
                 android:id="@+id/emailtext"
                 android:layout_width="match_parent"
                 android:layout_height="29dp"
                 android:ems="10"
+                android:backgroundTint="@color/blue"
                 android:inputType="textEmailAddress" />
 
         </LinearLayout>
@@ -108,13 +111,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Phone Numper"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/blue" />
 
             <EditText
                 android:id="@+id/phonenumpertext"
                 android:layout_width="match_parent"
                 android:layout_height="29dp"
                 android:ems="10"
+                android:backgroundTint="@color/blue"
                 android:inputType="number" />
         </LinearLayout>
 
@@ -130,13 +135,14 @@
                 android:layout_height="wrap_content"
                 android:text="Password"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/white" />
+                android:textColor="@color/blue" />
 
             <EditText
                 android:id="@+id/passwordtext"
                 android:layout_width="match_parent"
                 android:layout_height="29dp"
                 android:ems="10"
+                android:backgroundTint="@color/blue"
                 android:inputType="textPassword" />
         </LinearLayout>
 
@@ -148,10 +154,11 @@
             android:background="@drawable/rounded_button"
             android:gravity="center"
             android:onClick="btn_save"
+            android:textAllCaps="false"
             android:text="Save"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/white"
-            android:textSize="@dimen/_25sdp" />
+            android:textSize="@dimen/_25sdp"
+            tools:ignore="OnClick" />
 
 
     </LinearLayout>
