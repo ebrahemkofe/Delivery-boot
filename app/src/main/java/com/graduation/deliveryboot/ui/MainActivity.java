@@ -2,6 +2,7 @@ package com.graduation.deliveryboot.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.graduation.deliveryboot.Fragment.ControlFragment;
 import com.graduation.deliveryboot.Fragment.HomeFragment;
+import com.graduation.deliveryboot.Fragment.WalletFragment;
 import com.graduation.deliveryboot.R;
 
 import androidx.annotation.NonNull;
@@ -37,11 +39,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawer;
     ImageView NavOpen;
     CircleImageView profile;
-    TextView ScreenName, WalletValue;
+    TextView ScreenName;
+    public static TextView WalletValue;
     boolean doubleBackToExitPressedOnce = false;
     public static boolean admin = false;
     MenuItem menuItem;
     Menu menu;
+    float wallet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (admin)
             menuItem.setVisible(true);
+
+        SharedPreferences myPref = getSharedPreferences("wallet", 0);
+        wallet = myPref.getFloat("Amount", 0.0f);
+
+        WalletValue.setText(wallet + " EGP");
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawer, R.string.nav_open, R.string.nav_close);
         drawer.addDrawerListener(actionBarDrawerToggle);
@@ -94,7 +103,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 drawer.closeDrawer(Gravity.START);
                 break;
-
+            case R.id.wallet:
+                fragment = new WalletFragment();
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.FragmentLayout, fragment, "Wallet_Fragment");
+                transaction.commitNow();
+                ScreenName.setText("Wallet");
+                drawer.closeDrawer(Gravity.START);
+                break;
             case R.id.About_us:
                 Toast.makeText(MainActivity.this, "About us", Toast.LENGTH_SHORT).show();
                 drawer.closeDrawer(Gravity.START);
