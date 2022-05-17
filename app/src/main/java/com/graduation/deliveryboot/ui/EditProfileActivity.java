@@ -21,7 +21,7 @@ public class EditProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_edit_profile);
+        setContentView(R.layout.activity_edit_profile);
         email = (EditText) findViewById(R.id.emailtext);
         password = (EditText) findViewById(R.id.passwordtext);
         fullName = (EditText) findViewById(R.id.name);

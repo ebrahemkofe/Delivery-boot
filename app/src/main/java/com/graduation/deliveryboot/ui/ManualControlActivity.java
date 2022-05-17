@@ -199,7 +199,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.manual_control_activity);
+        setContentView(R.layout.activity_manual_control);
 
         findViewByIds();
         onClicks();
