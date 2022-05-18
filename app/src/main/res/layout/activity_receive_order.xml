@@ -47,7 +47,7 @@
         android:layout_marginBottom="@dimen/_30sdp"
         android:backgroundTint="@color/blue"
         android:hint="Enter the code"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:maxLength="4"
         android:padding="@dimen/_10sdp"
         android:textColor="@color/blue"

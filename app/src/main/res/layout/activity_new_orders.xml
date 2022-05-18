@@ -131,11 +131,22 @@
             android:textColor="@color/blue"
             android:textColorHint="@color/light_blue" />
 
+        <TextView
+            android:id="@+id/Cost_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/theother_txt"
+            android:layout_margin="@dimen/_7sdp"
+            android:text="The Order Will Cost You 15 EGP."
+            android:textColor="@color/blue"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold" />
+
         <Button
             android:id="@+id/done"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/edit_text"
+            android:layout_below="@+id/Cost_text"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"

@@ -3,12 +3,14 @@ package com.graduation.deliveryboot.ui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.graduation.deliveryboot.Helper.CustomDialog;
 import com.graduation.deliveryboot.R;
@@ -80,11 +82,21 @@ public class NewOrders extends AppCompatActivity {
             }
         });
         done.setOnClickListener(view -> {
-            Random random = new Random();
-            RandomCode = String.format("%04d", random.nextInt(10000));
-            CustomDialog customDialog = new CustomDialog(NewOrders.this, RandomCode, 2);
-            customDialog.show();
-            customDialog.setOnDismissListener(dialogInterface -> finish());
+            SharedPreferences myPref1 = getSharedPreferences("wallet", MODE_PRIVATE);
+            @SuppressLint("CommitPrefEdits") SharedPreferences.Editor e = myPref1.edit();
+            float m = myPref1.getFloat("Amount",0.0f);
+            if (m >= 15) {
+                e.putFloat("Amount", m-15);
+                e.apply();
+                Random random = new Random();
+                RandomCode = String.format("%04d", random.nextInt(10000));
+                CustomDialog customDialog = new CustomDialog(NewOrders.this, RandomCode, 2);
+                customDialog.show();
+                customDialog.setOnDismissListener(dialogInterface -> finish());
+            }
+            else
+                Toast.makeText(this, "Sorry you don't have enough credit.", Toast.LENGTH_SHORT).show();
+
         });
     }
 
