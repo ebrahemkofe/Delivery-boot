@@ -23,9 +23,9 @@
             android:icon="@drawable/wallet"
             android:title="Wallet"/>
         <item
-            android:id="@+id/About_us"
-            android:icon="@drawable/favorite_design"
-            android:title="About Us" />
+            android:id="@+id/Help"
+            android:icon="@drawable/help_design"
+            android:title="Help" />
         <item
             android:id="@+id/setting"
             android:icon="@drawable/setting"

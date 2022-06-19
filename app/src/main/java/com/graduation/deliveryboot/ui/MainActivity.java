@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.graduation.deliveryboot.Fragment.ControlFragment;
+import com.graduation.deliveryboot.Fragment.Help_fragment;
 import com.graduation.deliveryboot.Fragment.HomeFragment;
 import com.graduation.deliveryboot.Fragment.WalletFragment;
 import com.graduation.deliveryboot.R;
@@ -111,8 +112,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ScreenName.setText("Wallet");
                 drawer.closeDrawer(Gravity.START);
                 break;
-            case R.id.About_us:
-                Toast.makeText(MainActivity.this, "About us", Toast.LENGTH_SHORT).show();
+            case R.id.Help:
+                fragment=new Help_fragment();
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.FragmentLayout, fragment, "Help_Fragment");
+                transaction.commitNow();
+                ScreenName.setText("Help");
                 drawer.closeDrawer(Gravity.START);
                 break;
 
