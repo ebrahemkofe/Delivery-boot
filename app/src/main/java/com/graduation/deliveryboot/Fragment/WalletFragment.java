@@ -7,6 +7,9 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +25,12 @@ public class WalletFragment extends Fragment {
     TextView Wallet;
     Button confirm;
     float wallet;
-
+    boolean validcardnum = false;
+    boolean validdate = false;
+    boolean validcvv = false;
+    boolean validname = false;
+    boolean validamount = false;
+    int num ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,18 +50,153 @@ public class WalletFragment extends Fragment {
 
 
         confirm.setOnClickListener(view1 -> {
-            SharedPreferences myPref1 = requireContext().getSharedPreferences("wallet", MODE_PRIVATE);
-            SharedPreferences.Editor e = myPref1.edit();
-            wallet = wallet + Float.parseFloat(amount.getText().toString());
-            e.putFloat("Amount", wallet);
-            e.apply();
+                    SharedPreferences myPref1 = requireContext().getSharedPreferences("wallet", MODE_PRIVATE);
+                    SharedPreferences.Editor e = myPref1.edit();
 
-            amount.setText("");
-            Wallet.setText(wallet + " EGP");
-            MainActivity.WalletValue.setText(wallet + " EGP");
-        });
+                    wallet += Float.parseFloat(amount.getText().toString());
+                    e.putFloat("Amount", wallet);
+                    e.apply();
 
+                    amount.setText("");
+                    Wallet.setText(wallet + " EGP");
+                    MainActivity.WalletValue.setText(wallet + " EGP");
+                });
 
-        return view;
-    }
+            card_num.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    if (card_num.getText().toString().length() >= 14) {
+                        validcardnum = true;
+                    } else {
+                        validcardnum = false;
+                        confirm.setClickable(false);
+                        confirm.setEnabled(false);
+                        confirm.setBackgroundResource(R.drawable.unclickable_rounded_button);
+                    }
+                    if (validcardnum && validdate && validcvv && validamount) {
+                        confirm.setClickable(true);
+                        confirm.setEnabled(true);
+                        confirm.setBackgroundResource(R.drawable.rounded_button);
+                    }
+                }
+            });
+            expiry_date.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    if (expiry_date.getText().toString().matches("[0-9]+\\/+[0-9]")) {
+                        validdate = true;
+                    } else {
+                        validdate = false;
+                        confirm.setClickable(false);
+                        confirm.setEnabled(false);
+                        confirm.setBackgroundResource(R.drawable.unclickable_rounded_button);
+                    }
+                    if (validcardnum && validdate && validcvv && validamount) {
+                        confirm.setClickable(true);
+                        confirm.setEnabled(true);
+                        confirm.setBackgroundResource(R.drawable.rounded_button);
+                    }
+                }
+            });
+            cvv.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    if (cvv.getText().toString().length() == 3 || cvv.getText().toString().length() == 4) {
+                        validcvv = true;
+                    } else {
+                        validcvv = false;
+                        confirm.setClickable(true);
+                        confirm.setEnabled(false);
+                        confirm.setBackgroundResource(R.drawable.unclickable_rounded_button);
+                    }
+                    if (validcardnum && validdate && validcvv && validamount) {
+                        confirm.setClickable(true);
+                        confirm.setEnabled(true);
+                        confirm.setBackgroundResource(R.drawable.rounded_button);
+                    }
+                }
+            });
+            card_name.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    if (validcardnum && validdate && validcvv && validname && validamount) {
+                        confirm.setClickable(true);
+                        confirm.setEnabled(true);
+                        confirm.setBackgroundResource(R.drawable.rounded_button);
+                    }
+                }
+            });
+      amount.addTextChangedListener(new TextWatcher() {
+           @Override
+           public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+           }
+
+           @Override
+           public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+           }
+
+           @Override
+           public void afterTextChanged(Editable editable) {
+               num = Integer.parseInt(amount.getText().toString());
+               if(num >= 5 && num <=500){
+                      validamount = true;
+                  }
+               else{
+                   validamount = false;
+                   confirm.setClickable(false);
+                   confirm.setEnabled(false);
+                   confirm.setBackgroundResource(R.drawable.unclickable_rounded_button);
+               }
+               if (validcardnum && validdate && validcvv && validname && validamount) {
+                   confirm.setClickable(true);
+                   confirm.setEnabled(true);
+                   confirm.setBackgroundResource(R.drawable.rounded_button);
+               }
+               }
+           });
+
+            return view;
+        }
 }

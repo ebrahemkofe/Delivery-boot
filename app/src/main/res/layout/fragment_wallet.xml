@@ -77,6 +77,7 @@
         android:layout_marginBottom="@dimen/_10sdp"
         android:backgroundTint="@color/blue"
         android:hint="Card Number"
+        android:inputType="number"
         android:textColor="@color/blue"
         android:textColorHint="@color/light_blue" />
 
@@ -90,9 +91,10 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginBottom="@dimen/_10sdp"
-        android:textColor="@color/blue"
         android:backgroundTint="@color/blue"
         android:hint="CVV"
+        android:inputType="number"
+        android:textColor="@color/blue"
         android:textColorHint="@color/light_blue" />
 
     <EditText
@@ -107,6 +109,7 @@
         android:layout_marginBottom="@dimen/_10sdp"
         android:backgroundTint="@color/blue"
         android:hint="Expiry Date MM/YY"
+        android:inputType="date"
         android:paddingRight="@dimen/_15sdp"
         android:textColor="@color/blue"
         android:textColorHint="@color/light_blue" />
@@ -133,6 +136,7 @@
         android:layout_marginRight="@dimen/_10sdp"
         android:backgroundTint="@color/blue"
         android:hint="Amount of funds"
+        android:inputType="numberDecimal"
         android:textColor="@color/blue"
         android:textColorHint="@color/light_blue" />
 

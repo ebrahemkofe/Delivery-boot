@@ -31,7 +31,7 @@
         android:layout_below="@+id/accountName"
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_toEndOf="@+id/accountImage"
-        android:text="23.00 EGP"
+        android:text="00.00 EGP"
         android:textColor="@color/white"
         android:textSize="@dimen/_15sdp" />
 </RelativeLayout>

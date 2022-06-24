@@ -49,7 +49,7 @@
                 android:text="SignUp"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/white" />
+                android:textColor="@color/blue" />
         </LinearLayout>
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -79,14 +79,17 @@
                 android:layout_height="wrap_content"
                 android:text="Full Name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/white" />
+                android:textColor="@color/blue" />
 
             <EditText
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="29dp"
                 android:ems="10"
-
+                android:autofillHints="emailAddress"
+                android:backgroundTint="@color/blue"
+                android:textColor="@color/blue"
+                android:textColorHint="@color/light_blue"
                 android:inputType="textPersonName" />
         </LinearLayout>
 
@@ -102,13 +105,16 @@
                 android:layout_height="wrap_content"
                 android:text="Email"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/white" />
+                android:textColor="@color/blue" />
 
             <EditText
                 android:id="@+id/emailtext"
                 android:layout_width="match_parent"
                 android:layout_height="29dp"
                 android:ems="10"
+                android:backgroundTint="@color/blue"
+                android:textColor="@color/blue"
+                android:textColorHint="@color/light_blue"
                 android:hint="max@Example.com"
                 android:inputType="textEmailAddress" />
 
@@ -125,6 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Phone Numper"
+                android:textColor="@color/blue"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <EditText
@@ -132,6 +139,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="29dp"
                 android:ems="10"
+                android:backgroundTint="@color/blue"
+                android:textColor="@color/blue"
+                android:textColorHint="@color/light_blue"
                 android:inputType="number" />
         </LinearLayout>
 
@@ -147,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:text="Password"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/white" />
+                android:textColor="@color/blue" />
 
             <EditText
                 android:id="@+id/passwordtext"
@@ -155,6 +165,9 @@
                 android:layout_height="29dp"
                 android:ems="10"
                 android:hint="*******"
+                android:backgroundTint="@color/blue"
+                android:textColor="@color/blue"
+                android:textColorHint="@color/light_blue"
                 android:inputType="textPassword" />
         </LinearLayout>
 
@@ -174,7 +187,7 @@
                 android:button="@android:drawable/radiobutton_off_background"
                 android:text=" Student"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/white" />
+                android:textColor="@color/blue" />
 
             <RadioButton
                 android:id="@+id/employeebutton"
@@ -184,7 +197,7 @@
                 android:button="@android:drawable/radiobutton_off_background"
                 android:text=" Employee"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/white" />
+                android:textColor="@color/blue" />
         </RadioGroup>
 
         <Button
