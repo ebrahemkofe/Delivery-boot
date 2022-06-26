@@ -30,11 +30,11 @@ Button emailUs;
         ((AnimationDrawable) helpImg.getBackground()).start();
         emailUs= v.findViewById(R.id.emailUs_btn);
 
-        emailUs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-         startActivity(new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:abc@gmail.com")));
-            }
+        emailUs.setOnClickListener(view -> {
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            emailIntent.setType("text/plain");
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"Test321@gmail.com"});
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
         });
 
         return v;

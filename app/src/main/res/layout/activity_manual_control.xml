@@ -29,7 +29,7 @@
             android:layout_width="@dimen/_250sdp"
             android:layout_height="@dimen/_250sdp"
             android:layout_centerInParent="true"
-            android:visibility="visible"
+            android:visibility="gone"
             app:backgroundDrawable="@drawable/pad"
             app:buttonDrawable="@drawable/bull" />
 
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_300sdp"
             android:layout_centerInParent="true"
-            android:visibility="gone"
+            android:visibility="visible"
             android:padding="@dimen/_5sdp">
 
             <Button
