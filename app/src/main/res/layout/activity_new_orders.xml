@@ -48,7 +48,8 @@
             android:layout_height="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_toEndOf="@+id/from_txt"
-            android:backgroundTint="@color/blue" />
+            android:backgroundTint="@color/blue"
+            android:dropDownSelector="@color/blue" />
 
         <TextView
             android:id="@+id/to_txt"
@@ -67,7 +68,9 @@
             android:layout_below="@id/firstspinner"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_toEndOf="@+id/to_txt"
-            android:backgroundTint="@color/blue" />
+            android:backgroundTint="@color/blue"
+            android:dropDownSelector="@color/blue"
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/Im_txt"

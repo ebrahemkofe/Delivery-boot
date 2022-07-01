@@ -4,12 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.graduation.deliveryboot.Helper.CustomDialog;
@@ -48,8 +52,11 @@ public class NewOrders extends AppCompatActivity {
         firstspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
 
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ((TextView)adapterView.getChildAt(0)).setTextColor(ColorStateList.valueOf(R.color.blue));
+                ((TextView)adapterView.getChildAt(0)).setTextSize(14);
                 if (time) {
                     track_to.remove(i);
                     time = false;
@@ -72,8 +79,11 @@ public class NewOrders extends AppCompatActivity {
         secondspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
 
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ((TextView)adapterView.getChildAt(0)).setTextColor(ColorStateList.valueOf(R.color.blue));
+                ((TextView)adapterView.getChildAt(0)).setTextSize(14);
             }
 
             @Override
