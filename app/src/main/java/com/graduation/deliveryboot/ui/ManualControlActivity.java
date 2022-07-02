@@ -415,11 +415,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
                     char s = 'L';
                     if (mmSocket.isConnected()) {
                         Log.d(TAG, "Socket is Connected");
-                        try {
-                            outputStream.write(s);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        SendData('L');
                     } else
                         Log.e(TAG, "Socket is not Connected");
                 }
@@ -449,11 +445,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
                     char s = 'F';
                     if (mmSocket.isConnected()) {
                         Log.d(TAG, "Socket is Connected");
-                        try {
-                            outputStream.write(s);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        SendData('F');
                     } else
                         Log.e(TAG, "Socket is not Connected");
                 }
@@ -477,18 +469,13 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
             case 4:
                 if (!mBluetoothAdapter.isEnabled()) {
                     enableDisableBT();
-                } else
-                {
+                } else {
                     char s = 'R';
-                if (mmSocket.isConnected()) {
-                    Log.d(TAG, "Socket is Connected");
-                    try {
-                        outputStream.write(s);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                } else
-                    Log.e(TAG, "Socket is not Connected");
+                    if (mmSocket.isConnected()) {
+                        Log.d(TAG, "Socket is Connected");
+                        SendData('R');
+                    } else
+                        Log.e(TAG, "Socket is not Connected");
                 }
                 break;
 //            case 5:
@@ -514,11 +501,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
                     char s = 'B';
                     if (mmSocket.isConnected()) {
                         Log.d(TAG, "Socket is Connected");
-                        try {
-                            outputStream.write(s);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        SendData('B');
                     } else
                         Log.e(TAG, "Socket is not Connected");
                 }
@@ -540,11 +523,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
 //                }
 //                break;
             default:
-//                if (!mBluetoothAdapter.isEnabled()) {
-//                enableDisableBT();
-//            } else {
-//                SendData("S");
-//            }
+                Log.d(TAG, "Another Choose");
 
         }
     }
@@ -610,17 +589,12 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
 
     private void SendData(char s) {
 
-        if (mmSocket.isConnected()) {
-            Log.d(TAG, "Socket is Connected");
-            try {
-//                outputStream.write(s);
-                new DataOutputStream(mmSocket.getOutputStream()).writeByte(s);
-                Log.d("Send: ", s + "as: " + s);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else
-            Log.e(TAG, "Socket is not Connected");
+        try {
+            new DataOutputStream(mmSocket.getOutputStream()).writeByte((int) s);
+            Log.d("Send: ", s + "as: " + s);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
