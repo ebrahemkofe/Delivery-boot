@@ -38,7 +38,7 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
     private static final String TAG = "MainActivity";
     Button save, cancel, BTon, OpenClose;
     static JoyStick joyStick;
-    RelativeLayout control, connect;
+    RelativeLayout connect;
     BluetoothAdapter mBluetoothAdapter;
     Button btnEnableDisable_Discoverable;
     public final ArrayList<BluetoothDevice> mBTDevices = new ArrayList<>();
@@ -377,7 +377,6 @@ public class ManualControlActivity extends AppCompatActivity implements JoyStick
     public void findViewByIds() {
         save = findViewById(R.id.save_btn);
         joyStick = findViewById(R.id.JoystickControl);
-        control = findViewById(R.id.controlLayout);
         connect = findViewById(R.id.activity_main);
         BTon = findViewById(R.id.btnEnableBT);
         cancel = findViewById(R.id.cancel_btn);

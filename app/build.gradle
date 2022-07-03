@@ -74,4 +74,9 @@ dependencies {
     // When using the BoM, don't specify versions in Firebase dependencies
 
     implementation 'com.google.firebase:firebase-analytics'
+
+    //Firebase Database
+    implementation 'com.google.firebase:firebase-core:21.0.0'
+    implementation 'com.google.firebase:firebase-database:20.0.5'
+    apply plugin: 'com.google.gms.google-services'
 }
