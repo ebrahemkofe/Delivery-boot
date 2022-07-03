@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list_item"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_40sdp"
-    android:paddingEnd="@dimen/_10sdp"
     android:background="#90357EDD"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingEnd="@dimen/_10sdp"
+    tools:ignore="RtlSymmetry">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/orderimage"
+        android:id="@+id/orderImage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -23,9 +25,10 @@
         android:layout_gravity="center_vertical"
         android:layout_weight="0.7"
         android:maxLines="1"
-        android:textColor="@color/white"
         android:text="From 301 to 309"
-        android:textSize="@dimen/_15sdp" />
+        android:textColor="@color/white"
+        android:textSize="@dimen/_15sdp"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/date"
@@ -33,11 +36,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="0.3"
-        android:paddingStart="@dimen/_13sdp"
         android:maxLines="1"
-        android:textColor="@color/white"
+        android:paddingStart="@dimen/_13sdp"
         android:text="28/11"
-        android:textSize="@dimen/_12sdp" />
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12sdp"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/time"
@@ -46,8 +50,9 @@
         android:layout_gravity="center_vertical"
         android:layout_weight="0.3"
         android:maxLines="1"
-        android:textColor="@color/white"
         android:text="06:39 PM"
-        android:textSize="@dimen/_12sdp" />
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12sdp"
+        tools:ignore="HardcodedText" />
 
 </LinearLayout>

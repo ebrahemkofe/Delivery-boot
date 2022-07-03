@@ -6,10 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.graduation.deliveryboot.R;
 import com.graduation.deliveryboot.Models.DataOnList;
+
 import java.util.ArrayList;
 
 public class ListAdapter extends ArrayAdapter<DataOnList> {

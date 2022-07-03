@@ -5,33 +5,38 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".Fragment.WalletFragment">
+
     <TextView
         android:id="@+id/wallet_txt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_14sdp"
+        android:layout_marginTop="@dimen/_14sdp"
         android:text="Wallet"
         android:textColor="@color/blue"
         android:textSize="@dimen/_26sdp"
-        android:layout_marginLeft="@dimen/_14sdp"
-        android:layout_marginTop="@dimen/_14sdp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+
     <LinearLayout
         android:id="@+id/wallet_layout"
-        android:layout_below="@+id/wallet_txt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_button"
+        android:layout_below="@+id/wallet_txt"
         android:layout_margin="@dimen/_10sdp"
+        android:background="@drawable/rounded_button"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/WalletAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-           android:layout_margin="@dimen/_10sdp"
+            android:layout_margin="@dimen/_10sdp"
             android:text="EGP 0.00"
-            android:textSize="@dimen/_25sdp"
             android:textColor="@color/white"
-            android:textStyle="bold"/>
+            android:textSize="@dimen/_25sdp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
     <TextView
@@ -39,32 +44,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/wallet_layout"
-        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
         android:text="+ Add Funds"
         android:textColor="@color/light_blue"
         android:textSize="@dimen/_15sdp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
 
     <ImageView
         android:id="@+id/credit_img"
         android:layout_width="wrap_content"
         android:layout_height="28dp"
         android:layout_below="@+id/add_txt"
-        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:src="@drawable/credit_card" />
+        android:src="@drawable/credit_card"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/credit_txt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/add_txt"
-        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:layout_toRightOf="@id/credit_img"
+        android:layout_toEndOf="@id/credit_img"
         android:text="Credit Card Info"
         android:textColor="@color/blue"
-        android:textSize="@dimen/_15sdp" />
+        android:textSize="@dimen/_15sdp"
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/card_num"
@@ -79,7 +87,8 @@
         android:hint="Card Number"
         android:inputType="number"
         android:textColor="@color/blue"
-        android:textColorHint="@color/light_blue" />
+        android:textColorHint="@color/light_blue"
+        tools:ignore="Autofill,HardcodedText" />
 
     <EditText
         android:id="@+id/cvv"
@@ -95,7 +104,8 @@
         android:hint="CVV"
         android:inputType="number"
         android:textColor="@color/blue"
-        android:textColorHint="@color/light_blue" />
+        android:textColorHint="@color/light_blue"
+        tools:ignore="Autofill,HardcodedText" />
 
     <EditText
         android:id="@+id/expiry_date"
@@ -110,9 +120,10 @@
         android:backgroundTint="@color/blue"
         android:hint="Expiry Date MM/YY"
         android:inputType="date"
-        android:paddingRight="@dimen/_15sdp"
+        android:paddingEnd="@dimen/_15sdp"
         android:textColor="@color/blue"
-        android:textColorHint="@color/light_blue" />
+        android:textColorHint="@color/light_blue"
+        tools:ignore="Autofill,HardcodedText,RtlSymmetry" />
 
     <EditText
         android:id="@+id/card_name"
@@ -125,7 +136,8 @@
         android:backgroundTint="@color/blue"
         android:hint="Choose a name for this card"
         android:textColor="@color/blue"
-        android:textColorHint="@color/light_blue" />
+        android:textColorHint="@color/light_blue"
+        tools:ignore="Autofill,HardcodedText,TextFields" />
 
     <EditText
         android:id="@+id/amount"
@@ -138,7 +150,8 @@
         android:hint="Amount of funds"
         android:inputType="numberDecimal"
         android:textColor="@color/blue"
-        android:textColorHint="@color/light_blue" />
+        android:textColorHint="@color/light_blue"
+        tools:ignore="Autofill,HardcodedText" />
 
     <Button
         android:id="@+id/confirm_btn"
@@ -153,5 +166,6 @@
         android:background="@drawable/rounded_button"
         android:padding="@dimen/_10sdp"
         android:text="Confirm"
-        android:textSize="@dimen/_15sdp" />
+        android:textSize="@dimen/_15sdp"
+        tools:ignore="HardcodedText" />
 </RelativeLayout>

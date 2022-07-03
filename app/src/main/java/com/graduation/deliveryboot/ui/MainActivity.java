@@ -9,9 +9,7 @@ import android.os.Looper;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ImageView NavOpen;
     CircleImageView profile;
     TextView ScreenName;
+    @SuppressLint("StaticFieldLeak")
     public static TextView WalletValue;
     boolean doubleBackToExitPressedOnce = false;
     public static boolean admin = false;
@@ -48,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Menu menu;
     float wallet;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawer.closeDrawer(Gravity.START);
                 break;
             case R.id.Help:
-                fragment=new Help_fragment();
+                fragment = new Help_fragment();
                 transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.FragmentLayout, fragment, "Help_Fragment");
                 transaction.commitNow();

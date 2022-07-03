@@ -63,4 +63,5 @@ public class ReceiveOrder extends AppCompatActivity {
 
         Cancel.setOnClickListener(view -> ReceiveOrder.this.finish());
     }
+
 }

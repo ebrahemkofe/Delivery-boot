@@ -27,13 +27,13 @@ public class ControlFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_control, container, false);
-        liveCamera = v.findViewById(R.id.livecamera_id);
-        manualControl = v.findViewById(R.id.manuallayout_id);
-        track = v.findViewById(R.id.tracklayout_id);
-        callBack = v.findViewById(R.id.callbacklayout_id);
-        orders = v.findViewById(R.id.orderslayout_id);
-        shutdown = v.findViewById(R.id.shutdownlayout_id);
-        alarm = v.findViewById(R.id.alarmlayout_id);
+        liveCamera = v.findViewById(R.id.liveCamera_id);
+        manualControl = v.findViewById(R.id.manualLayout_id);
+        track = v.findViewById(R.id.trackLayout_id);
+        callBack = v.findViewById(R.id.callBackLayout_id);
+        orders = v.findViewById(R.id.ordersLayout_id);
+        shutdown = v.findViewById(R.id.shutdownLayout_id);
+        alarm = v.findViewById(R.id.alarmLayout_id);
 
         liveCamera.setOnClickListener(view -> {
             Intent intent = new Intent(getContext(), LivePhoto.class);

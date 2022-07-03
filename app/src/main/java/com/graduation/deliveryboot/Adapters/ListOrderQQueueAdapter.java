@@ -18,13 +18,13 @@ import com.graduation.deliveryboot.R;
 import java.util.List;
 
 public class ListOrderQQueueAdapter extends ArrayAdapter<OrderQueueData> {
-    List<OrderQueueData> dataqueue;
+    List<OrderQueueData> dataQueue;
     Context context;
 
-    public ListOrderQQueueAdapter(@NonNull Context context, int resource, List<OrderQueueData> dataqueue) {
-        super(context, resource, dataqueue);
+    public ListOrderQQueueAdapter(@NonNull Context context, int resource, List<OrderQueueData> dataQueue) {
+        super(context, resource, dataQueue);
         this.context = context;
-        this.dataqueue = dataqueue;
+        this.dataQueue = dataQueue;
     }
 
     @SuppressLint({"ViewHolder", "SetTextI18n"})
@@ -38,9 +38,9 @@ public class ListOrderQQueueAdapter extends ArrayAdapter<OrderQueueData> {
         TextView username = (TextView) convertView.findViewById(R.id.username_txt);
         TextView date = (TextView) convertView.findViewById(R.id.date_txt);
 
-        track.setText(dataqueue.get(position).tracktxt + " To " + dataqueue.get(position).Totxt);
-        username.setText(dataqueue.get(position).usernametxt);
-        date.setText(dataqueue.get(position).datetxt);
+        track.setText(dataQueue.get(position).trackText + " To " + dataQueue.get(position).ToText);
+        username.setText(dataQueue.get(position).usernameText);
+        date.setText(dataQueue.get(position).dateText);
 
         if (position == 0)
             lamp.setImageResource(R.drawable.green_lamp);

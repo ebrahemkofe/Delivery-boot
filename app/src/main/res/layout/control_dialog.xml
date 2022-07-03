@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/light_blue"
+    android:orientation="vertical"
     android:padding="@dimen/_20sdp">
 
     <TextView
@@ -14,7 +15,8 @@
         android:layout_marginBottom="@dimen/_10sdp"
         android:text="Are You Sure You Want to "
         android:textColor="@color/white"
-        android:textSize="@dimen/_14sdp" />
+        android:textSize="@dimen/_14sdp"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/YesButton"
@@ -24,7 +26,8 @@
         android:layout_alignParentStart="true"
         android:background="@drawable/rounded_button_white"
         android:text="Yes"
-        android:textColor="@color/blue" />
+        android:textColor="@color/blue"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/NoButton"
@@ -34,7 +37,8 @@
         android:layout_alignParentEnd="true"
         android:background="@drawable/rounded_button_white"
         android:text="No"
-        android:textColor="@color/blue" />
+        android:textColor="@color/blue"
+        tools:ignore="HardcodedText" />
 
 
 </RelativeLayout>

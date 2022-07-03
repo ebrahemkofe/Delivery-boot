@@ -15,7 +15,8 @@
         android:gravity="center"
         android:text="Sign In"
         android:textColor="@color/blue"
-        android:textSize="@dimen/_30sdp" />
+        android:textSize="@dimen/_30sdp"
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/EmailText"
@@ -28,7 +29,8 @@
         android:hint="max@Example.com"
         android:inputType="textEmailAddress"
         android:textColor="@color/blue"
-        android:textColorHint="@color/light_blue" />
+        android:textColorHint="@color/light_blue"
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/PasswordText"
@@ -42,7 +44,8 @@
         android:importantForAutofill="no"
         android:inputType="textPassword"
         android:textColor="@color/blue"
-        android:textColorHint="@color/light_blue" />
+        android:textColorHint="@color/light_blue"
+        tools:ignore="HardcodedText" />
 
     <CheckBox
         android:id="@+id/SignedInCheckBox"
@@ -56,7 +59,8 @@
         android:buttonTint="@color/blue"
         android:text="ٌRemember Me"
         android:textColor="@color/blue"
-        android:textSize="@dimen/_12sdp" />
+        android:textSize="@dimen/_12sdp"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/loginButton"
@@ -64,21 +68,23 @@
         android:layout_height="@dimen/_40sdp"
         android:layout_below="@+id/SignedInCheckBox"
         android:layout_margin="@dimen/_15sdp"
-        android:background="@drawable/unclickable_rounded_button"
+        android:background="@drawable/un_clickable_rounded_button"
         android:enabled="false"
         android:text="Login"
-        android:textSize="@dimen/_20sdp" />
+        android:textSize="@dimen/_20sdp"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/signOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/loginButton"
-        android:paddingTop="@dimen/_10sdp"
         android:paddingStart="@dimen/_10sdp"
+        android:paddingTop="@dimen/_10sdp"
         android:text="Don't have an account? "
         android:textColor="@color/blue"
-        android:textSize="@dimen/_12sdp" />
+        android:textSize="@dimen/_12sdp"
+        tools:ignore="HardcodedText,RtlSymmetry" />
 
     <TextView
         android:id="@+id/signupText"
@@ -89,7 +95,8 @@
         android:paddingTop="@dimen/_10sdp"
         android:text="Create an account"
         android:textColor="@color/light_blue"
-        android:textSize="@dimen/_12sdp" />
+        android:textSize="@dimen/_12sdp"
+        tools:ignore="HardcodedText" />
 
 
 </RelativeLayout>

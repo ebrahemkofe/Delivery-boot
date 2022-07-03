@@ -5,7 +5,9 @@ import static android.content.Context.MODE_PRIVATE;
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
+
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -14,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.graduation.deliveryboot.R;
 import com.graduation.deliveryboot.ui.MainActivity;
 
@@ -22,10 +25,10 @@ public class WalletFragment extends Fragment {
     TextView Wallet;
     Button confirm;
     float wallet;
-    boolean validcardnum = false;
-    boolean validdate = false;
-    boolean validcvv = false;
-    boolean validamount = false;
+    boolean validCardNum = false;
+    boolean validDate = false;
+    boolean validCvv = false;
+    boolean validAmount = false;
     double num;
 
     @SuppressLint("SetTextI18n")
@@ -83,14 +86,14 @@ public class WalletFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (card_num.getText().toString().length() >= 14) {
-                    validcardnum = true;
+                    validCardNum = true;
                 } else {
-                    validcardnum = false;
+                    validCardNum = false;
                     confirm.setClickable(false);
                     confirm.setEnabled(false);
-                    confirm.setBackgroundResource(R.drawable.unclickable_rounded_button);
+                    confirm.setBackgroundResource(R.drawable.un_clickable_rounded_button);
                 }
-                if (validcardnum && validdate && validcvv && validamount) {
+                if (validCardNum && validDate && validCvv && validAmount) {
                     confirm.setClickable(true);
                     confirm.setEnabled(true);
                     confirm.setBackgroundResource(R.drawable.rounded_button);
@@ -111,14 +114,14 @@ public class WalletFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (expiry_date.getText().toString().matches("[0-9]+/+[0-9]+")) {
-                    validdate = true;
+                    validDate = true;
                 } else {
-                    validdate = false;
+                    validDate = false;
                     confirm.setClickable(false);
                     confirm.setEnabled(false);
-                    confirm.setBackgroundResource(R.drawable.unclickable_rounded_button);
+                    confirm.setBackgroundResource(R.drawable.un_clickable_rounded_button);
                 }
-                if (validcardnum && validdate && validcvv && validamount) {
+                if (validCardNum && validDate && validCvv && validAmount) {
                     confirm.setClickable(true);
                     confirm.setEnabled(true);
                     confirm.setBackgroundResource(R.drawable.rounded_button);
@@ -139,14 +142,14 @@ public class WalletFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (cvv.getText().toString().length() == 3 || cvv.getText().toString().length() == 4) {
-                    validcvv = true;
+                    validCvv = true;
                 } else {
-                    validcvv = false;
+                    validCvv = false;
                     confirm.setClickable(true);
                     confirm.setEnabled(false);
-                    confirm.setBackgroundResource(R.drawable.unclickable_rounded_button);
+                    confirm.setBackgroundResource(R.drawable.un_clickable_rounded_button);
                 }
-                if (validcardnum && validdate && validcvv && validamount) {
+                if (validCardNum && validDate && validCvv && validAmount) {
                     confirm.setClickable(true);
                     confirm.setEnabled(true);
                     confirm.setBackgroundResource(R.drawable.rounded_button);
@@ -169,14 +172,14 @@ public class WalletFragment extends Fragment {
             public void afterTextChanged(Editable editable) {
                 num = Double.parseDouble(amount.getText().toString());
                 if (num >= 5 && num <= 1000) {
-                    validamount = true;
+                    validAmount = true;
                 } else {
-                    validamount = false;
+                    validAmount = false;
                     confirm.setClickable(false);
                     confirm.setEnabled(false);
-                    confirm.setBackgroundResource(R.drawable.unclickable_rounded_button);
+                    confirm.setBackgroundResource(R.drawable.un_clickable_rounded_button);
                 }
-                if (validcardnum && validdate && validcvv && validamount) {
+                if (validCardNum && validDate && validCvv && validAmount) {
                     confirm.setClickable(true);
                     confirm.setEnabled(true);
                     confirm.setBackgroundResource(R.drawable.rounded_button);

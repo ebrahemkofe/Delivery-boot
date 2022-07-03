@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/_20sdp"
     android:background="@drawable/background"
+    android:paddingTop="@dimen/_20sdp"
     tools:context=".Fragment.HomeFragment">
 
     <TextView
@@ -16,27 +16,29 @@
         android:text="Last Orders"
         android:textColor="@color/blue"
         android:textSize="@dimen/_18sdp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="HardcodedText,RtlHardcoded" />
 
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_300sdp"
-        android:dividerHeight="@dimen/_10sdp"
         android:layout_below="@+id/textView3"
+        android:dividerHeight="@dimen/_10sdp"
         tools:listitem="@layout/list_item" />
 
     <Button
         android:id="@+id/new_order"
         android:layout_width="117dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="end"
         android:layout_margin="@dimen/_25sdp"
         android:background="@drawable/rounded_button_white"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
         android:text="New Order"
         android:textColor="@color/blue"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>

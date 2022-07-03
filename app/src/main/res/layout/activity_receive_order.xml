@@ -17,7 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@drawable/cancel_icon" />
+            android:src="@drawable/cancel_icon"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,7 +26,8 @@
             android:layout_centerInParent="true"
             android:text="Receive Orders"
             android:textColor="@color/white"
-            android:textSize="@dimen/_22sdp" />
+            android:textSize="@dimen/_22sdp"
+            tools:ignore="HardcodedText" />
 
     </RelativeLayout>
 
@@ -34,7 +36,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_70sdp"
-        android:src="@drawable/progress" />
+        android:src="@drawable/progress"
+        tools:ignore="ContentDescription" />
 
     <EditText
         android:id="@+id/CodeEditText"
@@ -51,7 +54,8 @@
         android:maxLength="4"
         android:padding="@dimen/_10sdp"
         android:textColor="@color/blue"
-        android:textColorHint="@color/light_blue" />
+        android:textColorHint="@color/light_blue"
+        tools:ignore="Autofill,HardcodedText" />
 
     <Button
         android:id="@+id/CodeCheckButton"
@@ -62,7 +66,8 @@
         android:layout_toEndOf="@+id/CodeEditText"
         android:background="@drawable/rounded_button"
         android:text="Check"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/OpenButton"
@@ -73,9 +78,10 @@
         android:layout_marginTop="@dimen/_40sdp"
         android:layout_marginEnd="@dimen/_40sdp"
         android:layout_marginBottom="@dimen/_40sdp"
-        android:background="@drawable/unclickable_rounded_button"
+        android:background="@drawable/un_clickable_rounded_button"
         android:text="Open"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/CloseButton"
@@ -84,9 +90,10 @@
         android:layout_below="@+id/CodeCheckButton"
         android:layout_marginTop="@dimen/_40sdp"
         android:layout_toEndOf="@+id/OpenButton"
-        android:background="@drawable/unclickable_rounded_button"
+        android:background="@drawable/un_clickable_rounded_button"
         android:text="Close"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/DoneButton"
@@ -94,9 +101,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/OpenButton"
         android:layout_margin="@dimen/_40sdp"
-        android:background="@drawable/unclickable_rounded_button"
+        android:background="@drawable/un_clickable_rounded_button"
         android:text="Done"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText" />
 
 
 </RelativeLayout>

@@ -1,10 +1,13 @@
 package com.graduation.deliveryboot.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
 import com.graduation.deliveryboot.R;
 
+@SuppressLint("CustomSplashScreen")
 public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

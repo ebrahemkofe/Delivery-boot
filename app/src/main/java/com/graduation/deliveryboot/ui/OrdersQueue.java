@@ -15,7 +15,7 @@ import java.util.List;
 
 public class OrdersQueue extends AppCompatActivity {
 
-    List<OrderQueueData> dataqueue = new ArrayList<>();
+    List<OrderQueueData> dataQueue = new ArrayList<>();
     String[] track = {"301", "301", "301"};
     String[] ToTrack = {"308", "304", "306"};
     String[] username = {"username", "username", "username"};
@@ -25,13 +25,13 @@ public class OrdersQueue extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orders_queue);
-        ListView orderlist = findViewById(R.id.list_queue);
-        ListOrderQQueueAdapter orderadapter = new ListOrderQQueueAdapter(OrdersQueue.this, R.layout.list_order_queue, dataqueue);
+        ListView orderList = findViewById(R.id.list_queue);
+        ListOrderQQueueAdapter orderAdapter = new ListOrderQQueueAdapter(OrdersQueue.this, R.layout.list_order_queue, dataQueue);
         for (int i = 0; i < track.length; i++) {
-            OrderQueueData dataqueueList = new OrderQueueData(track[i], username[i], date[i], ToTrack[i]);
-            dataqueue.add(dataqueueList);
+            OrderQueueData dataQueueList = new OrderQueueData(track[i], username[i], date[i], ToTrack[i]);
+            dataQueue.add(dataQueueList);
         }
-        orderlist.setAdapter(orderadapter);
+        orderList.setAdapter(orderAdapter);
 
     }
 
@@ -40,6 +40,7 @@ public class OrdersQueue extends AppCompatActivity {
         super.onBackPressed();
         this.finish();
     }
+
     public void cancel_btn(View view) {
         this.finish();
     }

@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".ui.LivePhoto">
 
     <RelativeLayout
@@ -20,7 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@drawable/cancel_icon" />
+            android:src="@drawable/cancel_icon"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -30,7 +31,8 @@
             android:paddingTop="@dimen/_5sdp"
             android:text="Live Photo"
             android:textColor="@color/white"
-            android:textSize="@dimen/_22sdp" />
+            android:textSize="@dimen/_22sdp"
+            tools:ignore="HardcodedText" />
     </RelativeLayout>
 
     <ImageView
@@ -38,8 +40,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="6"
-        android:src="@drawable/splash"
         android:scaleType="centerCrop"
+        android:src="@drawable/splash"
         tools:ignore="ContentDescription" />
 
     <RelativeLayout
@@ -60,7 +62,8 @@
             android:background="@drawable/rounded_button"
             android:text="Record"
             android:textAllCaps="false"
-            android:textSize="@dimen/_14sdp" />
+            android:textSize="@dimen/_14sdp"
+            tools:ignore="HardcodedText" />
 
 
         <Button
@@ -72,7 +75,8 @@
             android:background="@drawable/rounded_button"
             android:text="ScreenShot"
             android:textAllCaps="false"
-            android:textSize="@dimen/_14sdp" />
+            android:textSize="@dimen/_14sdp"
+            tools:ignore="HardcodedText" />
 
     </RelativeLayout>
 </LinearLayout>

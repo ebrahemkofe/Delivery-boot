@@ -14,7 +14,7 @@ import com.graduation.deliveryboot.R;
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    EditText fullName, email, password, phoneNumper;
+    EditText fullName, email, password, phoneNumber;
     String FName, Email, pass, phone;
     ImageView Exit;
 
@@ -22,11 +22,11 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-        email = (EditText) findViewById(R.id.emailtext);
-        password = (EditText) findViewById(R.id.passwordtext);
+        email = (EditText) findViewById(R.id.emailText);
+        password = (EditText) findViewById(R.id.passwordText);
         fullName = (EditText) findViewById(R.id.name);
-        phoneNumper = (EditText) findViewById(R.id.phonenumpertext);
-        Exit = findViewById(R.id.EditcancelIcon);
+        phoneNumber = (EditText) findViewById(R.id.phoneNumberText);
+        Exit = findViewById(R.id.EditCancelIcon);
 
         Exit.setOnClickListener(view -> finish());
 
@@ -36,7 +36,7 @@ public class EditProfileActivity extends AppCompatActivity {
         FName = fullName.getText().toString().trim();
         Email = email.getText().toString().trim();
         pass = password.getText().toString().trim();
-        phone = phoneNumper.getText().toString().trim();
+        phone = phoneNumber.getText().toString().trim();
     }
 
 }

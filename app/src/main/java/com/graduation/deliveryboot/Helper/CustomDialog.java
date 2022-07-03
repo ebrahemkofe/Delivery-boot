@@ -3,30 +3,22 @@ package com.graduation.deliveryboot.Helper;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.bluetooth.BluetoothDevice;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.graduation.deliveryboot.Adapters.DialogListViewAdapter;
 import com.graduation.deliveryboot.Fragment.ControlFragment;
 import com.graduation.deliveryboot.Fragment.HomeFragment;
 import com.graduation.deliveryboot.R;
 import com.graduation.deliveryboot.ui.ManualControlActivity;
-import com.graduation.deliveryboot.ui.NewOrders;
 import com.graduation.deliveryboot.ui.ReceiveOrder;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class CustomDialog extends Dialog {
 
@@ -34,16 +26,7 @@ public class CustomDialog extends Dialog {
 
 
     String text;
-    ArrayList<BluetoothDevice> Device = new ArrayList<>();
     int Case;
-
-    public CustomDialog(Context a, ArrayList<BluetoothDevice> num, int Case) {
-        super(a);
-        // TODO Auto-generated constructor stub
-        this.c = a;
-        this.Device = num;
-        this.Case = Case;
-    }
 
     public CustomDialog(Context a, String s, int Case) {
         super(a);
@@ -59,22 +42,6 @@ public class CustomDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-//        if (Case == 0) {
-//            setContentView(R.layout.bluetooth_dialog);
-//
-//            ListView lvNewDevices;
-//            lvNewDevices = findViewById(R.id.dialogList);
-//
-//            DialogListViewAdapter mDeviceListAdapter;
-//            mDeviceListAdapter = new DialogListViewAdapter(getContext(), android.R.layout.simple_list_item_1, Device);
-//            lvNewDevices.setAdapter(mDeviceListAdapter);
-//
-//            lvNewDevices.setOnItemClickListener((adapterView, view, position, l) -> {
-//                mDeviceListAdapter.clear();
-//                this.cancel();
-//            });
-//        }
 
         if (Case == 1) {
             setContentView(R.layout.control_dialog);

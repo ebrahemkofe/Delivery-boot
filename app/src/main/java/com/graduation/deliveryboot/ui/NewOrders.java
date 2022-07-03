@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class NewOrders extends AppCompatActivity {
-    Spinner firstspinner, secondspinner;
+    Spinner FirstSpinner, SecondSpinner;
     Button done;
     ArrayList<String> track_from = new ArrayList<>();
     ArrayList<String> track_to = new ArrayList<>();
@@ -36,8 +34,8 @@ public class NewOrders extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_orders);
 
-        firstspinner = findViewById(R.id.firstspinner);
-        secondspinner = findViewById(R.id.secondspinner);
+        FirstSpinner = findViewById(R.id.firstSpinner);
+        SecondSpinner = findViewById(R.id.secondSpinner);
         done = findViewById(R.id.done);
         track_from.add("Room 101");
         track_from.add("Room 102");
@@ -47,16 +45,16 @@ public class NewOrders extends AppCompatActivity {
 
         track_to.addAll(track_from);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, track_from);
-        firstspinner.setAdapter(adapter);
+        FirstSpinner.setAdapter(adapter);
 
-        firstspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        FirstSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
 
             @SuppressLint("ResourceAsColor")
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                ((TextView)adapterView.getChildAt(0)).setTextColor(ColorStateList.valueOf(R.color.blue));
-                ((TextView)adapterView.getChildAt(0)).setTextSize(14);
+                ((TextView) adapterView.getChildAt(0)).setTextColor(ColorStateList.valueOf(R.color.blue));
+                ((TextView) adapterView.getChildAt(0)).setTextSize(14);
                 if (time) {
                     track_to.remove(i);
                     time = false;
@@ -74,16 +72,16 @@ public class NewOrders extends AppCompatActivity {
         });
 
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, track_to);
-        secondspinner.setAdapter(adapter2);
+        SecondSpinner.setAdapter(adapter2);
 
-        secondspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        SecondSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
 
             @SuppressLint("ResourceAsColor")
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                ((TextView)adapterView.getChildAt(0)).setTextColor(ColorStateList.valueOf(R.color.blue));
-                ((TextView)adapterView.getChildAt(0)).setTextSize(14);
+                ((TextView) adapterView.getChildAt(0)).setTextColor(ColorStateList.valueOf(R.color.blue));
+                ((TextView) adapterView.getChildAt(0)).setTextSize(14);
             }
 
             @Override

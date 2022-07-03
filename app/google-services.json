@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "12943935157",
+    "firebase_url": "https://robot-delivery-b5fb9-default-rtdb.firebaseio.com",
+    "project_id": "robot-delivery-b5fb9",
+    "storage_bucket": "robot-delivery-b5fb9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12943935157:android:44ca0c53df37548fd060fc",
+        "android_client_info": {
+          "package_name": "com.graduation.deliveryboot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "12943935157-6cnaofarloegi7po6n4qn9niia9f8uks.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHWffvkgYq4pci5wVS21Xqd66Ej5g11x0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "12943935157-6cnaofarloegi7po6n4qn9niia9f8uks.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

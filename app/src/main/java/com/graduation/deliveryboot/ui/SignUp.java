@@ -6,12 +6,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.graduation.deliveryboot.R;
 
 
 public class SignUp extends AppCompatActivity {
-    EditText fullName, email, password, phoneNumper;
+    EditText fullName, email, password, phoneNumber;
     ImageView Exit;
     Button joinUs;
     String FName, Email, pass, phone;
@@ -21,10 +23,10 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.sign_up);
 
         fullName = (EditText) findViewById(R.id.name);
-        email = (EditText) findViewById(R.id.emailtext);
-        password = (EditText) findViewById(R.id.passwordtext);
-        phoneNumper = (EditText) findViewById(R.id.phonenumpertext);
-        joinUs = (Button) findViewById(R.id.savebutton);
+        email = (EditText) findViewById(R.id.emailText);
+        password = (EditText) findViewById(R.id.passwordText);
+        phoneNumber = (EditText) findViewById(R.id.phoneNumberText);
+        joinUs = (Button) findViewById(R.id.saveButton);
         Exit = findViewById(R.id.cancelIcon);
 
         Exit.setOnClickListener(view -> finish());
@@ -35,7 +37,7 @@ public class SignUp extends AppCompatActivity {
         FName = fullName.getText().toString().trim();
         Email = email.getText().toString().trim();
         pass = password.getText().toString().trim();
-        phone = phoneNumper.getText().toString().trim();
+        phone = phoneNumber.getText().toString().trim();
     }
 
     @Override

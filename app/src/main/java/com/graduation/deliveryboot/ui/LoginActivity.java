@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                     validPass = false;
                     Login.setClickable(false);
                     Login.setEnabled(false);
-                    Login.setBackgroundResource(R.drawable.unclickable_rounded_button);
+                    Login.setBackgroundResource(R.drawable.un_clickable_rounded_button);
                 }
 
                 if (Password.getText().toString().equals("1") && Email.getText().toString().equals("1")) {
@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                     validEmail = false;
                     Login.setClickable(false);
                     Login.setEnabled(false);
-                    Login.setBackgroundResource(R.drawable.unclickable_rounded_button);
+                    Login.setBackgroundResource(R.drawable.un_clickable_rounded_button);
                 }
 
                 if (Password.getText().toString().equals("1") && Email.getText().toString().equals("1")) {

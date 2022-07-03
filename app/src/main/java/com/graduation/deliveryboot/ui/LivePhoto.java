@@ -142,6 +142,7 @@ public class LivePhoto extends AppCompatActivity implements HBRecorderListener {
         return true;
     }
 
+    @SuppressLint("InlinedApi")
     private void updateGalleryUri() {
         contentValues.clear();
         contentValues.put(MediaStore.Video.Media.IS_PENDING, 0);
