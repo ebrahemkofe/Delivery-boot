@@ -170,21 +170,29 @@ public class WalletFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (!amount.getText().toString().equals(""))
+                if (!amount.getText().toString().equals("")) {
                     num = Double.parseDouble(amount.getText().toString());
-                if (num >= 5 && num <= 1000) {
-                    validAmount = true;
-                } else {
+                    if (num >= 5 && num <= 1000) {
+                        validAmount = true;
+                    } else {
+                        validAmount = false;
+                        confirm.setClickable(false);
+                        confirm.setEnabled(false);
+                        confirm.setBackgroundResource(R.drawable.un_clickable_rounded_button);
+                    }
+                    if (validCardNum && validDate && validCvv && validAmount) {
+                        confirm.setClickable(true);
+                        confirm.setEnabled(true);
+                        confirm.setBackgroundResource(R.drawable.rounded_button);
+                    }
+                }
+                else  {
                     validAmount = false;
                     confirm.setClickable(false);
                     confirm.setEnabled(false);
                     confirm.setBackgroundResource(R.drawable.un_clickable_rounded_button);
                 }
-                if (validCardNum && validDate && validCvv && validAmount) {
-                    confirm.setClickable(true);
-                    confirm.setEnabled(true);
-                    confirm.setBackgroundResource(R.drawable.rounded_button);
-                }
+
             }
         });
 
