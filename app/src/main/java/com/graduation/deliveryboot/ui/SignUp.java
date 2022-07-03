@@ -5,11 +5,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.graduation.deliveryboot.Models.SignUpModel;
@@ -38,7 +36,7 @@ public class SignUp extends AppCompatActivity {
         Exit.setOnClickListener(view -> finish());
         joinUs.setOnClickListener(view -> {
 
-            SignUpModel data=new SignUpModel();
+            SignUpModel data = new SignUpModel();
             data.setID(String.valueOf(new Random().nextInt()));
             data.setEmail("hh@gmail.com");
             data.setName("hh");

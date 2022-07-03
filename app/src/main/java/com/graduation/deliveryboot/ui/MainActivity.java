@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    @SuppressLint({"WrongConstant", "ClickableViewAccessibility"})
+    @SuppressLint({"WrongConstant", "ClickableViewAccessibility", "SetTextI18n"})
     public void OnClicks() {
         NavOpen.setOnClickListener(view -> drawer.openDrawer(Gravity.START));
 

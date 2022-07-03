@@ -1,7 +1,6 @@
 package com.graduation.deliveryboot.ui;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -17,10 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.graduation.deliveryboot.Models.LoginModel;
@@ -41,8 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     boolean validEmail = false;
     boolean validPass = false;
     boolean doubleBackToExitPressedOnce = false;
-    List<LoginModel> accounts =new ArrayList<>();
-    DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+    List<LoginModel> accounts = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +69,9 @@ public class LoginActivity extends AppCompatActivity {
                             accounts.add(user);
                         }
                     }
+
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
                     }
                 });
 
@@ -197,14 +194,13 @@ public class LoginActivity extends AppCompatActivity {
                         e.putBoolean("intent", true);
                         e.apply();
                     }
-                    for(int i=0 ; i<accounts.size();i++){
-                        if(accounts.get(i).getEmail().equals(email) && accounts.get(i).getPassword().equals(password)) {
+                    for (int i = 0; i < accounts.size(); i++) {
+                        if (accounts.get(i).getEmail().equals(email) && accounts.get(i).getPassword().equals(password)) {
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                             this.finish();
                             break;
-                        }
-                        else
+                        } else
                             Toast.makeText(this, "Please Check Email and Password", Toast.LENGTH_SHORT).show();
                     }
 

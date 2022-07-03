@@ -185,8 +185,7 @@ public class WalletFragment extends Fragment {
                         confirm.setEnabled(true);
                         confirm.setBackgroundResource(R.drawable.rounded_button);
                     }
-                }
-                else  {
+                } else {
                     validAmount = false;
                     confirm.setClickable(false);
                     confirm.setEnabled(false);
