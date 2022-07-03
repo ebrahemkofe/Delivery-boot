@@ -162,7 +162,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             drawer.closeDrawer(Gravity.START);
         });
 
-        WalletValue.setOnClickListener(v -> Toast.makeText(this, "Wallet", Toast.LENGTH_SHORT).show());
+        WalletValue.setOnClickListener(v ->
+        {
+            fragment = new WalletFragment();
+            transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.FragmentLayout, fragment, "Wallet_Fragment");
+            transaction.commitNow();
+            ScreenName.setText("Wallet");
+            drawer.closeDrawer(Gravity.START);
+        });
 
     }
 

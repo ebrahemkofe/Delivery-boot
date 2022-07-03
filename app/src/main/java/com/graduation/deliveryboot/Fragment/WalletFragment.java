@@ -170,7 +170,8 @@ public class WalletFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                num = Double.parseDouble(amount.getText().toString());
+                if (!amount.getText().toString().equals(""))
+                    num = Double.parseDouble(amount.getText().toString());
                 if (num >= 5 && num <= 1000) {
                     validAmount = true;
                 } else {

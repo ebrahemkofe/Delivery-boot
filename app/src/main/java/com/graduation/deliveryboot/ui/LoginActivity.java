@@ -1,5 +1,7 @@
 package com.graduation.deliveryboot.ui;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,9 +17,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.graduation.deliveryboot.Models.LoginModel;
 import com.graduation.deliveryboot.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -31,6 +41,8 @@ public class LoginActivity extends AppCompatActivity {
     boolean validEmail = false;
     boolean validPass = false;
     boolean doubleBackToExitPressedOnce = false;
+    List<LoginModel> accounts =new ArrayList<>();
+    DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +63,20 @@ public class LoginActivity extends AppCompatActivity {
         prefPass = pref.getString("password", "");
         intent = pref.getBoolean("intent", false);
         admin = pref.getBoolean("admin", false);
-
+        FirebaseDatabase.getInstance().getReference().child("users")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            LoginModel user = snapshot.getValue(LoginModel.class);
+                            assert user != null;
+                            accounts.add(user);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
 
         if (intent) {
             if (admin)
@@ -141,6 +166,8 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+
         Login.setOnClickListener(view -> {
             String email, password;
             email = Email.getText().toString();
@@ -170,9 +197,17 @@ public class LoginActivity extends AppCompatActivity {
                         e.putBoolean("intent", true);
                         e.apply();
                     }
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    for(int i=0 ; i<accounts.size();i++){
+                        if(accounts.get(i).getEmail().equals(email) && accounts.get(i).getPassword().equals(password)) {
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            this.finish();
+                            break;
+                        }
+                        else
+                            Toast.makeText(this, "Please Check Email and Password", Toast.LENGTH_SHORT).show();
+                    }
+
                 } else
                     Toast.makeText(this, "Please Check Email and Password", Toast.LENGTH_SHORT).show();
             }
