@@ -4,6 +4,15 @@ public class LoginModel {
     private String id;
     private String Email;
     private String Password;
+    private String ChildName;
+
+    public String getChildName() {
+        return ChildName;
+    }
+
+    public void setChildName(String childName) {
+        ChildName = childName;
+    }
 
     public String getId() {
         return id;

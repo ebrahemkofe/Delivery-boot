@@ -32,13 +32,16 @@ public class LoginActivity extends AppCompatActivity {
     TextView Signup;
     EditText Email, Password;
     CheckBox Signed;
-    String prefPass, prefEmail;
+    String prefPass, prefEmail,prefChild;
     boolean intent;
     boolean admin;
     boolean validEmail = false;
     boolean validPass = false;
     boolean doubleBackToExitPressedOnce = false;
     List<LoginModel> accounts = new ArrayList<>();
+    List<String> tokens = new ArrayList<>();
+    public static String child;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences pref = getSharedPreferences("remember", 0);
         prefEmail = pref.getString("email", "");
         prefPass = pref.getString("password", "");
+        prefChild = pref.getString("ChildName", "");
         intent = pref.getBoolean("intent", false);
         admin = pref.getBoolean("admin", false);
         FirebaseDatabase.getInstance().getReference().child("users")
@@ -67,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                             LoginModel user = snapshot.getValue(LoginModel.class);
                             assert user != null;
                             accounts.add(user);
+                            tokens.add(snapshot.getKey());
                         }
                     }
 
@@ -76,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
 
         if (intent) {
+            child = prefChild;
             if (admin)
                 MainActivity.admin = true;
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -185,23 +191,24 @@ public class LoginActivity extends AppCompatActivity {
                 }
             } else {
                 if (validEmail && validPass) {
-                    if (Signed.isChecked()) {
-
-                        SharedPreferences myPref = getSharedPreferences("remember", MODE_PRIVATE);
-                        SharedPreferences.Editor e = myPref.edit();
-                        e.putString("email", email);
-                        e.putString("password", password);
-                        e.putBoolean("intent", true);
-                        e.apply();
-                    }
                     for (int i = 0; i < accounts.size(); i++) {
                         if (accounts.get(i).getEmail().equals(email) && accounts.get(i).getPassword().equals(password)) {
+                            child = tokens.get(i);
+                            if (Signed.isChecked()) {
+
+                                SharedPreferences myPref = getSharedPreferences("remember", MODE_PRIVATE);
+                                SharedPreferences.Editor e = myPref.edit();
+                                e.putString("email", email);
+                                e.putString("password", password);
+                                e.putString("ChildName", child);
+                                e.putBoolean("intent", true);
+                                e.apply();
+                            }
+
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                             this.finish();
-                            break;
-                        } else
-                            Toast.makeText(this, "Please Check Email and Password", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                 } else

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.graduation.deliveryboot.Adapters.ListAdapter;
 import com.graduation.deliveryboot.Helper.CustomDialog;
+import com.graduation.deliveryboot.ui.LoginActivity;
 import com.graduation.deliveryboot.ui.NewOrders;
 import com.graduation.deliveryboot.R;
 import com.graduation.deliveryboot.Models.DataOnList;
@@ -26,10 +27,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
     static int pos;
 
-    ArrayList<DataOnList> dataArrayList = new ArrayList<>();
-    String[] num = {"From 301 to 309", "From 305 to 312", "From 301 to 306"};
-    String[] date = {"12/3", "15/3", "20/3"};
-    String[] time = {"8:55 PM", "5:00 PM", "8:00 AM"};
     ListView listView;
     Button newOrder;
     ListAdapter listAdapter;
@@ -43,15 +40,9 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         listView = v.findViewById(R.id.list);
         newOrder = v.findViewById(R.id.new_order);
 
-
-        for (int i = 0; i < num.length; ++i) {
-            DataOnList dataOnList = new DataOnList(num[i], date[i], time[i]);
-            dataArrayList.add(dataOnList);
-
-        }
-
-        listAdapter = new ListAdapter(requireContext(), dataArrayList);
+        listAdapter = new ListAdapter(requireContext());
         listView.setAdapter(listAdapter);
+        Toast.makeText(requireContext(), LoginActivity.child+"", Toast.LENGTH_SHORT).show();
         listView.setOnItemClickListener(HomeFragment.this);
 
         newOrder.setOnClickListener(view -> {
