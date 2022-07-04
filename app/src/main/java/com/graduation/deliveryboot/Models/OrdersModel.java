@@ -1,20 +1,20 @@
 package com.graduation.deliveryboot.Models;
 
-public class DataOnList {
+public class OrdersModel {
     private String From;
     private String To;
     private String date;
     private String time;
     private String ReceiveCode;
-    private String Sender;
+    private String name;
     private String Receiver ;
 
-    public String getSender() {
-        return Sender;
+    public String getName() {
+        return name;
     }
 
-    public void setSender(String sender) {
-        Sender = sender;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getReceiver() {

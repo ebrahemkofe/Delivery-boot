@@ -2,7 +2,6 @@ package com.graduation.deliveryboot.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -39,13 +38,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ImageView NavOpen;
     CircleImageView profile;
     TextView ScreenName;
+    TextView AccountName;
     @SuppressLint("StaticFieldLeak")
     public static TextView WalletValue;
     boolean doubleBackToExitPressedOnce = false;
     public static boolean admin = false;
     MenuItem menuItem;
     Menu menu;
-    float wallet;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -56,16 +55,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FindViewByIds();
         StartFragment();
         OnClicks();
+
         menu = navigationView.getMenu();
         menuItem = menu.findItem(R.id.boot_control);
 
         if (admin)
             menuItem.setVisible(true);
 
-        SharedPreferences myPref = getSharedPreferences("wallet", 0);
-        wallet = myPref.getFloat("Amount", 0.0f);
 
-        WalletValue.setText(wallet + " EGP");
+        WalletValue.setText(LoginActivity.Wallet + " EGP");
+        AccountName.setText(LoginActivity.Username);
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawer, R.string.nav_open, R.string.nav_close);
         drawer.addDrawerListener(actionBarDrawerToggle);
@@ -140,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ScreenName = findViewById(R.id.ScreenName);
         profile = navigationView.getHeaderView(0).findViewById(R.id.accountImage);
         WalletValue = navigationView.getHeaderView(0).findViewById(R.id.walletValue);
+        AccountName = navigationView.getHeaderView(0).findViewById(R.id.accountName);
     }
 
     @SuppressLint("SetTextI18n")

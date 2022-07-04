@@ -1,11 +1,9 @@
 package com.graduation.deliveryboot.Fragment;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.annotation.SuppressLint;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
@@ -17,8 +15,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.graduation.deliveryboot.R;
+import com.graduation.deliveryboot.ui.LoginActivity;
 import com.graduation.deliveryboot.ui.MainActivity;
+
+import java.util.Objects;
 
 public class WalletFragment extends Fragment {
     EditText card_num, expiry_date, cvv, card_name, amount;
@@ -30,6 +36,8 @@ public class WalletFragment extends Fragment {
     boolean validCvv = false;
     boolean validAmount = false;
     double num;
+    DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -46,21 +54,18 @@ public class WalletFragment extends Fragment {
 
         confirm.setEnabled(false);
 
-        SharedPreferences myPref = requireContext().getSharedPreferences("wallet", 0);
-        wallet = myPref.getFloat("Amount", 0.0f);
-        Wallet.setText(wallet + " EGP");
-        MainActivity.WalletValue.setText(wallet + " EGP");
+        wallet= LoginActivity.Wallet;
+        Wallet.setText(LoginActivity.Wallet + " EGP");
+        MainActivity.WalletValue.setText(LoginActivity.Wallet + " EGP");
 
 
         confirm.setOnClickListener(view1 -> {
-            SharedPreferences myPref1 = requireContext().getSharedPreferences("wallet", MODE_PRIVATE);
-            SharedPreferences.Editor e = myPref1.edit();
 
             if (!amount.getText().toString().equals(""))
                 wallet += Float.parseFloat(amount.getText().toString());
 
-            e.putFloat("Amount", wallet);
-            e.apply();
+            ref.child("users").child(LoginActivity.Token).child("wallet").setValue(String.valueOf(wallet));
+
 
             amount.getText().clear();
             card_num.getText().clear();
@@ -68,8 +73,21 @@ public class WalletFragment extends Fragment {
             cvv.getText().clear();
             card_name.getText().clear();
 
-            Wallet.setText(wallet + " EGP");
-            MainActivity.WalletValue.setText(wallet + " EGP");
+            ref.child("users").child(LoginActivity.Token).child("wallet").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    LoginActivity.Wallet = Float.parseFloat(Objects.requireNonNull(snapshot.getValue()).toString());
+                    Wallet.setText(LoginActivity.Wallet + " EGP");
+                    MainActivity.WalletValue.setText(LoginActivity.Wallet + " EGP");
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+            Wallet.setText(LoginActivity.Wallet + " EGP");
+            MainActivity.WalletValue.setText(LoginActivity.Wallet + " EGP");
         });
 
         card_num.addTextChangedListener(new TextWatcher() {

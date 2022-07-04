@@ -1,7 +1,7 @@
 package com.graduation.deliveryboot.Models;
 
 public class SignUpModel {
-    private String Name;
+    private String username;
     private String Password;
     private String PhoneNumber;
     private String Email;
@@ -9,8 +9,8 @@ public class SignUpModel {
     private String Wallet;
     private boolean Person;
 
-    public String getName() {
-        return Name;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
@@ -39,8 +39,8 @@ public class SignUpModel {
         this.ID = ID;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {

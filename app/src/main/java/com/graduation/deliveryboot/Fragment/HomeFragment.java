@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,13 +22,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.graduation.deliveryboot.Adapters.ListAdapter;
 import com.graduation.deliveryboot.Helper.CustomDialog;
-import com.graduation.deliveryboot.Models.DataOnList;
+import com.graduation.deliveryboot.Models.OrdersModel;
 import com.graduation.deliveryboot.ui.LoginActivity;
 import com.graduation.deliveryboot.ui.NewOrders;
 import com.graduation.deliveryboot.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.Random;
 
 public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener {
 
@@ -37,14 +40,25 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     ListView listView;
     Button newOrder;
     ListAdapter listAdapter;
-    DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-    List<DataOnList> data = new ArrayList<>();
+    static DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+    static List<OrdersModel> data = new ArrayList<>();
+    static String currentDate , currentTime ;
+    static String RandomCode;
+    static Random random = new Random();
+    static Context context;
 
 
+    @SuppressLint("DefaultLocale")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
+
+        context=requireContext();
+        data.clear();
+        RandomCode = String.format("%04d", random.nextInt(10000));
+        currentDate = new SimpleDateFormat("dd-MM", Locale.getDefault()).format(new Date());
+        currentTime = new SimpleDateFormat("h:mm aa", Locale.getDefault()).format(new Date());
 
         listView = v.findViewById(R.id.list);
         newOrder = v.findViewById(R.id.new_order);
@@ -57,9 +71,9 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            DataOnList dataOnList = snapshot.getValue(DataOnList.class);
-                            assert dataOnList != null;
-                            data.add(dataOnList);
+                            OrdersModel ordersModel = snapshot.getValue(OrdersModel.class);
+                            assert ordersModel != null;
+                            data.add(ordersModel);
                         }
                         listAdapter.notifyDataSetChanged();
                     }
@@ -68,8 +82,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                     }
                 });
-
-        Toast.makeText(requireContext(), data.size()+"", Toast.LENGTH_SHORT).show();
 
         listView.setOnItemClickListener(HomeFragment.this);
 
@@ -81,9 +93,22 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         return v;
     }
 
+    @SuppressLint("DefaultLocale")
     public static void reOrder(Context context, boolean b) {
-        if (b)
-            Toast.makeText(context, "" + pos, Toast.LENGTH_SHORT).show();
+        if (b){
+
+            OrdersModel d = new OrdersModel();
+            d.setFrom(data.get(pos).getFrom());
+            d.setTo(data.get(pos).getTo());
+            d.setName(LoginActivity.Username);
+            d.setReceiver(data.get(pos).getReceiver());
+            d.setReceiveCode(RandomCode);
+            d.setDate(currentDate);
+            d.setTime(currentTime);
+            ref.child("users").child(LoginActivity.Token).child("orders").child("order"+String.format("%03d", random.nextInt(1000))).setValue(d);
+            CustomDialog customDialog = new CustomDialog(context, RandomCode, 2);
+            customDialog.show();
+        }
     }
 
     @Override

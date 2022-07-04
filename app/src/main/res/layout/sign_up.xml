@@ -46,7 +46,7 @@
             android:src="@drawable/person_design" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginHorizontal="@dimen/_20sdp"
@@ -165,33 +165,35 @@
             </LinearLayout>
 
             <RadioGroup
+                android:id="@+id/SignupRadioButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
                 android:orientation="horizontal">
-
 
                 <RadioButton
                     android:id="@+id/adminButton"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:button="@android:drawable/radiobutton_off_background"
-                    android:text=" Admin"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:buttonTint="@color/blue"
+                    android:text="Admin"
                     android:textColor="@color/blue"
+                    android:textSize="@dimen/_13sdp"
                     tools:ignore="HardcodedText" />
 
                 <RadioButton
                     android:id="@+id/customerButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
                     android:layout_weight="1"
-                    android:button="@android:drawable/radiobutton_off_background"
-                    android:text=" Customer"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:buttonTint="@color/blue"
+                    android:checked="true"
+                    android:text="User"
                     android:textColor="@color/blue"
+                    android:textSize="@dimen/_13sdp"
                     tools:ignore="HardcodedText" />
             </RadioGroup>
 

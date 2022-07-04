@@ -9,20 +9,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.graduation.deliveryboot.Models.LoginModel;
 import com.graduation.deliveryboot.Models.SignUpModel;
 import com.graduation.deliveryboot.R;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 
 public class EditProfileActivity extends AppCompatActivity {
@@ -57,7 +51,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 assert user != null;
                 email.setText(user.getEmail());
                 password.setText(user.getPassword());
-                fullName.setText(user.getName());
+                fullName.setText(user.getUsername());
                 phoneNumber.setText(user.getPhoneNumber());
             }
 
@@ -79,7 +73,7 @@ public class EditProfileActivity extends AppCompatActivity {
         SignUpModel data = new SignUpModel();
         data.setID(LoginActivity.Token);
         data.setEmail(Email);
-        data.setName(FName);
+        data.setUsername(FName);
         data.setPhoneNumber(phone);
         data.setPassword(pass);
         ref.child("users").child(LoginActivity.Token).setValue(data);
