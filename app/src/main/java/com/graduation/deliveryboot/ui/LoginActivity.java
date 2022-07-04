@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     List<LoginModel> accounts = new ArrayList<>();
     List<String> tokens = new ArrayList<>();
     public static String Token;
+    public static String Username;
 
 
     @Override
@@ -194,6 +195,7 @@ public class LoginActivity extends AppCompatActivity {
                     for (int i = 0; i < accounts.size(); i++) {
                         if (accounts.get(i).getEmail().equals(email) && accounts.get(i).getPassword().equals(password)) {
                             Token = tokens.get(i);
+                            Username=accounts.get(i).getName();
                             if (Signed.isChecked()) {
 
                                 SharedPreferences myPref = getSharedPreferences("remember", MODE_PRIVATE);
