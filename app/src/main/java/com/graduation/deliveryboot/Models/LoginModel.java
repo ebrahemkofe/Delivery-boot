@@ -4,14 +4,14 @@ public class LoginModel {
     private String id;
     private String Email;
     private String Password;
-    private String ChildName;
+    private String Name;
 
-    public String getChildName() {
-        return ChildName;
+    public String getName() {
+        return Name;
     }
 
-    public void setChildName(String childName) {
-        ChildName = childName;
+    public void setName(String childName) {
+        Name = childName;
     }
 
     public String getId() {

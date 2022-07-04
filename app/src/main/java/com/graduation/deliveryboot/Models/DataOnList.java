@@ -5,6 +5,34 @@ public class DataOnList {
     private String To;
     private String date;
     private String time;
+    private String ReceiveCode;
+    private String Sender;
+    private String Receiver ;
+
+    public String getSender() {
+        return Sender;
+    }
+
+    public void setSender(String sender) {
+        Sender = sender;
+    }
+
+    public String getReceiver() {
+        return Receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        Receiver = receiver;
+    }
+
+    public String getReceiveCode() {
+        return ReceiveCode;
+    }
+
+    public void setReceiveCode(String recieveCode) {
+        ReceiveCode = recieveCode;
+    }
+
 
     public String getTo() {
         return To;
