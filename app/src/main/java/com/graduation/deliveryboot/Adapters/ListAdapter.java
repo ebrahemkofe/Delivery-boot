@@ -44,9 +44,9 @@ public class ListAdapter extends ArrayAdapter<DataOnList> {
         TextView num = convertView.findViewById(R.id.order_item);
         TextView date = convertView.findViewById(R.id.date);
         TextView time = convertView.findViewById(R.id.time);
-        Toast.makeText(context, LoginActivity.child, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, LoginActivity.Token, Toast.LENGTH_SHORT).show();
 
-        FirebaseDatabase.getInstance().getReference().child("users").child("orders").child(LoginActivity.child)
+        FirebaseDatabase.getInstance().getReference().child("users").child("orders").child(LoginActivity.Token)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @SuppressLint("SetTextI18n")
                     @Override

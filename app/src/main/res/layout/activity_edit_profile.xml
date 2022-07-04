@@ -75,6 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/blue"
+                android:textColor="@color/blue"
                 android:ems="10"
                 android:inputType="textPersonName"
                 tools:ignore="Autofill,LabelFor" />
@@ -102,6 +103,7 @@
                 android:backgroundTint="@color/blue"
                 android:ems="10"
                 android:inputType="textEmailAddress"
+                android:textColor="@color/blue"
                 tools:ignore="Autofill,LabelFor" />
 
         </LinearLayout>
@@ -127,6 +129,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/blue"
                 android:ems="10"
+                android:textColor="@color/blue"
                 android:inputType="number"
                 tools:ignore="Autofill,LabelFor,TextFields" />
         </LinearLayout>
@@ -152,6 +155,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/blue"
                 android:ems="10"
+                android:textColor="@color/blue"
                 android:inputType="textPassword"
                 tools:ignore="Autofill,LabelFor" />
         </LinearLayout>

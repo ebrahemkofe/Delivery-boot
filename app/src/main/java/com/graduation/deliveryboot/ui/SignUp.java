@@ -1,5 +1,6 @@
 package com.graduation.deliveryboot.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,21 +37,22 @@ public class SignUp extends AppCompatActivity {
         Exit.setOnClickListener(view -> finish());
         joinUs.setOnClickListener(view -> {
 
+            FName = fullName.getText().toString().trim();
+            Email = email.getText().toString().trim();
+            pass = password.getText().toString().trim();
+            phone = phoneNumber.getText().toString().trim();
+
             SignUpModel data = new SignUpModel();
             data.setID(String.valueOf(new Random().nextInt()));
-            data.setEmail("hh@gmail.com");
-            data.setName("hh");
-            data.setPhoneNumber("01014451446");
-            data.setPassword("211442555");
+            data.setEmail(Email);
+            data.setName(FName);
+            data.setPhoneNumber(phone);
+            data.setPassword(pass);
             ref.child("users").child(data.getID()).setValue(data);
+            Intent i=new Intent(SignUp.this,LoginActivity.class);
+            startActivity(i);
+            this.finish();
         });
-    }
-
-    public void btn_join(View view) {
-        FName = fullName.getText().toString().trim();
-        Email = email.getText().toString().trim();
-        pass = password.getText().toString().trim();
-        phone = phoneNumber.getText().toString().trim();
     }
 
     @Override

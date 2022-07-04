@@ -202,7 +202,6 @@
                 android:layout_marginBottom="@dimen/_15sdp"
                 android:background="@drawable/rounded_button"
                 android:gravity="center"
-                android:onClick="btn_join"
                 android:text="Join Us"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/white"

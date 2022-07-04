@@ -19,14 +19,10 @@ import com.graduation.deliveryboot.Helper.CustomDialog;
 import com.graduation.deliveryboot.ui.LoginActivity;
 import com.graduation.deliveryboot.ui.NewOrders;
 import com.graduation.deliveryboot.R;
-import com.graduation.deliveryboot.Models.DataOnList;
-
-import java.util.ArrayList;
 
 public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     static int pos;
-
     ListView listView;
     Button newOrder;
     ListAdapter listAdapter;
@@ -42,7 +38,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
         listAdapter = new ListAdapter(requireContext());
         listView.setAdapter(listAdapter);
-        Toast.makeText(requireContext(), LoginActivity.child+"", Toast.LENGTH_SHORT).show();
+        Toast.makeText(requireContext(), LoginActivity.Token+"", Toast.LENGTH_SHORT).show();
         listView.setOnItemClickListener(HomeFragment.this);
 
         newOrder.setOnClickListener(view -> {

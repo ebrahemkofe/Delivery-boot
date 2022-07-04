@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     boolean doubleBackToExitPressedOnce = false;
     List<LoginModel> accounts = new ArrayList<>();
     List<String> tokens = new ArrayList<>();
-    public static String child;
+    public static String Token;
 
 
     @Override
@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
 
         if (intent) {
-            child = prefChild;
+            Token = prefChild;
             if (admin)
                 MainActivity.admin = true;
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -193,14 +193,14 @@ public class LoginActivity extends AppCompatActivity {
                 if (validEmail && validPass) {
                     for (int i = 0; i < accounts.size(); i++) {
                         if (accounts.get(i).getEmail().equals(email) && accounts.get(i).getPassword().equals(password)) {
-                            child = tokens.get(i);
+                            Token = tokens.get(i);
                             if (Signed.isChecked()) {
 
                                 SharedPreferences myPref = getSharedPreferences("remember", MODE_PRIVATE);
                                 SharedPreferences.Editor e = myPref.edit();
                                 e.putString("email", email);
                                 e.putString("password", password);
-                                e.putString("ChildName", child);
+                                e.putString("ChildName", Token);
                                 e.putBoolean("intent", true);
                                 e.apply();
                             }
