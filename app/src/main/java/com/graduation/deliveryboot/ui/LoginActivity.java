@@ -242,13 +242,10 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                             this.finish();
-                            break;
                         }
-                        if (!t)
-                            Toast.makeText(this, "Please Check Email and Password", Toast.LENGTH_SHORT).show();
-
                     }
-
+                    if (!t)
+                        Toast.makeText(this, "Please Check Email and Password", Toast.LENGTH_SHORT).show();
                 } else
                     Toast.makeText(this, "Please Check Email and Password", Toast.LENGTH_SHORT).show();
             }

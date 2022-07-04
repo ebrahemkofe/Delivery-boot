@@ -21,11 +21,24 @@
 
     <ListView
         android:id="@+id/list"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_300sdp"
         android:layout_below="@+id/textView3"
         android:dividerHeight="@dimen/_10sdp"
         tools:listitem="@layout/list_item" />
+
+    <TextView
+        android:id="@+id/listText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_below="@+id/textView3"
+        android:dividerHeight="@dimen/_10sdp"
+        android:gravity="center"
+        android:text="You don't have any orders"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/_20sdp"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/new_order"
