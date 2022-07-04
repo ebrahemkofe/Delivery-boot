@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +22,9 @@ public class SignUp extends AppCompatActivity {
     EditText fullName, email, password, phoneNumber;
     ImageView Exit;
     Button joinUs;
+    RadioButton admin;
+    RadioButton customer;
+    boolean person;
     String FName, Email, pass, phone;
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
@@ -33,6 +37,9 @@ public class SignUp extends AppCompatActivity {
         phoneNumber = (EditText) findViewById(R.id.phoneNumberText);
         joinUs = (Button) findViewById(R.id.saveButton);
         Exit = findViewById(R.id.cancelIcon);
+        admin=(RadioButton)findViewById(R.id.adminButton);
+        customer=(RadioButton)findViewById(R.id.customerButton);
+
 
         Exit.setOnClickListener(view -> finish());
         joinUs.setOnClickListener(view -> {
@@ -41,8 +48,15 @@ public class SignUp extends AppCompatActivity {
             Email = email.getText().toString().trim();
             pass = password.getText().toString().trim();
             phone = phoneNumber.getText().toString().trim();
+            if(admin.isSelected()){
+                person=true;}
+            else if(customer.isSelected()){
 
+                person=false;
+            }
             SignUpModel data = new SignUpModel();
+
+            data.setbool(person);
             data.setID(String.valueOf(new Random().nextInt()));
             data.setEmail(Email);
             data.setName(FName);

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,8 +29,10 @@ public class EditProfileActivity extends AppCompatActivity {
 
     EditText fullName, email, password, phoneNumber;
     String FName, Email, pass, phone;
+
     ImageView Exit;
     SignUpModel user;
+
     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
     @Override

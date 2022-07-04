@@ -173,23 +173,23 @@
 
 
                 <RadioButton
-                    android:id="@+id/studentButton"
+                    android:id="@+id/adminButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:button="@android:drawable/radiobutton_off_background"
-                    android:text=" Student"
+                    android:text=" Admin"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="@color/blue"
                     tools:ignore="HardcodedText" />
 
                 <RadioButton
-                    android:id="@+id/employeeButton"
+                    android:id="@+id/customerButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:button="@android:drawable/radiobutton_off_background"
-                    android:text=" Employee"
+                    android:text=" Customer"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="@color/blue"
                     tools:ignore="HardcodedText" />

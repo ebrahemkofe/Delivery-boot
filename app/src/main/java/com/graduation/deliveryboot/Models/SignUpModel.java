@@ -6,7 +6,8 @@ public class SignUpModel {
     private String PhoneNumber;
     private String Email;
     private String ID;
-
+    private String Wallet;
+    private boolean Person;
 
     public String getName() {
         return Name;
@@ -24,8 +25,14 @@ public class SignUpModel {
         return Email;
     }
 
+    public boolean getbool() {
+        return Person;
+    }
     public String getID() {
         return ID;
+    }
+    public String getwallet() {
+        return Wallet;
     }
 
     public void setID(String ID) {
@@ -43,8 +50,13 @@ public class SignUpModel {
     public void setPhoneNumber(String phoneNumber) {
         PhoneNumber = phoneNumber;
     }
-
+    public void setWallet(String wallet) {
+        Wallet = wallet;
+    }
     public void setEmail(String email) {
         Email = email;
+    }
+    public void setbool(boolean person) {
+        Person = person;
     }
 }
